@@ -27,7 +27,7 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Feather Icons (only for essentials) -->
+  <!-- Feather Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -63,10 +63,36 @@
     header.scrolled { padding: .5rem 0; background: rgba(2,6,23,.95); }
     nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
     .logo { font-size: 1.75rem; font-weight: 800; background: linear-gradient(90deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    /* Desktop Nav */
     .nav-links { display: flex; gap: 2.5rem; }
     .nav-links a { color: var(--muted); font-weight: 500; font-size: .95rem; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px; background: var(--green); transition: .3s; }
     .nav-links a:hover::after { width: 100%; } .nav-links a:hover { color: var(--text); }
+
+    /* Mobile Menu Button */
+    .menu-toggle {
+      display: none; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: .3s;
+    }
+    .menu-toggle:hover { background: rgba(255,255,255,.1); }
+    .menu-toggle .bar { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; transition: .3s; }
+
+    /* Mobile Nav */
+    .mobile-nav {
+      position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+      background: rgba(15,23,42,.98); backdrop-filter: blur(20px); padding: 6rem 2rem 2rem;
+      transition: right .4s ease; z-index: 999; box-shadow: -10px 0 30px rgba(0,0,0,.3);
+    }
+    .mobile-nav.open { right: 0; }
+    .mobile-nav a {
+      display: block; padding: 1rem 0; font-size: 1.1rem; color: var(--text); border-bottom: 1px solid var(--border);
+    }
+    .mobile-nav a:hover { color: var(--green); padding-left: .5rem; }
+    .mobile-nav .close-btn {
+      position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.8rem; color: var(--muted);
+      cursor: pointer; transition: .3s;
+    }
+    .mobile-nav .close-btn:hover { color: var(--green); }
 
     /* Hero */
     .hero {
@@ -98,18 +124,25 @@
     }
     .cta-btn:hover { transform: translateY(-4px); }
 
-    /* Section */
+    /* Section – Animated Titles */
     .section { padding: 7rem 0; overflow: hidden; }
     .section h2 {
       text-align: center; font-size: 2.75rem; margin-bottom: 3.5rem;
       background: linear-gradient(90deg, var(--green), var(--purple));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       position: relative; max-width: 100%; word-wrap: break-word; line-height: 1.2;
+      opacity: 0; transform: translateY(20px);
+    }
+    .section h2.aos-animate {
+      opacity: 1; transform: translateY(0); transition: all 1s ease-out;
     }
     .section h2::after {
       content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
-      width: 80px; height: 4px; background: var(--green); border-radius: 2px;
+      width: 0; height: 4px; background: var(--green); border-radius: 2px;
+      transition: width 1s ease-out;
     }
+    .section h2.aos-animate::after { width: 100px; }
+
     @media (max-width: 992px) { .section h2 { font-size: 2.4rem; } }
     @media (max-width: 640px) { .section h2 { font-size: 2rem; } }
 
@@ -141,28 +174,86 @@
       border-radius: var(--radius); padding: 2.5rem; transition: all .4s;
     }
 
-    /* Vision & Mission – Elegant Cards */
+    /* Vision & Mission – Animated Gradient Border + Scale In */
     .vision-mission {
-      display: grid; gap: 2.5rem; grid-template-columns: 1fr;
-      max-width: 900px; margin: 0 auto;
+      display: grid; gap: 3.5rem; grid-template-columns: 1fr; max-width: 1000px; margin: 0 auto;
     }
     .vision-mission .card {
-      background: rgba(255,255,255,.04); border-left: 4px solid var(--green);
-      padding: 2rem; border-radius: 0 var(--radius) var(--radius) 0;
-      transition: all .3s;
+      background: linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      border: 1px solid rgba(16,185,129,.2); border-radius: var(--radius);
+      padding: 3rem; position: relative; overflow: hidden;
+      transition: all .5s ease; transform: scale(0.95); opacity: 0;
     }
-    .vision-mission .card:hover { background: rgba(255,255,255,.08); }
+    .vision-mission .card.aos-animate {
+      transform: scale(1); opacity: 1;
+    }
+    .vision-mission .card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+      background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
+      background-size: 200% 100%; animation: gradientMove 3s ease infinite;
+    }
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .vision-mission .card:hover {
+      transform: translateY(-10px); border-color: var(--green);
+      box-shadow: 0 25px 50px rgba(0,0,0,.25);
+    }
+    .vision-mission .icon {
+      width: 70px; height: 70px; background: rgba(16,185,129,.15); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
+      font-size: 2rem; color: var(--green); transition: transform .4s;
+    }
+    .vision-mission .card:hover .icon { transform: scale(1.15); }
     .vision-mission h3 {
-      font-size: 1.5rem; margin-bottom: 1rem; color: var(--green);
+      font-size: 1.65rem; margin-bottom: 1rem; color: var(--green);
       display: flex; align-items: center; gap: 0.5rem;
     }
     .vision-mission p {
-      font-size: 1.05rem; line-height: 1.8; color: var(--text);
+      font-size: 1.12rem; line-height: 1.9; color: var(--text);
     }
-    .vision-mission .vision p { font-style: italic; }
-    .vision-mission .story {
-      margin-top: 3rem; font-size: 1.02rem; line-height: 1.8;
-      background: rgba(255,255,255,.03); padding: 2rem; border-radius: var(--radius);
+    .vision-mission .vision p { font-style: italic; opacity: 0.95; }
+
+    /* Sisuzen Story – Timeline Style */
+    .story-timeline {
+      position: relative; max-width: 900px; margin: 3rem auto 0;
+      padding: 2rem 0;
+    }
+    .story-timeline::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--green), transparent);
+      transform: translateX(-50%);
+    }
+    .story-block {
+      display: flex; justify-content: center; margin: 2.5rem 0; opacity: 0; transform: translateY(30px);
+      transition: all .8s ease;
+    }
+    .story-block.aos-animate { opacity: 1; transform: translateY(0); }
+    .story-block:nth-child(odd) { flex-direction: row; }
+    .story-block:nth-child(even) { flex-direction: row-reverse; }
+    .story-content {
+      width: 45%; background: rgba(255,255,255,.04); padding: 1.8rem; border-radius: var(--radius);
+      border: 1px solid rgba(16,185,129,.2); position: relative;
+    }
+    .story-content::before {
+      content: ''; position: absolute; top: 50%; width: 16px; height: 16px;
+      background: var(--green); border-radius: 50%; transform: translateY(-50%);
+    }
+    .story-block:nth-child(odd) .story-content::before { right: -48px; }
+    .story-block:nth-child(even) .story-content::before { left: -48px; }
+    .story-content h4 {
+      font-size: 1.25rem; color: var(--green); margin-bottom: .5rem;
+    }
+    .story-content p {
+      font-size: 1.02rem; line-height: 1.8; color: var(--text);
+    }
+    @media (max-width: 768px) {
+      .story-timeline::before { display: none; }
+      .story-block { flex-direction: column; align-items: center; }
+      .story-block:nth-child(even) { flex-direction: column; }
+      .story-content { width: 100%; margin-bottom: 2rem; }
+      .story-content::before { top: -32px; left: 50%; transform: translateX(-50%); }
     }
 
     /* Core Pillars */
@@ -261,19 +352,16 @@
     /* Particles */
     #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .flow { grid-template-columns: 1fr; }
-      .step { margin: 1.5rem 0; }
-    }
+    /* Mobile Responsive */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.9rem; }
       .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .hero h1 { font-size: 2.9rem; }
       nav { padding: 1rem 0; }
+      .section { padding: 5rem 0; }
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 2.4rem; }
-      .section { padding: 5rem 0; }
     }
   </style>
 </head>
@@ -295,9 +383,25 @@
           <a href="#demo">Demo</a>
           <a href="#contact">Contact</a>
         </div>
+        <div class="menu-toggle" id="menuToggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
       </nav>
     </div>
   </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="close-btn" id="closeBtn">&times;</div>
+    <a href="#platform">Platform</a>
+    <a href="#about">About</a>
+    <a href="#people">People</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#demo">Demo</a>
+    <a href="#contact">Contact</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -311,23 +415,23 @@
   <!-- 3-STEP PLATFORM -->
   <section id="platform" class="section">
     <div class="container">
-      <h2 data-aos="fade-up">One Platform. Three Steps to Profit.</h2>
+      <h2 data-aos="fade-up" data-aos-delay="100">One Platform. Three Steps to Profit.</h2>
       <div class="flow">
-        <div class="step" data-aos="fade-up" data-aos-delay="100">
+        <div class="step" data-aos="fade-up" data-aos-delay="200">
           <div class="step-num">1</div>
           <div class="step-icon"><i data-feather="cpu"></i></div>
           <h3>SmartFactory AI</h3>
           <p>AI optimizes lines, cuts energy 22%, reduces waste at source.</p>
           <a href="#demo">See Optimization</a>
         </div>
-        <div class="step" data-aos="fade-up" data-aos-delay="200">
+        <div class="step" data-aos="fade-up" data-aos-delay="300">
           <div class="step-num">2</div>
           <div class="step-icon"><i data-feather="shield"></i></div>
           <h3>HalalGuard + DPP</h3>
           <p>Auto-generates compliance docs for EU, GCC, global markets.</p>
           <a href="#demo">See Compliance</a>
         </div>
-        <div class="step" data-aos="fade-up" data-aos-delay="300" style="border:2px solid var(--green);">
+        <div class="step" data-aos="fade-up" data-aos-delay="400" style="border:2px solid var(--green);">
           <div class="step-num">3</div>
           <div class="step-icon"><i data-feather="dollar-sign"></i></div>
           <h3>CycleProfit AI</h3>
@@ -341,41 +445,60 @@
   <!-- ABOUT US -->
   <section id="about" class="section" style="background:rgba(15,23,42,.4);">
     <div class="container">
-      <h2 data-aos="fade-up">About Us</h2>
+      <h2 data-aos="fade-up" data-aos-delay="100">About Us</h2>
       <div class="glass-card" data-aos="fade-up">
         <div class="vision-mission">
-          <div class="card vision">
+          <div class="card vision" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i data-feather="eye"></i></div>
             <h3>Our Vision</h3>
             <p>To engineer the global economy into a state of balanced, systemic renewal, establishing the gold standard for resource resilience and zero-waste performance worldwide.</p>
           </div>
-          <div class="card mission">
+          <div class="card mission" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i data-feather="target"></i></div>
             <h3>Our Mission</h3>
             <p>To design, build, and deploy AI-driven, circular engineering systems that embody the principle of <strong>Sisu</strong>, guaranteeing clients unwavering operational performance and achieving continuous, verifiable resource optimization.</p>
           </div>
-          <div class="story">
-            <h3 style="text-align:center;margin-bottom:1rem;">The Sisuzen Story</h3>
-            <p>At Sisuzen, our name is our operating manual. It is the fusion of two governing philosophies: <strong>Sisu</strong>—the Finnish resolve that compels systems to never fail—and <strong>Kaizen</strong>—the commitment to relentless, systematic improvement.</p>
-            <p style="margin-top:1rem;">We recognized that achieving true circularity demands more than intention; it requires unwavering systemic grit and AI-driven precision. Sisuzen is a deep-tech engineering firm specializing in creating self-optimizing, resilient industrial cycles where every output is engineered to become the highest-value input.</p>
+        </div>
+
+        <!-- Sisuzen Story – Timeline -->
+        <div class="story-timeline">
+          <div class="story-block" data-aos="fade-up" data-aos-delay="400">
+            <div class="story-content">
+              <h4>The Name</h4>
+              <p>At Sisuzen, our name is our operating manual. It is the fusion of two governing philosophies: <strong>Sisu</strong>—the Finnish resolve that compels systems to never fail—and <strong>Kaizen</strong>—the commitment to relentless, systematic improvement.</p>
+            </div>
+          </div>
+          <div class="story-block" data-aos="fade-up" data-aos-delay="500">
+            <div class="story-content">
+              <h4>The Insight</h4>
+              <p>We recognized that achieving true circularity demands more than intention; it requires unwavering systemic grit and AI-driven precision.</p>
+            </div>
+          </div>
+          <div class="story-block" data-aos="fade-up" data-aos-delay="600">
+            <div class="story-content">
+              <h4>The Solution</h4>
+              <p>Sisuzen is a deep-tech engineering firm specializing in creating self-optimizing, resilient industrial cycles where every output is engineered to become the highest-value input.</p>
+            </div>
           </div>
         </div>
 
-        <h3 style="text-align:center;margin:3rem 0 1.5rem;">Our Core Pillars</h3>
+        <h3 style="text-align:center;margin:3rem 0 1.5rem;" data-aos="fade-up" data-aos-delay="700">Our Core Pillars</h3>
         <div class="about-grid">
-          <div class="pillar" data-aos="fade-up" data-aos-delay="100">
+          <div class="pillar" data-aos="fade-up" data-aos-delay="800">
             <h4>Sisu-Engineered Resilience</h4>
             <p>Systems built with Finnish tenacity to guarantee maximum uptime, total resource recapture, and operational resilience against material scarcity.</p>
           </div>
-          <div class="pillar" data-aos="fade-up" data-aos-delay="200">
+          <div class="pillar" data-aos="fade-up" data-aos-delay="900">
             <h4>The Kaizen Loop (AI Optimization)</h4>
             <p>We embed proprietary AI that ensures a state of continuous improvement, perpetually driving efficiency and optimization.</p>
           </div>
-          <div class="pillar" data-aos="fade-up" data-aos-delay="300">
+          <div class="pillar" data-aos="fade-up" data-aos-delay="1000">
             <h4>Circular by Design</h4>
             <p>We apply rigorous engineering to eliminate waste at the conceptual stage, translating complex resource streams into high-purity, next-generation materials.</p>
           </div>
         </div>
 
-        <p style="text-align:center;margin-top:2.5rem;font-weight:700;color:var(--green);font-size:1.1rem;">
+        <p style="text-align:center;margin-top:2.5rem;font-weight:700;color:var(--green);font-size:1.1rem;" data-aos="fade-up" data-aos-delay="1100">
           Our Promise: Performance Without Compromise.
         </p>
       </div>
@@ -385,20 +508,20 @@
   <!-- OUR PEOPLE -->
   <section id="people" class="section">
     <div class="container">
-      <h2 data-aos="fade-up">Our People</h2>
+      <h2 data-aos="fade-up" data-aos-delay="100">Our People</h2>
       <div class="glass-card" data-aos="fade-up">
-        <p style="text-align:center;max-width:800px;margin:auto;font-size:1.05rem;">
+        <p style="text-align:center;max-width:800px;margin:auto;font-size:1.05rem;" data-aos="fade-up" data-aos-delay="200">
           We are a multidisciplinary team of engineers, data scientists, and resource specialists united by the principle of <strong>Sisu</strong>—the resolve to solve the challenges others deem impossible—and guided by exceptional industry leaders.
         </p>
-        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Core Leadership</h3>
-        <div class="person" data-aos="fade-up">
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;" data-aos="fade-up" data-aos-delay="300">Core Leadership</h3>
+        <div class="person" data-aos="fade-up" data-aos-delay="400">
           <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="CEO" class="person-img">
           <div class="person-info">
             <h4>[Your Name], CEO & Founder</h4>
             <p>is the visionary behind the Sisuzen methodology. [Name] brings [X years] of experience in complex systems engineering, focusing on translating abstract philosophical principles into high-performance, tangible engineering solutions.</p>
           </div>
         </div>
-        <div class="person" data-aos="fade-up" data-aos-delay="100">
+        <div class="person" data-aos="fade-up" data-aos-delay="500">
           <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Head of AI" class="person-img">
           <div class="person-info">
             <h4>[Name], Head of AI & Optimization</h4>
@@ -406,9 +529,9 @@
           </div>
         </div>
 
-        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Strategic Advisors</h3>
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;" data-aos="fade-up" data-aos-delay="600">Strategic Advisors</h3>
         <div class="advisor-grid">
-          <div class="advisor-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="advisor-card" data-aos="fade-up" data-aos-delay="700">
             <div class="advisor-header">
               <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dr. Sharma" class="advisor-img">
               <div class="advisor-title">
@@ -423,7 +546,7 @@
             </div>
           </div>
 
-          <div class="advisor-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="advisor-card" data-aos="fade-up" data-aos-delay="800">
             <div class="advisor-header">
               <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mr. Tanaka" class="advisor-img">
               <div class="advisor-title">
@@ -445,9 +568,9 @@
   <!-- PRICING -->
   <section id="pricing" class="section" style="background:rgba(15,23,42,.4);">
     <div class="container">
-      <h2 data-aos="fade-up">Simple, Scalable Pricing</h2>
+      <h2 data-aos="fade-up" data-aos-delay="100">Simple, Scalable Pricing</h2>
       <div class="pricing">
-        <div class="price-card" data-aos="fade-up">
+        <div class="price-card" data-aos="fade-up" data-aos-delay="200">
           <h3>Starter</h3>
           <div class="price">$99<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
           <ul>
@@ -457,7 +580,7 @@
           </ul>
           <a href="#" class="btn">Get Started</a>
         </div>
-        <div class="price-card" data-aos="fade-up" data-aos-delay="100" style="border:2px solid var(--green);">
+        <div class="price-card" data-aos="fade-up" data-aos-delay="300" style="border:2px solid var(--green);">
           <h3>Professional <span style="font-size:.8rem;color:var(--green);">Most Popular</span></h3>
           <div class="price">$499<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
           <ul>
@@ -468,7 +591,7 @@
           </ul>
           <a href="#" class="btn"><i data-feather="zap"></i> Start Free Trial</a>
         </div>
-        <div class="price-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="price-card" data-aos="fade-up" data-aos-delay="400">
           <h3>Enterprise</h3>
           <div class="price">Custom</div>
           <ul>
@@ -485,8 +608,8 @@
   <!-- LIVE DEMO -->
   <section id="demo" class="section">
     <div class="container">
-      <h2 data-aos="fade-up">Live Dashboard – CycleProfit AI</h2>
-      <div class="glass-card" data-aos="fade-up">
+      <h2 data-aos="fade-up" data-aos-delay="100">Live Dashboard – CycleProfit AI</h2>
+      <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
         <h3>Waste‑to‑Revenue Tracker</h3>
         <div class="chart-container">
           <canvas id="profitChart"></canvas>
@@ -501,8 +624,8 @@
   <!-- R&D -->
   <section id="research" class="section" style="background:rgba(15,23,42,.4);">
     <div class="container">
-      <h2 data-aos="fade-up">Powered by Research</h2>
-      <div class="glass-card" data-aos="fade-up">
+      <h2 data-aos="fade-up" data-aos-delay="100">Powered by Research</h2>
+      <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
         <p><em>CycleGNN</em> – Graph AI for waste routing<br><strong>Nature Sustainability, 2025</strong></p>
         <a href="#" style="color:var(--green);font-size:.95rem;">Read Paper</a>
       </div>
@@ -512,8 +635,8 @@
   <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="container">
-      <h2 data-aos="fade-up">Start Your Circular Journey</h2>
-      <form data-aos="fade-up" data-netlify="true">
+      <h2 data-aos="fade-up" data-aos-delay="100">Start Your Circular Journey</h2>
+      <form data-aos="fade-up" data-aos-delay="200" data-netlify="true">
         <input type="text" name="name" placeholder="Name" required />
         <input type="email" name="email" placeholder="business@email.com" required />
         <input type="text" name="company" placeholder="Company" />
@@ -543,14 +666,43 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      AOS.init({ duration: 1000, once: true, easing: 'ease-out-quart' });
+      AOS.init({ 
+        duration: 1000, 
+        once: true, 
+        easing: 'ease-out-quart',
+        offset: 100
+      });
       feather.replace();
 
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      const closeBtn = document.getElementById('closeBtn');
+
+      menuToggle.addEventListener('click', () => {
+        mobileNav.classList.add('open');
+      });
+      closeBtn.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target) && mobileNav.classList.contains('open')) {
+          mobileNav.classList.remove('open');
+        }
+      });
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+        });
+      });
+
+      // Header scroll
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 60);
       });
 
+      // Chart
       new Chart(document.getElementById('profitChart'), {
         type: 'bar',
         data: {
@@ -574,6 +726,7 @@
         }
       });
 
+      // Particles
       const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d');
       canvas.width = window.innerWidth; canvas.height = window.innerHeight;
       const particles = Array.from({length: 60}, () => ({
@@ -599,6 +752,7 @@
         canvas.height = window.innerHeight;
       });
 
+      // Advisor Collapsible
       document.querySelectorAll('.advisor-card').forEach(card => {
         card.addEventListener('click', () => {
           card.classList.toggle('open');
