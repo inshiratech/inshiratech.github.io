@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sisuzen – AI Platform for Circular Manufacturing</title>
+  <meta name="description" content="Sisu + Kaizen = Resilient, AI-optimized, zero-waste industrial systems.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sisuzen">
+  <meta property="og:description" content="Engineering resilience. Optimizing process. Closing loops.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sisuzen.github.io/">
+  <meta property="og:image" content="https://sisuzen.github.io/og-image.jpg">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sisuzen",
+    "url": "https://sisuzen.github.io",
+    "logo": "https://sisuzen.github.io/logo.png",
+    "description": "AI platform for circular manufacturing"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #10b981; --green-d: #059669; --blue: #0ea5e9; --purple: #8b5cf6;
+      --dark: #0f172a; --darker: #020617; --light: #f8fafc;
+      --glass: rgba(255,255,255,.06); --border: rgba(255,255,255,.12);
+      --text: #f1f5f9; --muted: #94a3b8; --radius: 1rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    .container { max-width: 1400px; margin: auto; padding: 0 1.5rem; }
+    h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.025em; }
+    a { color: inherit; text-decoration: none; transition: all .3s; }
+    button, .btn { cursor: pointer; font-family: inherit; }
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      backdrop-filter: blur(16px); background: rgba(15,23,42,.9);
+      border-bottom: 1px solid var(--border); transition: padding .3s;
+    }
+    header.scrolled { padding: .5rem 0; background: rgba(2,6,23,.95); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+    .logo { font-size: 1.75rem; font-weight: 800; background: linear-gradient(90deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a { color: var(--muted); font-weight: 500; font-size: .95rem; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px; background: var(--green); transition: .3s; }
+    .nav-links a:hover::after { width: 100%; } .nav-links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; overflow: hidden; padding-top: 80px;
+      background: var(--dark);
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
+      background-attachment: fixed; z-index: 0;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: inherit; opacity: 0.3; z-index: -1;
+      animation: gradientShift 20s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { transform: translateX(0) translateY(0); }
+      50% { transform: translateX(-10%) translateY(-10%); }
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero h1 { font-size: 3.75rem; line-height: 1.15; max-width: 900px; margin-bottom: 1rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    .hero p { font-size: 1.2rem; max-width: 720px; margin-bottom: 2rem; color: var(--muted); }
+    .cta-btn {
+      background: var(--green); color: #fff; padding: 1rem 2.5rem; border: none; border-radius: 50px;
+      font-weight: 600; box-shadow: 0 8px 25px rgba(16,185,129,.3); transition: all .3s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .cta-btn:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(16,185,129,.4); }
+    .cta-btn i { font-size: 1.1rem; }
+
+    /* Section */
+    .section { padding: 7rem 0; }
+    .section h2 {
+      text-align: center; font-size: 2.75rem; margin-bottom: 3.5rem;
+      background: linear-gradient(90deg, var(--green), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      position: relative; display: inline-block; left: 50%; transform: translateX(-50%);
+    }
+    .section h2::after {
+      content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 4px; background: var(--green); border-radius: 2px;
+    }
+
+    /* 3-Step Flow */
+    .flow { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); position: relative; }
+    .flow::before {
+      content: ''; position: absolute; top: 50%; left: 5%; right: 5%; height: 2px;
+      background: var(--border); z-index: 0; transform: translateY(-50%); pointer-events: none;
+    }
+    @media (max-width: 992px) { .flow::before { display: none; } }
+    .step {
+      background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2.5rem; text-align: center;
+      transition: all .4s; position: relative; z-index: 1;
+    }
+    .step:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(0,0,0,.3); border-color: var(--green); }
+    .step-num {
+      display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; margin: 0 auto 1.25rem;
+      border-radius: 50%; background: var(--green); color: #fff; font-weight: 800; font-size: 1.3rem;
+      box-shadow: 0 0 20px rgba(16,185,129,.5);
+    }
+    .step-icon { font-size: 1.8rem; margin-bottom: 1rem; color: var(--green); filter: drop-shadow(0 0 8px rgba(16,185,129,.4)); }
+    .step h3 { margin: 1rem 0 .75rem; font-size: 1.45rem; }
+    .step p { color: var(--muted); margin-bottom: 1rem; }
+    .step a { color: var(--green); font-weight: 600; font-size: .95rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .step a:hover { text-decoration: underline; }
+
+    /* Glass Card */
+    .glass-card {
+      background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2.5rem; transition: all .4s;
+    }
+    .glass-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,.3); }
+
+    /* About & Pillars */
+    .about-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .pillar {
+      background: var(--glass); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem;
+      transition: all .3s; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .pillar:hover { border-color: var(--green); transform: translateY(-4px); }
+    .pillar .icon {
+      width: 48px; height: 48px; background: rgba(16,185,129,.15); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; color: var(--green); font-size: 1.4rem;
+    }
+    .pillar h4 { margin: 0; color: var(--green); font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; }
+    .pillar p { font-size: .95rem; color: var(--muted); }
+
+    /* People */
+    .person {
+      display: flex; gap: 1.75rem; align-items: flex-start; margin-bottom: 2.5rem;
+      padding: 1.5rem; background: rgba(255,255,255,.03); border-radius: 16px; transition: all .3s;
+    }
+    .person:hover { background: rgba(255,255,255,.06); transform: translateX(4px); }
+    .person-img {
+      width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+      border: 3px solid var(--green); box-shadow: 0 0 20px rgba(16,185,129,.3);
+    }
+    .person-info h4 { margin-bottom: .35rem; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; }
+    .person-info h4 i { color: var(--green); }
+    .person-info p { font-size: .95rem; color: var(--muted); line-height: 1.6; }
+
+    /* Advisors – Collapsible */
+    .advisor-grid {
+      display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .advisor-card {
+      background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: all .4s; cursor: pointer;
+    }
+    .advisor-card:hover { border-color: var(--green); transform: translateY(-6px); }
+    .advisor-header {
+      padding: 1.5rem; display: flex; gap: 1rem; align-items: center;
+    }
+    .advisor-img {
+      width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);
+    }
+    .advisor-title h4 { margin: 0; font-size: 1.1rem; }
+    .advisor-title p { margin: 0.25rem 0 0; font-size: .9rem; color: var(--muted); }
+    .toggle-icon {
+      margin-left: auto; color: var(--green); transition: transform .3s;
+    }
+    .advisor-card.open .toggle-icon { transform: rotate(180deg); }
+    .advisor-body {
+      padding: 0 1.5rem 1.5rem; max-height: 0; overflow: hidden; transition: all .4s ease;
+    }
+    .advisor-card.open .advisor-body { max-height: 300px; padding-top: 1rem; }
+
+    /* Pricing */
+    .pricing { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .price-card {
+      background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2.5rem; text-align: center; transition: .4s; position: relative;
+    }
+    .price-card:hover { transform: translateY(-12px); border-color: var(--green); }
+    .price-card h3 { font-size: 1.6rem; margin-bottom: .5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .price-card .price { font-size: 3rem; font-weight: 800; color: var(--green); margin: .5rem 0; }
+    .price-card ul { list-style: none; margin: 2rem 0; }
+    .price-card ul li {
+      margin: .75rem 0; color: var(--muted); font-size: .95rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .price-card .btn {
+      background: var(--green); color: #fff; padding: .9rem 2rem; border-radius: 50px;
+      font-weight: 600; transition: .3s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .price-card .btn:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(16,185,129,.4); }
+
+    /* Chart */
+    .chart-container { background: rgba(30,41,59,.4); border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; }
+
+    /* Form */
+    form { max-width: 640px; margin: 2.5rem auto; }
+    input, textarea, select {
+      width: 100%; padding: 1.1rem; margin: .9rem 0; background: rgba(30,41,59,.7);
+      border: 1px solid var(--border); border-radius: 12px; color: #fff; font-size: 1rem; transition: border .3s;
+    }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--green); }
+    button {
+      background: linear-gradient(45deg, var(--green), var(--blue)); color: #fff; border: none;
+      padding: 1.1rem 2.5rem; border-radius: 50px; font-weight: 600; transition: .3s;
+      width: 100%; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    button:hover { transform: scale(1.03); box-shadow: 0 12px 30px rgba(16,185,129,.4); }
+
+    /* Footer */
+    footer {
+      background: var(--darker); padding: 3.5rem 0; border-top: 1px solid var(--border);
+      text-align: center; font-size: .9rem; color: var(--muted);
+    }
+    footer a { color: var(--green); margin: 0 .75rem; transition: .3s; }
+    footer a:hover { color: var(--text); }
+
+    /* Particles */
+    #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .flow { grid-template-columns: 1fr; }
+      .step { margin: 1.5rem 0; }
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.9rem; }
+      .nav-links { display: none; }
+      nav { padding: 1rem 0; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.4rem; }
+      .section { padding: 5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle BG -->
+  <canvas id="particles"></canvas>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <div class="logo">Sisuzen</div>
+        <div class="nav-links">
+          <a href="#platform">Platform</a>
+          <a href="#about">About</a>
+          <a href="#people">People</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#demo">Demo</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container" data-aos="fade-up">
+      <h1>AI Platform for Circular Manufacturing</h1>
+      <p>Optimize production. Prove compliance. Monetize waste — all on one secure, self‑optimizing platform.</p>
+      <a href="#pricing" class="cta-btn"><i data-feather="zap"></i> Start Free Trial</a>
+    </div>
+  </section>
+
+  <!-- 3-STEP PLATFORM -->
+  <section id="platform" class="section">
+    <div class="container">
+      <h2 data-aos="fade-up">One Platform. Three Steps to Profit.</h2>
+      <div class="flow">
+        <div class="step" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-num">1</div>
+          <div class="step-icon"><i data-feather="cpu"></i></div>
+          <h3>SmartFactory AI</h3>
+          <p>AI optimizes lines, cuts energy 22%, reduces waste at source.</p>
+          <a href="#demo"><i data-feather="eye"></i> See Optimization</a>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-num">2</div>
+          <div class="step-icon"><i data-feather="shield"></i></div>
+          <h3>HalalGuard + DPP</h3>
+          <p>Auto-generates compliance docs for EU, GCC, global markets.</p>
+          <a href="#demo"><i data-feather="file-text"></i> See Compliance</a>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="300" style="border:2px solid var(--green);">
+          <div class="step-num">3</div>
+          <div class="step-icon"><i data-feather="dollar-sign"></i></div>
+          <h3>CycleProfit AI</h3>
+          <p>Turns waste into revenue + carbon credits. New profit stream.</p>
+          <a href="#demo"><i data-feather="trending-up"></i> Explore Profit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="about" class="section" style="background:rgba(15,23,42,.4);">
+    <div class="container">
+      <h2 data-aos="fade-up">About Us</h2>
+      <div class="glass-card" data-aos="fade-up">
+        <h3 style="text-align:center;margin-bottom:1.5rem;">Our Vision</h3>
+        <p style="text-align:center;max-width:800px;margin:auto;font-style:italic;font-size:1.1rem;">
+          To engineer the global economy into a state of balanced, systemic renewal, establishing the gold standard for resource resilience and zero-waste performance worldwide.
+        </p>
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Our Mission</h3>
+        <p style="text-align:center;max-width:800px;margin:auto;font-size:1.05rem;">
+          To design, build, and deploy AI-driven, circular engineering systems that embody the principle of <strong>Sisu</strong>, guaranteeing clients unwavering operational performance and achieving continuous, verifiable resource optimization.
+        </p>
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">The Sisuzen Story</h3>
+        <p style="max-width:900px;margin:auto;font-size:1.02rem;">
+          At Sisuzen, our name is our operating manual. It is the fusion of two governing philosophies: <strong>Sisu</strong>—the Finnish resolve that compels systems to never fail—and <strong>Kaizen</strong>—the commitment to relentless, systematic improvement.
+        </p>
+        <p style="max-width:900px;margin:1.25rem auto;font-size:1.02rem;">
+          We recognized that achieving true circularity demands more than intention; it requires unwavering systemic grit and AI-driven precision. Sisuzen is a deep-tech engineering firm specializing in creating self-optimizing, resilient industrial cycles where every output is engineered to become the highest-value input.
+        </p>
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Our Core Pillars</h3>
+        <div class="about-grid">
+          <div class="pillar" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon"><i data-feather="anchor"></i></div>
+            <h4><i data-feather="shield"></i> Sisu-Engineered Resilience</h4>
+            <p>Systems built with Finnish tenacity to guarantee maximum uptime, total resource recapture, and operational resilience against material scarcity.</p>
+          </div>
+          <div class="pillar" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i data-feather="refresh-cw"></i></div>
+            <h4><i data-feather="zap"></i> The Kaizen Loop (AI Optimization)</h4>
+            <p>We embed proprietary AI that ensures a state of continuous improvement, perpetually driving efficiency and optimization.</p>
+          </div>
+          <div class="pillar" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i data-feather="recycle"></i></div>
+            <h4><i data-feather="target"></i> Circular by Design</h4>
+            <p>We apply rigorous engineering to eliminate waste at the conceptual stage, translating complex resource streams into high-purity, next-generation materials.</p>
+          </div>
+        </div>
+        <p style="text-align:center;margin-top:2.5rem;font-weight:700;color:var(--green);font-size:1.1rem;">
+          Our Promise: Performance Without Compromise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR PEOPLE -->
+  <section id="people" class="section">
+    <div class="container">
+      <h2 data-aos="fade-up">Our People</h2>
+      <div class="glass-card" data-aos="fade-up">
+        <p style="text-align:center;max-width:800px;margin:auto;font-size:1.05rem;">
+          We are a multidisciplinary team of engineers, data scientists, and resource specialists united by the principle of <strong>Sisu</strong>—the resolve to solve the challenges others deem impossible—and guided by exceptional industry leaders.
+        </p>
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Core Leadership</h3>
+        <div class="person" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="CEO" class="person-img">
+          <div class="person-info">
+            <h4><i data-feather="user"></i> [Your Name], CEO & Founder</h4>
+            <p>is the visionary behind the Sisuzen methodology. [Name] brings [X years] of experience in complex systems engineering, focusing on translating abstract philosophical principles into high-performance, tangible engineering solutions.</p>
+          </div>
+        </div>
+        <div class="person" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Head of AI" class="person-img">
+          <div class="person-info">
+            <h4><i data-feather="cpu"></i> [Name], Head of AI & Optimization</h4>
+            <p>leads the development of the proprietary Kaizen Loop—our continuous improvement AI platform. With a background in deep reinforcement learning, [Name] ensures every Sisuzen system is self-learning, adaptive, and engineered for verifiable resource efficiency.</p>
+          </div>
+        </div>
+
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Strategic Advisors</h3>
+        <div class="advisor-grid">
+          <div class="advisor-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="advisor-header">
+              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dr. Sharma" class="advisor-img">
+              <div class="advisor-title">
+                <h4>Dr. Anya Sharma</h4>
+                <p>Circular Economy & ESG</p>
+              </div>
+              <i data-feather="chevron-down" class="toggle-icon"></i>
+            </div>
+            <div class="advisor-body">
+              <p><strong>Expertise:</strong> Circular Economy Policy & ESG Strategy<br>
+              Dr. Sharma is a global thought leader in sustainable supply chain design. She guides Sisuzen on anticipating future policy changes, ensuring our systems not only comply with, but set the standard for, verifiable resource utilization.</p>
+            </div>
+          </div>
+
+          <div class="advisor-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="advisor-header">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mr. Tanaka" class="advisor-img">
+              <div class="advisor-title">
+                <h4>Mr. Kenji Tanaka</h4>
+                <p>Kaizen & Automation</p>
+              </div>
+              <i data-feather="chevron-down" class="toggle-icon"></i>
+            </div>
+            <div class="advisor-body">
+              <p><strong>Expertise:</strong> Advanced Industrial Automation & Kaizen Methodology<br>
+              Drawing on decades of experience implementing large-scale Kaizen-based manufacturing systems, Mr. Tanaka advises Sisuzen on optimizing the efficiency and scalability of our engineering deployments.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="section" style="background:rgba(15,23,42,.4);">
+    <div class="container">
+      <h2 data-aos="fade-up">Simple, Scalable Pricing</h2>
+      <div class="pricing">
+        <div class="price-card" data-aos="fade-up">
+          <h3><i data-feather="play-circle"></i> Starter</h3>
+          <div class="price">$99<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
+          <ul>
+            <li><i data-feather="check"></i> SmartFactory AI (1 line)</li>
+            <li><i data-feather="check"></i> Basic reporting</li>
+            <li><i data-feather="check"></i> Email support</li>
+          </ul>
+          <a href="#" class="btn"><i data-feather="arrow-right"></i> Get Started</a>
+        </div>
+        <div class="price-card" data-aos="fade-up" data-aos-delay="100" style="border:2px solid var(--green);">
+          <h3><i data-feather="star"></i> Professional <span style="font-size:.8rem;color:var(--green);">Most Popular</span></h3>
+          <div class="price">$499<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
+          <ul>
+            <li><i data-feather="check"></i> Unlimited lines</li>
+            <li><i data-feather="check"></i> HalalGuard + DPP</li>
+            <li><i data-feather="check"></i> CycleProfit + Carbon Credits</li>
+            <li><i data-feather="check"></i> Priority support + API</li>
+          </ul>
+          <a href="#" class="btn"><i data-feather="zap"></i> Start Free Trial</a>
+        </div>
+        <div class="price-card" data-aos="fade-up" data-aos-delay="200">
+          <h3><i data-feather="briefcase"></i> Enterprise</h3>
+          <div class="price">Custom</div>
+          <ul>
+            <li><i data-feather="check"></i> Custom AI models</li>
+            <li><i data-feather="check"></i> On‑prem / private cloud</li>
+            <li><i data-feather="check"></i> Dedicated success manager</li>
+          </ul>
+          <a href="#contact" class="btn"><i data-feather="phone"></i> Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE DEMO -->
+  <section id="demo" class="section">
+    <div class="container">
+      <h2 data-aos="fade-up">Live Dashboard – CycleProfit AI</h2>
+      <div class="glass-card" data-aos="fade-up">
+        <h3>Waste‑to‑Revenue Tracker</h3>
+        <div class="chart-container">
+          <canvas id="profitChart"></canvas>
+        </div>
+        <p style="text-align:center;margin-top:1.5rem;">
+          <a href="#" style="color:var(--green);"><i data-feather="external-link"></i> Open Full Dashboard</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- R&D -->
+  <section id="research" class="section" style="background:rgba(15,23,42,.4);">
+    <div class="container">
+      <h2 data-aos="fade-up">Powered by Research</h2>
+      <div class="glass-card" data-aos="fade-up">
+        <p><em>CycleGNN</em> – Graph AI for waste routing<br><strong>Nature Sustainability, 2025</strong></p>
+        <a href="#" style="color:var(--green);font-size:.95rem;"><i data-feather="book-open"></i> Read Paper</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 data-aos="fade-up">Start Your Circular Journey</h2>
+      <form data-aos="fade-up" data-netlify="true">
+        <input type="text" name="name" placeholder="Name" required />
+        <input type="email" name="email" placeholder="business@email.com" required />
+        <input type="text" name="company" placeholder="Company" />
+        <select name="interest">
+          <option value="">I'm interested in...</option>
+          <option>Optimizing my factory</option>
+          <option>Halal / DPP compliance</option>
+          <option>Monetizing waste</option>
+          <option>All of the above</option>
+        </select>
+        <textarea name="message" rows="4" placeholder="Your challenge…" required></textarea>
+        <button type="submit"><i data-feather="send"></i> Request Demo</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Sisuzen. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      <p><a href="#"><i data-feather="github"></i> GitHub</a> • <a href="#"><i data-feather="twitter"></i> Twitter</a> • <a href="#"><i data-feather="linkedin"></i> LinkedIn</a></p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 1000, once: true, easing: 'ease-out-quart' });
+
+    // Header scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Chart
+    new Chart(document.getElementById('profitChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Plastic','Metal','Organic','Textile','E-Waste'],
+        datasets: [{
+          label: 'Revenue ($K)',
+          data: [45,78,32,56,91],
+          backgroundColor: 'rgba(16,185,129,0.6)',
+          borderColor: '#10b981',
+          borderWidth: 2,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: '#e2e8f0' } } },
+        scales: {
+          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } },
+          x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+        }
+      }
+    });
+
+    // Particles
+    const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    const particles = Array.from({length: 60}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.8 + 0.6,
+      s: Math.random() * 0.7 + 0.3
+    }));
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(16,185,129,0.22)'; ctx.fill();
+        p.y -= p.s;
+        if (p.y < -10) p.y = canvas.height + 10;
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    });
+
+    // Feather Icons
+    feather.replace();
+
+    // Advisor Collapsible
+    document.querySelectorAll('.advisor-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
