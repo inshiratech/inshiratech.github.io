@@ -135,7 +135,7 @@
     .price-card[style*="border:2px solid var(--green);"]::before { content: 'Most Popular'; position: absolute; top: -1rem; left: 50%; transform: translateX(-50%); background: var(--green); color: #fff; padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
     /* Charts */
     .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .chart-container { background: rgba(30,41,59,.5); border-radius: 16px; padding: 2rem; margin: 2rem 0; width: 100%; max-width: 100%; box-shadow: var(--shadow-sm); }
+    @media (max-width: 600px) { .charts { grid-template-columns: 1fr; } }
     /* Form */
     form { max-width: 640px; margin: 3rem auto; }
     input, textarea, select { width: 100%; padding: 1.2rem; margin: 1rem 0; background: rgba(30,41,59,.8); border: 1px solid var(--border); border-radius: 12px; color: #fff; font-size: 1rem; transition: var(--transition); }
