@@ -136,7 +136,7 @@
     /* Charts */
     .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding-bottom: 1rem; } 
     .charts > * { width: 100%; max-width: 100%; box-sizing: border-box; } canvas { width: 100% !important; height: auto !important; }
-    @media (max-width: 600px) { .charts { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .charts { grid-template-columns: 1fr; overflow-x: auto; } }
     /* Form */
     form { max-width: 640px; margin: 3rem auto; }
     input, textarea, select { width: 100%; padding: 1.2rem; margin: 1rem 0; background: rgba(30,41,59,.8); border: 1px solid var(--border); border-radius: 12px; color: #fff; font-size: 1rem; transition: var(--transition); }
