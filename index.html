@@ -4,377 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inshira – AI Platform for Circular Manufacturing</title>
-  <meta name="description" content="Sisu + Kaizen = Resilient, AI-optimized, zero-waste industrial systems.">
-
+  <meta name="description" content="Resilient, AI-optimized, zero-waste industrial systems.">
   <!-- Open Graph -->
-  <meta property="og:title" content="Sisuzen">
+  <meta property="og:title" content="Inshira">
   <meta property="og:description" content="Engineering resilience. Optimizing process. Closing loops.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sisuzen.github.io/">
-  <meta property="og:image" content="https://sisuzen.github.io/og-image.jpg">
-
+  <meta property="og:url" content="https://inshira.github.io/">
+  <meta property="og:image" content="https://inshira.github.io/og-image.jpg">
   <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Sisuzen",
-    "url": "https://sisuzen.github.io",
-    "logo": "https://sisuzen.github.io/logo.png",
+    "name": "Inshira",
+    "url": "https://inshira.github.io",
+    "logo": "https://inshira.github.io/logo.png",
     "description": "AI platform for circular manufacturing"
   }
   </script>
-
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Feather Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
   <style>
     :root {
       --green: #10b981; --green-d: #059669; --blue: #0ea5e9; --purple: #8b5cf6;
       --dark: #0f172a; --darker: #020617; --light: #f8fafc;
       --glass: rgba(255,255,255,.06); --border: rgba(255,255,255,.12);
-      --text: #f1f5f9; --muted: #94a3b8; --radius: 1rem;
+      --text: #f1f5f9; --muted: #94a3b8; --radius: 1.25rem;
+      --shadow-sm: 0 4px 15px rgba(0,0,0,.15);
+      --shadow-md: 0 10px 30px rgba(0,0,0,.25);
+      --shadow-lg: 0 20px 50px rgba(0,0,0,.35);
+      --transition: all 0.3s ease;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-    body {
-      background: var(--dark);
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-      padding-top: 80px;
-    }
-
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { background: var(--dark); color: var(--text); line-height: 1.7; overflow-x: hidden; padding-top: 80px; }
     .container { max-width: 1400px; margin: auto; padding: 0 1.5rem; }
     h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.025em; }
-    a { color: inherit; text-decoration: none; transition: all .3s; }
-    button, .btn { cursor: pointer; font-family: inherit; }
-
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    button { cursor: pointer; font-family: inherit; transition: var(--transition); }
     /* Header */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      backdrop-filter: blur(16px); background: rgba(15,23,42,.9);
-      border-bottom: 1px solid var(--border); transition: padding .3s;
+      backdrop-filter: blur(20px); background: rgba(15,23,42,.9);
+      border-bottom: 1px solid var(--border); transition: padding 0.3s, background 0.3s;
     }
-    header.scrolled { padding: .5rem 0; background: rgba(2,6,23,.95); }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+    header.scrolled { padding: 0.5rem 0; background: rgba(2,6,23,.98); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
     .logo { font-size: 1.75rem; font-weight: 800; background: linear-gradient(90deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    
-    /* Desktop Nav */
-    .nav-links { display: flex; gap: 2.5rem; }
-    .nav-links a { color: var(--muted); font-weight: 500; font-size: .95rem; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px; background: var(--green); transition: .3s; }
-    .nav-links a:hover::after { width: 100%; } .nav-links a:hover { color: var(--text); }
-
-    /* Mobile Menu Button */
-    .menu-toggle {
-      display: none; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: .3s;
-    }
-    .menu-toggle:hover { background: rgba(255,255,255,.1); }
-    .menu-toggle .bar { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; transition: .3s; }
-
-    /* Mobile Nav */
-    .mobile-nav {
-      position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-      background: rgba(15,23,42,.98); backdrop-filter: blur(20px); padding: 6rem 2rem 2rem;
-      transition: right .4s ease; z-index: 999; box-shadow: -10px 0 30px rgba(0,0,0,.3);
-    }
-    .mobile-nav.open { right: 0; }
-    .mobile-nav a {
-      display: block; padding: 1rem 0; font-size: 1.1rem; color: var(--text); border-bottom: 1px solid var(--border);
-    }
-    .mobile-nav a:hover { color: var(--green); padding-left: .5rem; }
-    .mobile-nav .close-btn {
-      position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.8rem; color: var(--muted);
-      cursor: pointer; transition: .3s;
-    }
-    .mobile-nav .close-btn:hover { color: var(--green); }
-
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-links a { color: var(--muted); font-weight: 500; font-size: 0.95rem; position: relative; padding: 0.5rem 0; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: var(--green); transition: var(--transition); transform: translateX(-50%); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--text); }
+    .menu-toggle { display: none; cursor: pointer; color: var(--text); font-size: 1.5rem; }
     /* Hero */
     .hero {
-      position: relative; min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; overflow: hidden; padding-top: 80px;
+      position: relative; min-height: calc(100vh - 80px); display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-top: 80px;
       background: var(--dark);
-      background-image: 
-        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
       background-attachment: fixed; z-index: 0;
     }
-    .hero::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: inherit; opacity: 0.3; z-index: -1;
-      animation: gradientShift 20s ease infinite;
-    }
-    @keyframes gradientShift {
-      0%, 100% { transform: translateX(0) translateY(0); }
-      50% { transform: translateX(-10%) translateY(-10%); }
-    }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: inherit; opacity: 0.4; z-index: -1; animation: gradientShift 30s ease infinite; }
+    @keyframes gradientShift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-5%, -5%); } }
     .hero .container { position: relative; z-index: 1; }
-    .hero h1 { font-size: 3.75rem; line-height: 1.15; max-width: 900px; margin-bottom: 1rem; }
-    .hero p { font-size: 1.2rem; max-width: 720px; margin-bottom: 2rem; color: var(--muted); }
-    .cta-btn {
-      background: var(--green); color: #fff; padding: 1rem 2.5rem; border: none; border-radius: 50px;
-      font-weight: 600; transition: all .3s;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .cta-btn:hover { transform: translateY(-4px); }
-
-    /* Section – Animated Titles */
-    .section { padding: 7rem 0; overflow: hidden; }
-    .section h2 {
-      text-align: center; font-size: 2.75rem; margin-bottom: 3.5rem;
-      background: linear-gradient(90deg, var(--green), var(--purple));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      position: relative; max-width: 100%; word-wrap: break-word; line-height: 1.2;
-      opacity: 0; transform: translateY(20px);
-    }
-    .section h2.aos-animate {
-      opacity: 1; transform: translateY(0); transition: all 1s ease-out;
-    }
-    .section h2::after {
-      content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
-      width: 0; height: 4px; background: var(--green); border-radius: 2px;
-      transition: width 1s ease-out;
-    }
-    .section h2.aos-animate::after { width: 100px; }
-
-    @media (max-width: 992px) { .section h2 { font-size: 2.4rem; } }
-    @media (max-width: 640px) { .section h2 { font-size: 2rem; } }
-
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; max-width: 900px; margin-bottom: 1.25rem; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .hero p { font-size: clamp(1rem, 2vw, 1.25rem); max-width: 720px; margin-bottom: 2.5rem; color: var(--muted); }
+    .cta-btn { background: linear-gradient(45deg, var(--green), var(--green-d)); color: #fff; padding: 1rem 2.5rem; border: none; border-radius: 50px; font-weight: 600; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: var(--shadow-sm); }
+    .cta-btn:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    /* Section */
+    .section { padding: 8rem 0; }
+    .section h2 { text-align: center; font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 4rem; background: linear-gradient(90deg, var(--green), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     /* 3-Step Flow */
-    .flow { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); position: relative; }
-    .flow::before {
-      content: ''; position: absolute; top: 50%; left: 5%; right: 5%; height: 2px;
-      background: var(--border); z-index: 0; transform: translateY(-50%); pointer-events: none;
-    }
+    .flow { display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); position: relative; }
+    .flow::before { content: ''; position: absolute; top: 50%; left: 5%; right: 5%; height: 2px; background: linear-gradient(to right, transparent, var(--border), transparent); z-index: 0; transform: translateY(-50%); pointer-events: none; }
     @media (max-width: 992px) { .flow::before { display: none; } }
-    .step {
-      background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2.5rem; text-align: center;
-      transition: all .4s; position: relative; z-index: 1;
-    }
-    .step:hover { transform: translateY(-12px); border-color: var(--green); }
-    .step-num {
-      display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; margin: 0 auto 1.25rem;
-      border-radius: 50%; background: var(--green); color: #fff; font-weight: 800; font-size: 1.3rem;
-    }
-    .step-icon { font-size: 1.8rem; margin-bottom: 1rem; color: var(--green); }
-    .step h3 { margin: 1rem 0 .75rem; font-size: 1.45rem; }
+    .step { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.75rem; text-align: center; transition: var(--transition); position: relative; z-index: 1; box-shadow: var(--shadow-sm); }
+    .step:hover { transform: translateY(-12px); box-shadow: var(--shadow-lg); }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(45deg, var(--green), var(--green-d)); color: #fff; font-weight: 800; margin-bottom: 1.5rem; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(16,185,129,0.3); }
+    .step h3 { margin: 1rem 0 0.75rem; font-size: 1.5rem; }
     .step p { color: var(--muted); margin-bottom: 1rem; }
-    .step a { color: var(--green); font-weight: 600; font-size: .95rem; }
-
+    .step a { color: var(--green); font-weight: 600; font-size: 0.95rem; position: relative; }
+    .step a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--green); transition: var(--transition); }
+    .step a:hover::after { width: 100%; }
     /* Glass Card */
-    .glass-card {
-      background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2.5rem; transition: all .4s;
-    }
-
-    /* Vision & Mission – Animated Gradient Border + Scale In */
-    .vision-mission {
-      display: grid; gap: 3.5rem; grid-template-columns: 1fr; max-width: 1000px; margin: 0 auto;
-    }
-    .vision-mission .card {
-      background: linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
-      border: 1px solid rgba(16,185,129,.2); border-radius: var(--radius);
-      padding: 3rem; position: relative; overflow: hidden;
-      transition: all .5s ease; transform: scale(0.95); opacity: 0;
-    }
-    .vision-mission .card.aos-animate {
-      transform: scale(1); opacity: 1;
-    }
-    .vision-mission .card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-      background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
-      background-size: 200% 100%; animation: gradientMove 3s ease infinite;
-    }
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    .vision-mission .card:hover {
-      transform: translateY(-10px); border-color: var(--green);
-      box-shadow: 0 25px 50px rgba(0,0,0,.25);
-    }
-    .vision-mission .icon {
-      width: 70px; height: 70px; background: rgba(16,185,129,.15); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
-      font-size: 2rem; color: var(--green); transition: transform .4s;
-    }
-    .vision-mission .card:hover .icon { transform: scale(1.15); }
-    .vision-mission h3 {
-      font-size: 1.65rem; margin-bottom: 1rem; color: var(--green);
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .vision-mission p {
-      font-size: 1.12rem; line-height: 1.9; color: var(--text);
-    }
-    .vision-mission .vision p { font-style: italic; opacity: 0.95; }
-
-    /* Sisuzen Story – Timeline Style */
-    .story-timeline {
-      position: relative; max-width: 900px; margin: 3rem auto 0;
-      padding: 2rem 0;
-    }
-    .story-timeline::before {
-      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
-      background: linear-gradient(to bottom, transparent, var(--green), transparent);
-      transform: translateX(-50%);
-    }
-    .story-block {
-      display: flex; justify-content: center; margin: 2.5rem 0; opacity: 0; transform: translateY(30px);
-      transition: all .8s ease;
-    }
-    .story-block.aos-animate { opacity: 1; transform: translateY(0); }
-    .story-block:nth-child(odd) { flex-direction: row; }
-    .story-block:nth-child(even) { flex-direction: row-reverse; }
-    .story-content {
-      width: 45%; background: rgba(255,255,255,.04); padding: 1.8rem; border-radius: var(--radius);
-      border: 1px solid rgba(16,185,129,.2); position: relative;
-    }
-    .story-content::before {
-      content: ''; position: absolute; top: 50%; width: 16px; height: 16px;
-      background: var(--green); border-radius: 50%; transform: translateY(-50%);
-    }
-    .story-block:nth-child(odd) .story-content::before { right: -48px; }
-    .story-block:nth-child(even) .story-content::before { left: -48px; }
-    .story-content h4 {
-      font-size: 1.25rem; color: var(--green); margin-bottom: .5rem;
-    }
-    .story-content p {
-      font-size: 1.02rem; line-height: 1.8; color: var(--text);
-    }
-    @media (max-width: 768px) {
-      .story-timeline::before { display: none; }
-      .story-block { flex-direction: column; align-items: center; }
-      .story-block:nth-child(even) { flex-direction: column; }
-      .story-content { width: 100%; margin-bottom: 2rem; }
-      .story-content::before { top: -32px; left: 50%; transform: translateX(-50%); }
-    }
-
-    /* Core Pillars */
-    .about-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 3rem; }
-    .pillar {
-      background: var(--glass); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem;
-      transition: all .3s;
-    }
-    .pillar:hover { border-color: var(--green); }
-    .pillar h4 { margin: 0 0 .75rem; color: var(--green); font-size: 1.15rem; }
-    .pillar p { font-size: .95rem; color: var(--muted); }
-
-    /* People */
-    .person {
-      display: flex; gap: 1.75rem; align-items: flex-start; margin-bottom: 2.5rem;
-      padding: 1.5rem; background: rgba(255,255,255,.03); border-radius: 16px; transition: all .3s;
-    }
-    .person:hover { background: rgba(255,255,255,.06); }
-    .person-img {
-      width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
-      border: 3px solid var(--green);
-    }
-    .person-info h4 { margin-bottom: .35rem; font-size: 1.15rem; }
-    .person-info p { font-size: .95rem; color: var(--muted); line-height: 1.6; }
-
-    /* Advisors */
-    .advisor-grid {
-      display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    .advisor-card {
-      background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; transition: all .4s; cursor: pointer;
-    }
-    .advisor-card:hover { border-color: var(--green); }
-    .advisor-header {
-      padding: 1.5rem; display: flex; gap: 1rem; align-items: center;
-    }
-    .advisor-img {
-      width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);
-    }
-    .advisor-title h4 { margin: 0; font-size: 1.1rem; }
-    .advisor-title p { margin: 0.25rem 0 0; font-size: .9rem; color: var(--muted); }
-    .toggle-icon {
-      margin-left: auto; color: var(--green); transition: transform .3s;
-    }
-    .advisor-card.open .toggle-icon { transform: rotate(180deg); }
-    .advisor-body {
-      padding: 0 1.5rem 1.5rem; max-height: 0; overflow: hidden; transition: all .4s ease;
-    }
-    .advisor-card.open .advisor-body { max-height: 300px; padding-top: 1rem; }
-
+    .glass-card { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem; transition: var(--transition); box-shadow: var(--shadow-sm); }
+    .glass-card:hover { box-shadow: var(--shadow-md); }
+    /* Vision & Mission – Stand Out Cards */
+    .vision-mission { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); margin-bottom: 3.5rem; }
+    .vision-card, .mission-card { background: linear-gradient(to bottom right, rgba(16,185,129,.12), rgba(14,165,233,.12)); border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius); padding: 2.5rem; text-align: center; transition: var(--transition); box-shadow: var(--shadow-sm); }
+    .vision-card:hover, .mission-card:hover { transform: scale(1.03); box-shadow: var(--shadow-md); }
+    .vision-card h3, .mission-card h3 { color: var(--green); margin-bottom: 1.25rem; font-size: 1.6rem; }
+    .vision-card p, .mission-card p { font-style: italic; color: var(--light); font-size: 1.05rem; }
+    /* Inshira Story – Stand Out Layout */
+    .story-section { background: linear-gradient(to bottom right, rgba(16,185,129,.08), rgba(14,165,233,.08)); border: 1px solid rgba(16,185,129,0.2); border-radius: var(--radius); padding: 3rem; margin: 3rem 0; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+    .story-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%); opacity: 0.5; animation: rotate 60s linear infinite; }
+    @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .story-section h3 { color: var(--blue); text-align: center; margin-bottom: 2rem; font-size: 1.8rem; position: relative; z-index: 1; }
+    .story-section p { font-size: 1.1rem; color: var(--light); max-width: 800px; margin: auto auto 1.5rem; line-height: 1.8; position: relative; z-index: 1; font-style: italic; }
+    /* About & People */
+    .about-grid { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .pillar { background: var(--glass); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: var(--transition); box-shadow: var(--shadow-sm); }
+    .pillar:hover { box-shadow: var(--shadow-md); }
+    .pillar h4 { margin-bottom: 1rem; color: var(--green); font-size: 1.2rem; }
+    .pillar p { color: var(--muted); }
+    .person { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 3rem; }
+    .person-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border); box-shadow: var(--shadow-sm); transition: var(--transition); }
+    .person:hover .person-img { transform: scale(1.05); }
+    .person-info h4 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+    .person-info p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
     /* Pricing */
-    .pricing { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .price-card {
-      background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 2.5rem; text-align: center; transition: .4s;
-    }
-    .price-card:hover { transform: translateY(-12px); border-color: var(--green); }
-    .price-card h3 { font-size: 1.6rem; margin-bottom: .5rem; }
-    .price-card .price { font-size: 3rem; font-weight: 800; color: var(--green); margin: .5rem 0; }
-    .price-card ul { list-style: none; margin: 2rem 0; }
-    .price-card ul li {
-      margin: .75rem 0; color: var(--muted); font-size: .95rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    }
-    .price-card .btn {
-      background: var(--green); color: #fff; padding: .9rem 2rem; border-radius: 50px;
-      font-weight: 600; transition: .3s; display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .price-card .btn:hover { transform: scale(1.05); }
-
-    /* Chart */
-    .chart-container { background: rgba(30,41,59,.4); border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; }
-
+    .pricing { display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .price-card { background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem; text-align: center; transition: var(--transition); position: relative; box-shadow: var(--shadow-sm); }
+    .price-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-lg); }
+    .price-card h3 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .price-card .price { font-size: 3.5rem; font-weight: 800; color: var(--green); margin: 0.75rem 0; display: flex; align-items: baseline; justify-content: center; }
+    .price-card .price span { font-size: 1.25rem; color: var(--muted); margin-left: 0.25rem; }
+    .price-card ul { list-style: none; margin: 2.5rem 0; }
+    .price-card ul li { margin: 1rem 0; color: var(--muted); font-size: 0.95rem; position: relative; padding-left: 1.5rem; }
+    .price-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--green); }
+    .price-card .btn { background: linear-gradient(45deg, var(--green), var(--green-d)); color: #fff; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; transition: var(--transition); display: inline-block; box-shadow: var(--shadow-sm); }
+    .price-card .btn:hover { transform: scale(1.05); box-shadow: var(--shadow-md); }
+    .price-card[style*="border:2px solid var(--green);"] { border: 2px solid var(--green) !important; position: relative; }
+    .price-card[style*="border:2px solid var(--green);"]::before { content: 'Most Popular'; position: absolute; top: -1rem; left: 50%; transform: translateX(-50%); background: var(--green); color: #fff; padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    /* Charts */
+    .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+    .chart-container { background: rgba(30,41,59,.5); border-radius: 16px; padding: 2rem; margin: 2rem 0; width: 100%; max-width: 100%; box-shadow: var(--shadow-sm); }
     /* Form */
-    form { max-width: 640px; margin: 2.5rem auto; }
-    input, textarea, select {
-      width: 100%; padding: 1.1rem; margin: .9rem 0; background: rgba(30,41,59,.7);
-      border: 1px solid var(--border); border-radius: 12px; color: #fff; font-size: 1rem; transition: border .3s;
-    }
-    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--green); }
-    button {
-      background: linear-gradient(45deg, var(--green), var(--blue)); color: #fff; border: none;
-      padding: 1.1rem 2.5rem; border-radius: 50px; font-weight: 600; transition: .3s;
-      width: 100%; font-size: 1.05rem;
-    }
-    button:hover { transform: scale(1.03); }
-
+    form { max-width: 640px; margin: 3rem auto; }
+    input, textarea, select { width: 100%; padding: 1.2rem; margin: 1rem 0; background: rgba(30,41,59,.8); border: 1px solid var(--border); border-radius: 12px; color: #fff; font-size: 1rem; transition: var(--transition); }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
+    button { background: linear-gradient(45deg, var(--green), var(--blue)); color: #fff; border: none; padding: 1.2rem 2.5rem; border-radius: 50px; font-weight: 600; transition: var(--transition); width: 100%; font-size: 1.05rem; box-shadow: var(--shadow-sm); }
+    button:hover { transform: scale(1.03); box-shadow: var(--shadow-md); }
     /* Footer */
-    footer {
-      background: var(--darker); padding: 3.5rem 0; border-top: 1px solid var(--border);
-      text-align: center; font-size: .9rem; color: var(--muted);
+    footer { background: var(--darker); padding: 4rem 0; border-top: 1px solid var(--border); text-align: center; font-size: 0.9rem; color: var(--muted); }
+    footer a { color: var(--green); margin: 0 1rem; transition: var(--transition); }
+    footer a:hover { color: var(--text); transform: translateY(-2px); }
+    /* Responsive */
+    @media (max-width: 992px) {
+      .flow { grid-template-columns: 1fr; }
+      .step { margin: 1.5rem 0; }
+      .vision-mission { grid-template-columns: 1fr; }
+      .charts { grid-template-columns: 1fr; }
     }
-    footer a { color: var(--green); margin: 0 .75rem; transition: .3s; }
-    footer a:hover { color: var(--text); }
-
-    /* Particles */
-    #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
-
-    /* Mobile Responsive */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
       .hero h1 { font-size: 2.9rem; }
+      .nav-links { display: none; flex-direction: column; gap: 1.5rem; position: absolute; top: 100%; left: 0; right: 0; background: rgba(2,6,23,.98); padding: 2rem; text-align: center; }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
       nav { padding: 1rem 0; }
-      .section { padding: 5rem 0; }
+      .story-section { padding: 2rem; }
+      .story-section h3 { font-size: 1.6rem; }
+      .story-section p { font-size: 1rem; }
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 2.4rem; }
+      .section { padding: 6rem 0; }
+      .container { padding: 0 1rem; }
+      .person { flex-direction: column; align-items: center; text-align: center; }
+      .person-img { margin-bottom: 1rem; }
+      .charts { gap: 1.5rem; }
+      .chart-container { padding: 1.5rem; }
     }
+    #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
   </style>
 </head>
 <body>
-
   <!-- Particle BG -->
   <canvas id="particles"></canvas>
-
   <!-- HEADER -->
   <header id="header">
     <div class="container">
       <nav>
-        <div class="logo">Sisuzen</div>
+        <div class="logo">Inshira</div>
         <div class="nav-links">
           <a href="#platform">Platform</a>
           <a href="#about">About</a>
@@ -383,57 +191,37 @@
           <a href="#demo">Demo</a>
           <a href="#contact">Contact</a>
         </div>
-        <div class="menu-toggle" id="menuToggle">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
+        <div class="menu-toggle" onclick="toggleMenu()"><i data-feather="menu"></i></div>
       </nav>
     </div>
   </header>
-
-  <!-- Mobile Nav -->
-  <div class="mobile-nav" id="mobileNav">
-    <div class="close-btn" id="closeBtn">&times;</div>
-    <a href="#platform">Platform</a>
-    <a href="#about">About</a>
-    <a href="#people">People</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#demo">Demo</a>
-    <a href="#contact">Contact</a>
-  </div>
-
   <!-- HERO -->
   <section class="hero">
     <div class="container" data-aos="fade-up">
       <h1>AI Platform for Circular Manufacturing</h1>
       <p>Optimize production. Prove compliance. Monetize waste — all on one secure, self‑optimizing platform.</p>
-      <a href="#pricing" class="cta-btn"><i data-feather="zap"></i> Start Free Trial</a>
+      <a href="#pricing" class="cta-btn">Start Free Trial</a>
     </div>
   </section>
-
   <!-- 3-STEP PLATFORM -->
   <section id="platform" class="section">
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="100">One Platform. Three Steps to Profit.</h2>
+      <h2 data-aos="fade-up">One Platform. Three Steps to Profit.</h2>
       <div class="flow">
-        <div class="step" data-aos="fade-up" data-aos-delay="200">
+        <div class="step" data-aos="fade-up" data-aos-delay="100">
           <div class="step-num">1</div>
-          <div class="step-icon"><i data-feather="cpu"></i></div>
           <h3>SmartFactory AI</h3>
-          <p>AI optimizes lines, cuts energy 22%, reduces waste at source.</p>
+          <p>AI optimizes lines, cuts energy 22 %, reduces waste at source.</p>
           <a href="#demo">See Optimization</a>
         </div>
-        <div class="step" data-aos="fade-up" data-aos-delay="300">
+        <div class="step" data-aos="fade-up" data-aos-delay="200">
           <div class="step-num">2</div>
-          <div class="step-icon"><i data-feather="shield"></i></div>
           <h3>HalalGuard + DPP</h3>
           <p>Auto-generates compliance docs for EU, GCC, global markets.</p>
           <a href="#demo">See Compliance</a>
         </div>
-        <div class="step" data-aos="fade-up" data-aos-delay="400" style="border:2px solid var(--green);">
+        <div class="step" data-aos="fade-up" data-aos-delay="300" style="border:2px solid var(--green);">
           <div class="step-num">3</div>
-          <div class="step-icon"><i data-feather="dollar-sign"></i></div>
           <h3>CycleProfit AI</h3>
           <p>Turns waste into revenue + carbon credits. New profit stream.</p>
           <a href="#demo">Explore Profit</a>
@@ -441,178 +229,147 @@
       </div>
     </div>
   </section>
-
   <!-- ABOUT US -->
   <section id="about" class="section" style="background:rgba(15,23,42,.4);">
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="100">About Us</h2>
+      <h2 data-aos="fade-up">About Us</h2>
       <div class="glass-card" data-aos="fade-up">
         <div class="vision-mission">
-          <div class="card vision" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i data-feather="eye"></i></div>
+          <div class="vision-card">
             <h3>Our Vision</h3>
             <p>To engineer the global economy into a state of balanced, systemic renewal, establishing the gold standard for resource resilience and zero-waste performance worldwide.</p>
           </div>
-          <div class="card mission" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon"><i data-feather="target"></i></div>
+          <div class="mission-card">
             <h3>Our Mission</h3>
-            <p>To design, build, and deploy AI-driven, circular engineering systems that embody the principle of <strong>Sisu</strong>, guaranteeing clients unwavering operational performance and achieving continuous, verifiable resource optimization.</p>
+            <p>To design, build, and deploy AI-driven, circular engineering systems that embody the principle of resilience, guaranteeing clients unwavering operational performance and achieving continuous, verifiable resource optimization.</p>
           </div>
         </div>
-
-        <!-- Sisuzen Story – Timeline -->
-        <div class="story-timeline">
-          <div class="story-block" data-aos="fade-up" data-aos-delay="400">
-            <div class="story-content">
-              <h4>The Name</h4>
-              <p>At Sisuzen, our name is our operating manual. It is the fusion of two governing philosophies: <strong>Sisu</strong>—the Finnish resolve that compels systems to never fail—and <strong>Kaizen</strong>—the commitment to relentless, systematic improvement.</p>
-            </div>
-          </div>
-          <div class="story-block" data-aos="fade-up" data-aos-delay="500">
-            <div class="story-content">
-              <h4>The Insight</h4>
-              <p>We recognized that achieving true circularity demands more than intention; it requires unwavering systemic grit and AI-driven precision.</p>
-            </div>
-          </div>
-          <div class="story-block" data-aos="fade-up" data-aos-delay="600">
-            <div class="story-content">
-              <h4>The Solution</h4>
-              <p>Sisuzen is a deep-tech engineering firm specializing in creating self-optimizing, resilient industrial cycles where every output is engineered to become the highest-value input.</p>
-            </div>
-          </div>
+        <div class="story-section">
+          <h3>The Inshira Story</h3>
+          <p>At Inshira, our name is our operating manual. It is the fusion of governing philosophies of resolve and relentless improvement.</p>
+          <p>We recognized that achieving true circularity demands unwavering systemic grit and AI-driven precision. Inshira is a deep-tech engineering firm specializing in creating self-optimizing, resilient industrial cycles where every output is engineered to become the highest-value input.</p>
         </div>
-
-        <h3 style="text-align:center;margin:3rem 0 1.5rem;" data-aos="fade-up" data-aos-delay="700">Our Core Pillars</h3>
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Our Core Pillars</h3>
         <div class="about-grid">
-          <div class="pillar" data-aos="fade-up" data-aos-delay="800">
-            <h4>Sisu-Engineered Resilience</h4>
-            <p>Systems built with Finnish tenacity to guarantee maximum uptime, total resource recapture, and operational resilience against material scarcity.</p>
+          <div class="pillar" data-aos="fade-up" data-aos-delay="100">
+            <h4>Resilient Systems</h4>
+            <p>Systems built to guarantee maximum uptime, total resource recapture, and operational resilience against material scarcity.</p>
           </div>
-          <div class="pillar" data-aos="fade-up" data-aos-delay="900">
-            <h4>The Kaizen Loop (AI Optimization)</h4>
+          <div class="pillar" data-aos="fade-up" data-aos-delay="200">
+            <h4>Continuous Improvement</h4>
             <p>We embed proprietary AI that ensures a state of continuous improvement, perpetually driving efficiency and optimization.</p>
           </div>
-          <div class="pillar" data-aos="fade-up" data-aos-delay="1000">
+          <div class="pillar" data-aos="fade-up" data-aos-delay="300">
             <h4>Circular by Design</h4>
             <p>We apply rigorous engineering to eliminate waste at the conceptual stage, translating complex resource streams into high-purity, next-generation materials.</p>
           </div>
         </div>
-
-        <p style="text-align:center;margin-top:2.5rem;font-weight:700;color:var(--green);font-size:1.1rem;" data-aos="fade-up" data-aos-delay="1100">
+        <p style="text-align:center;margin-top:2.5rem;font-weight:700;color:var(--green);font-size:1.1rem;">
           Our Promise: Performance Without Compromise.
         </p>
       </div>
     </div>
   </section>
-
   <!-- OUR PEOPLE -->
   <section id="people" class="section">
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="100">Our People</h2>
+      <h2 data-aos="fade-up">Our People</h2>
       <div class="glass-card" data-aos="fade-up">
-        <p style="text-align:center;max-width:800px;margin:auto;font-size:1.05rem;" data-aos="fade-up" data-aos-delay="200">
-          We are a multidisciplinary team of engineers, data scientists, and resource specialists united by the principle of <strong>Sisu</strong>—the resolve to solve the challenges others deem impossible—and guided by exceptional industry leaders.
+        <p style="text-align:center;max-width:800px;margin:auto;font-size:1.05rem;">
+          We are a multidisciplinary team of engineers, data scientists, and resource specialists united by the principle of resilience — the resolve to solve the challenges others deem impossible—and guided by exceptional industry leaders.
         </p>
-        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;" data-aos="fade-up" data-aos-delay="300">Core Leadership</h3>
-        <div class="person" data-aos="fade-up" data-aos-delay="400">
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Core Leadership</h3>
+        <div class="person" data-aos="fade-up">
           <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="CEO" class="person-img">
           <div class="person-info">
             <h4>[Your Name], CEO & Founder</h4>
-            <p>is the visionary behind the Sisuzen methodology. [Name] brings [X years] of experience in complex systems engineering, focusing on translating abstract philosophical principles into high-performance, tangible engineering solutions.</p>
+            <p>is the visionary behind the Inshira methodology. [Name] brings [X years] of experience in complex systems engineering, focusing on translating abstract philosophical principles into high-performance, tangible engineering solutions.</p>
           </div>
         </div>
-        <div class="person" data-aos="fade-up" data-aos-delay="500">
+        <div class="person" data-aos="fade-up" data-aos-delay="100">
           <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Head of AI" class="person-img">
           <div class="person-info">
             <h4>[Name], Head of AI & Optimization</h4>
-            <p>leads the development of the proprietary Kaizen Loop—our continuous improvement AI platform. With a background in deep reinforcement learning, [Name] ensures every Sisuzen system is self-learning, adaptive, and engineered for verifiable resource efficiency.</p>
+            <p>leads the development of the proprietary optimization loop—our continuous improvement AI platform. With a background in deep reinforcement learning, [Name] ensures every Inshira system is self-learning, adaptive, and engineered for verifiable resource efficiency.</p>
           </div>
         </div>
-
-        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;" data-aos="fade-up" data-aos-delay="600">Strategic Advisors</h3>
-        <div class="advisor-grid">
-          <div class="advisor-card" data-aos="fade-up" data-aos-delay="700">
-            <div class="advisor-header">
-              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dr. Sharma" class="advisor-img">
-              <div class="advisor-title">
-                <h4>Dr. Anya Sharma</h4>
-                <p>Circular Economy & ESG</p>
-              </div>
-              <i data-feather="chevron-down" class="toggle-icon"></i>
-            </div>
-            <div class="advisor-body">
-              <p><strong>Expertise:</strong> Circular Economy Policy & ESG Strategy<br>
-              Dr. Sharma is a global thought leader in sustainable supply chain design. She guides Sisuzen on anticipating future policy changes, ensuring our systems not only comply with, but set the standard for, verifiable resource utilization.</p>
-            </div>
+        <h3 style="text-align:center;margin:2.5rem 0 1.25rem;">Strategic Advisors</h3>
+        <div class="person" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dr. Sharma" class="person-img">
+          <div class="person-info">
+            <h4>Dr. Anya Sharma</h4>
+            <p><strong>Expertise:</strong> Circular Economy Policy & ESG Strategy<br>
+            Dr. Sharma is a global thought leader in sustainable supply chain design. She guides Inshira on anticipating future policy changes, ensuring our systems not only comply with, but set the standard for, verifiable resource utilization.</p>
           </div>
-
-          <div class="advisor-card" data-aos="fade-up" data-aos-delay="800">
-            <div class="advisor-header">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mr. Tanaka" class="advisor-img">
-              <div class="advisor-title">
-                <h4>Mr. Kenji Tanaka</h4>
-                <p>Kaizen & Automation</p>
-              </div>
-              <i data-feather="chevron-down" class="toggle-icon"></i>
-            </div>
-            <div class="advisor-body">
-              <p><strong>Expertise:</strong> Advanced Industrial Automation & Kaizen Methodology<br>
-              Drawing on decades of experience implementing large-scale Kaizen-based manufacturing systems, Mr. Tanaka advises Sisuzen on optimizing the efficiency and scalability of our engineering deployments.</p>
-            </div>
+        </div>
+        <div class="person" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mr. Tanaka" class="person-img">
+          <div class="person-info">
+            <h4>Mr. Kenji Tanaka</h4>
+            <p><strong>Expertise:</strong> Advanced Industrial Automation & Methodology<br>
+            Drawing on decades of experience implementing large-scale manufacturing systems, Mr. Tanaka advises Inshira on optimizing the efficiency and scalability of our engineering deployments.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
   <!-- PRICING -->
   <section id="pricing" class="section" style="background:rgba(15,23,42,.4);">
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="100">Simple, Scalable Pricing</h2>
+      <h2 data-aos="fade-up">Simple, Scalable Pricing</h2>
       <div class="pricing">
-        <div class="price-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="price-card" data-aos="fade-up">
           <h3>Starter</h3>
-          <div class="price">$99<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
+          <div class="price">$99<span>/mo</span></div>
           <ul>
-            <li><i data-feather="check"></i> SmartFactory AI (1 line)</li>
-            <li><i data-feather="check"></i> Basic reporting</li>
-            <li><i data-feather="check"></i> Email support</li>
+            <li>SmartFactory AI (1 line)</li>
+            <li>Basic reporting</li>
+            <li>Email support</li>
           </ul>
           <a href="#" class="btn">Get Started</a>
         </div>
-        <div class="price-card" data-aos="fade-up" data-aos-delay="300" style="border:2px solid var(--green);">
+        <div class="price-card" data-aos="fade-up" data-aos-delay="100" style="border:2px solid var(--green);">
           <h3>Professional <span style="font-size:.8rem;color:var(--green);">Most Popular</span></h3>
-          <div class="price">$499<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
+          <div class="price">$499<span>/mo</span></div>
           <ul>
-            <li><i data-feather="check"></i> Unlimited lines</li>
-            <li><i data-feather="check"></i> HalalGuard + DPP</li>
-            <li><i data-feather="check"></i> CycleProfit + Carbon Credits</li>
-            <li><i data-feather="check"></i> Priority support + API</li>
+            <li>Unlimited lines</li>
+            <li>HalalGuard + DPP</li>
+            <li>CycleProfit + Carbon Credits</li>
+            <li>Priority support + API</li>
           </ul>
-          <a href="#" class="btn"><i data-feather="zap"></i> Start Free Trial</a>
+          <a href="#" class="btn">Start Free Trial</a>
         </div>
-        <div class="price-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="price-card" data-aos="fade-up" data-aos-delay="200">
           <h3>Enterprise</h3>
           <div class="price">Custom</div>
           <ul>
-            <li><i data-feather="check"></i> Custom AI models</li>
-            <li><i data-feather="check"></i> On‑prem / private cloud</li>
-            <li><i data-feather="check"></i> Dedicated success manager</li>
+            <li>Custom AI models</li>
+            <li>On‑prem / private cloud</li>
+            <li>Dedicated success manager</li>
           </ul>
           <a href="#contact" class="btn">Contact Sales</a>
         </div>
       </div>
     </div>
   </section>
-
   <!-- LIVE DEMO -->
   <section id="demo" class="section">
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="100">Live Dashboard – CycleProfit AI</h2>
-      <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-        <h3>Waste‑to‑Revenue Tracker</h3>
-        <div class="chart-container">
-          <canvas id="profitChart"></canvas>
+      <h2 data-aos="fade-up">Live Dashboard – CycleProfit AI</h2>
+      <div class="glass-card" data-aos="fade-up">
+        <div class="charts">
+          <div>
+            <h3 style="text-align:center; margin-bottom:1rem;">Waste‑to‑Revenue Tracker</h3>
+            <div class="chart-container">
+              <canvas id="profitChart"></canvas>
+            </div>
+          </div>
+          <div>
+            <h3 style="text-align:center; margin-bottom:1rem;">Carbon Credits Earned</h3>
+            <div class="chart-container">
+              <canvas id="creditsChart"></canvas>
+            </div>
+          </div>
         </div>
         <p style="text-align:center;margin-top:1.5rem;">
           <a href="#" style="color:var(--green);">Open Full Dashboard</a>
@@ -620,23 +377,21 @@
       </div>
     </div>
   </section>
-
   <!-- R&D -->
   <section id="research" class="section" style="background:rgba(15,23,42,.4);">
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="100">Powered by Research</h2>
-      <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+      <h2 data-aos="fade-up">Powered by Research</h2>
+      <div class="glass-card" data-aos="fade-up">
         <p><em>CycleGNN</em> – Graph AI for waste routing<br><strong>Nature Sustainability, 2025</strong></p>
         <a href="#" style="color:var(--green);font-size:.95rem;">Read Paper</a>
       </div>
     </div>
   </section>
-
   <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="100">Start Your Circular Journey</h2>
-      <form data-aos="fade-up" data-aos-delay="200" data-netlify="true">
+      <h2 data-aos="fade-up">Start Your Circular Journey</h2>
+      <form data-aos="fade-up" data-netlify="true">
         <input type="text" name="name" placeholder="Name" required />
         <input type="email" name="email" placeholder="business@email.com" required />
         <input type="text" name="company" placeholder="Company" />
@@ -652,113 +407,91 @@
       </form>
     </div>
   </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>© 2025 Sisuzen. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-      <p><a href="#"><i data-feather="github"></i> GitHub</a> • <a href="#"><i data-feather="twitter"></i> Twitter</a> • <a href="#"><i data-feather="linkedin"></i> LinkedIn</a></p>
+      <p>© 2025 Inshira. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      <p><a href="#">GitHub</a> • <a href="#">Twitter</a> • <a href="#">LinkedIn</a></p>
     </div>
   </footer>
-
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      AOS.init({ 
-        duration: 1000, 
-        once: true, 
-        easing: 'ease-out-quart',
-        offset: 100
-      });
-      feather.replace();
-
-      // Mobile Menu Toggle
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileNav = document.getElementById('mobileNav');
-      const closeBtn = document.getElementById('closeBtn');
-
-      menuToggle.addEventListener('click', () => {
-        mobileNav.classList.add('open');
-      });
-      closeBtn.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-      });
-      document.addEventListener('click', (e) => {
-        if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target) && mobileNav.classList.contains('open')) {
-          mobileNav.classList.remove('open');
-        }
-      });
-      mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileNav.classList.remove('open');
-        });
-      });
-
-      // Header scroll
-      const header = document.getElementById('header');
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 60);
-      });
-
-      // Chart
-      new Chart(document.getElementById('profitChart'), {
-        type: 'bar',
-        data: {
-          labels: ['Plastic','Metal','Organic','Textile','E-Waste'],
-          datasets: [{
-            label: 'Revenue ($K)',
-            data: [45,78,32,56,91],
-            backgroundColor: 'rgba(16,185,129,0.6)',
-            borderColor: '#10b981',
-            borderWidth: 2,
-            borderRadius: 6
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: { legend: { labels: { color: '#e2e8f0' } } },
-          scales: {
-            y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } },
-            x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
-          }
-        }
-      });
-
-      // Particles
-      const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-      const particles = Array.from({length: 60}, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.8 + 0.6,
-        s: Math.random() * 0.7 + 0.3
-      }));
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(16,185,129,0.22)'; ctx.fill();
-          p.y -= p.s;
-          if (p.y < -10) p.y = canvas.height + 10;
-        });
-        requestAnimationFrame(animate);
-      }
-      animate();
-      window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      });
-
-      // Advisor Collapsible
-      document.querySelectorAll('.advisor-card').forEach(card => {
-        card.addEventListener('click', () => {
-          card.classList.toggle('open');
-        });
-      });
+    AOS.init({duration:1200,once:true,easing:'ease-out-quart'});
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
     });
+    new Chart(document.getElementById('profitChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Plastic','Metal','Organic','Textile','E-Waste'],
+        datasets: [{
+          label: 'Revenue ($K)',
+          data: [45,78,32,56,91],
+          backgroundColor: 'rgba(16,185,129,0.6)',
+          borderColor: '#10b981',
+          borderWidth: 2,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: '#e2e8f0' } } },
+        scales: {
+          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } },
+          x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+        }
+      }
+    });
+    new Chart(document.getElementById('creditsChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Credits Earned',
+          data: [10, 25, 40, 55, 70, 85],
+          backgroundColor: 'rgba(14,165,233,0.2)',
+          borderColor: '#0ea5e9',
+          borderWidth: 2,
+          tension: 0.4,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: '#e2e8f0' } } },
+        scales: {
+          y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } },
+          x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.08)' } }
+        }
+      }
+    });
+    const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    const particles = Array.from({length:80},()=>({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+      r:Math.random()*2+0.5,
+      s:Math.random()*0.8+0.2,
+      color: `rgba(${Math.random()*50+100}, ${Math.random()*100+150}, ${Math.random()*50+100}, 0.22)`
+    }));
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p=>{
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=p.color; ctx.fill();
+        p.y -= p.s; if(p.y < -10) p.y = canvas.height+10;
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+    feather.replace();
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
   </script>
 </body>
 </html>
