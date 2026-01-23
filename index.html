@@ -399,40 +399,90 @@ Dr. Harris leads Inshira to make manufacturing smarter, cleaner, and more effici
 
   <!-- FAQ (NEW SECTION) -->
   <section id="faq" class="section">
-    <div class="container">
-      <h2 data-aos="fade-up">FAQs</h2>
-      <div class="glass-card" data-aos="fade-up">
-        <p style="text-align:center;max-width:820px;margin:auto;margin-bottom:2rem;font-size:1.05rem;color:var(--muted);">
-          Common questions from SME manufacturers
-        </p>
+  <div class="container">
+    <h2 data-aos="fade-up">FAQs</h2>
+    <div class="glass-card" data-aos="fade-up">
+      <p style="text-align:center;max-width:820px;margin:auto;margin-bottom:2rem;font-size:1.05rem;color:var(--muted);">
+        Common questions from SME manufacturers
+      </p>
 
-        <h3 style="margin-bottom:0.75rem;">Who is Inshira built for?</h3>
-        <p style="margin-bottom:1.75rem;color:var(--muted);">
-          Inshira is built specifically for SME manufacturers operating under cost pressure and increasing sustainability and compliance requirements — not large enterprises with dedicated ESG or IT teams.
-        </p>
+      <!-- Minimal, inline styles so we don't disturb your existing CSS -->
+      <style>
+        .faq-list details {
+          background: rgba(255,255,255,.04);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 1.1rem 1.25rem;
+          margin: 1rem 0;
+          transition: var(--transition);
+        }
+        .faq-list details:hover { box-shadow: var(--shadow-sm); }
+        .faq-list summary {
+          cursor: pointer;
+          list-style: none;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          font-weight: 700;
+          color: var(--text);
+          font-size: 1.05rem;
+        }
+        .faq-list summary::-webkit-details-marker { display: none; }
+        .faq-list summary::after {
+          content: "+";
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: var(--green);
+          line-height: 1;
+        }
+        .faq-list details[open] summary::after { content: "–"; }
+        .faq-list .answer {
+          margin-top: 0.85rem;
+          color: var(--muted);
+          line-height: 1.75;
+        }
+      </style>
 
-        <h3 style="margin-bottom:0.75rem;">How is Inshira different from energy or carbon tools?</h3>
-        <p style="margin-bottom:1.75rem;color:var(--muted);">
-          Most tools focus on a single issue. Inshira integrates energy efficiency, circular material flows, and compliance readiness into one system, reflecting how real manufacturing decisions are made.
-        </p>
+      <div class="faq-list">
+        <details>
+          <summary>Who is Inshira built for?</summary>
+          <div class="answer">
+            Inshira is built specifically for SME manufacturers operating under cost pressure and increasing sustainability and compliance requirements — not large enterprises with dedicated ESG or IT teams.
+          </div>
+        </details>
 
-        <h3 style="margin-bottom:0.75rem;">Is Inshira a reporting or compliance tool?</h3>
-        <p style="margin-bottom:1.75rem;color:var(--muted);">
-          No. Inshira is a decision platform that helps teams understand where to act first. Compliance outputs come from operational clarity, not manual reporting.
-        </p>
+        <details>
+          <summary>How is Inshira different from energy or carbon tools?</summary>
+          <div class="answer">
+            Most tools focus on a single issue. Inshira integrates energy efficiency, circular material flows, and compliance readiness into one system, reflecting how real manufacturing decisions are made.
+          </div>
+        </details>
 
-        <h3 style="margin-bottom:0.75rem;">What data do we need to get started?</h3>
-        <p style="margin-bottom:1.75rem;color:var(--muted);">
-          Only the data you already collect — such as energy usage, production volumes, material inputs, and waste records. No new sensors or complex IT systems are required to begin.
-        </p>
+        <details>
+          <summary>Is Inshira a reporting or compliance tool?</summary>
+          <div class="answer">
+            No. Inshira is a decision platform that helps teams understand where to act first. Compliance outputs come from operational clarity, not manual reporting.
+          </div>
+        </details>
 
-        <h3 style="margin-bottom:0.75rem;">Do we need ERP or MES systems to use Inshira?</h3>
-        <p style="margin-bottom:0;color:var(--muted);">
-          No. Inshira works as a standalone platform, using existing operational data such as spreadsheets, meters, and logs. The platform is built with an extensible architecture, enabling future integration with ERP and MES systems as needs evolve — while prioritising value delivery without long IT implementations today.
-        </p>
+        <details>
+          <summary>What data do we need to get started?</summary>
+          <div class="answer">
+            Only the data you already collect — such as energy usage, production volumes, material inputs, and waste records. No new sensors or complex IT systems are required to begin.
+          </div>
+        </details>
+
+        <details>
+          <summary>Do we need ERP or MES systems to use Inshira?</summary>
+          <div class="answer">
+            No. Inshira works as a standalone platform, using existing operational data such as spreadsheets, meters, and logs. The platform is built with an extensible architecture, enabling future integration with ERP and MES systems as needs evolve — while prioritising value delivery without long IT implementations today.
+          </div>
+        </details>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- CONTACT -->
   <section id="contact" class="section">
