@@ -191,15 +191,23 @@
     .vision-card p, .mission-card p { color: var(--light); font-size: 0.95rem; line-height: 1.7; }
 
     /* PEOPLE */
-    .people-group-label { font-size: 0.72rem; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin: 2rem 0 0.25rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .people-group-label { font-size: 0.72rem; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin: 2rem 0 1rem; padding-top: 2rem; border-top: 1px solid var(--border); }
     .people-group-label:first-child { border-top: none; margin-top: 0; padding-top: 0; }
-    .person { display: flex; gap: 1.75rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .person:last-child { border-bottom: none; padding-bottom: 0; }
+    .people-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .person { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.4rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; background: rgba(255,255,255,0.025); transition: var(--transition); }
+    .person:hover { border-color: rgba(16,185,129,0.35); transform: translateY(-3px); }
+    .person.leadership { padding: 1.5rem 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.05); border-radius: 0; background: transparent; }
     .person-img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border); transition: var(--transition); }
     .person:hover .person-img { transform: scale(1.05); border-color: var(--green); }
     .person-info h4 { font-size: 1.05rem; margin-bottom: 0.2rem; }
     .person-info .role { font-size: 0.78rem; color: var(--green); font-weight: 600; margin-bottom: 0.4rem; }
     .person-info p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    
+    @media (max-width: 768px) {
+      .people-grid { grid-template-columns: 1fr; }
+    }
+
+    
 
     /* CHARTS */
     .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; }
@@ -408,10 +416,11 @@
     <div class="container">
       <h2 id="people-heading" data-aos="fade-up">Our People</h2>
       <p class="section-sub" data-aos="fade-up">Engineering, AI, sustainability, and market execution.</p>
+  
       <div class="glass-card" data-aos="fade-up">
-
+  
         <div class="people-group-label">Core Leadership</div>
-        <div class="person">
+        <div class="person leadership">
           <img src="assets/hs.jpg" alt="Dr. Mohammad Harris, Founder and Managing Director of Inshira Technologies" class="person-img" width="72" height="72">
           <div class="person-info">
             <h4>Dr. Mohammad Harris</h4>
@@ -419,51 +428,58 @@
             <p>Sustainable manufacturing, AI, and engineering leadership.</p>
           </div>
         </div>
-
+  
         <div class="people-group-label">Operations &amp; Growth</div>
-        <div class="person">
-          <img src="assets/fatema.jpg" alt="Fatema, Executive Assistant and Operations Support at Inshira Technologies" class="person-img" width="72" height="72">
-          <div class="person-info">
-            <h4>Fatema</h4>
-            <div class="role">Executive Assistant &amp; Operations Support</div>
-            <p>Supports operations, coordination, and execution.</p>
+        <div class="people-grid">
+          <div class="person">
+            <img src="assets/fatema.jpeg" alt="Fatema, Executive Assistant and Operations Support at Inshira Technologies" class="person-img" width="72" height="72">
+            <div class="person-info">
+              <h4>Fatema</h4>
+              <div class="role">Executive Assistant &amp; Operations Support</div>
+              <p>Supports operations, coordination, and execution.</p>
+            </div>
+          </div>
+  
+          <div class="person">
+            <img src="assets/van.jpeg" alt="Van, Market Development Lead Vietnam at Inshira Technologies" class="person-img" width="72" height="72">
+            <div class="person-info">
+              <h4>Van</h4>
+              <div class="role">Market Development Lead — Vietnam</div>
+              <p>Leads market development and manufacturer engagement in Vietnam.</p>
+            </div>
           </div>
         </div>
-        <div class="person">
-          <img src="assets/van.jpg" alt="Van, Market Development Lead Vietnam at Inshira Technologies" class="person-img" width="72" height="72">
-          <div class="person-info">
-            <h4>Van</h4>
-            <div class="role">Market Development Lead — Vietnam</div>
-            <p>Leads market development and manufacturer engagement in Vietnam.</p>
-          </div>
-        </div>
-
+  
         <div class="people-group-label">Advisory Board</div>
-        <div class="person">
-          <img src="assets/hwu.jpg" alt="Professor Hongwei Wu, advisory board member at Inshira Technologies" class="person-img" width="72" height="72">
-          <div class="person-info">
-            <h4>Professor Hongwei Wu</h4>
-            <div class="role">FIMechE, FRAeS, FEI · University of Hertfordshire</div>
-            <p>Advises on sustainable manufacturing and energy systems.</p>
+        <div class="people-grid">
+          <div class="person">
+            <img src="assets/hwu.jpg" alt="Professor Hongwei Wu, advisory board member at Inshira Technologies" class="person-img" width="72" height="72">
+            <div class="person-info">
+              <h4>Professor Hongwei Wu</h4>
+              <div class="role">FIMechE, FRAeS, FEI · University of Hertfordshire</div>
+              <p>Advises on sustainable manufacturing and energy systems.</p>
+            </div>
+          </div>
+  
+          <div class="person">
+            <img src="assets/Puja.jpg" alt="Puja Hazlehurst, advisory board member at Inshira Technologies" class="person-img" width="72" height="72">
+            <div class="person-info">
+              <h4>Puja Hazlehurst</h4>
+              <div class="role">FIMechE, CEng, MEng · Product Engineering, Ex-Caeli Nova & Rolls-Royce</div>
+              <p>Advises on product engineering and scale.</p>
+            </div>
+          </div>
+  
+          <div class="person">
+            <img src="assets/saed.jpeg" alt="Dr. Saed Hussain, AI advisor at Inshira Technologies" class="person-img" width="72" height="72">
+            <div class="person-info">
+              <h4>Dr. Saed Hussain</h4>
+              <div class="role">PhD, BEng (Hons) · Sage AI, Ex-Thales & BAE</div>
+              <p>Advises on AI and optimisation.</p>
+            </div>
           </div>
         </div>
-        <div class="person">
-          <img src="assets/Puja.jpg" alt="Puja Hazlehurst, advisory board member at Inshira Technologies" class="person-img" width="72" height="72">
-          <div class="person-info">
-            <h4>Puja Hazlehurst</h4>
-            <div class="role">FIMechE, CEng, MEng · Product Engineering, Caeli Nova</div>
-            <p>Advises on product engineering and scale.</p>
-          </div>
-        </div>
-        <div class="person">
-          <img src="assets/saed.jpeg" alt="Dr. Saed Hussain, AI advisor at Inshira Technologies" class="person-img" width="72" height="72">
-          <div class="person-info">
-            <h4>Dr. Saed Hussain</h4>
-            <div class="role">PhD, BEng (Hons) · Sage AI / Former Oxford</div>
-            <p>Advises on AI and optimisation.</p>
-          </div>
-        </div>
-
+  
       </div>
     </div>
   </section>
