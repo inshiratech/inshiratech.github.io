@@ -311,6 +311,13 @@
     .footer-bottom a { color: var(--muted); }
     .footer-bottom a:hover { color: var(--green); }
 
+    /* MAINTENANCE */
+    #maintenance { position:fixed; inset:0; background:#020617; z-index:99999; display:flex; align-items:center; justify-content:center; }
+    .maintenance-box { text-align:center; padding:2.5rem 3rem; border:1px solid rgba(255,255,255,0.1); border-radius:16px; background:rgba(255,255,255,0.03); }
+    .maintenance-box h1 { font-size:2rem; margin-bottom:0.75rem; }
+    .maintenance-box p { color:#94a3b8; font-size:1rem; }
+    body { overflow:hidden; }
+
     /* SECTION DIVIDER LABEL */
     .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); text-align: center; margin-bottom: 0.75rem; }
 
@@ -334,6 +341,12 @@
   </style>
 </head>
 <body>
+  <div id="maintenance">
+    <div class="maintenance-box">
+    <h1>We’re updating our website</h1>
+    <p>Please check back later.</p>
+    </div>
+  </div>
   <canvas id="particles"></canvas>
 
   <!-- HEADER -->
@@ -362,36 +375,12 @@
   <!-- HERO -->
   <section class="hero" aria-label="Hero">
     <div class="container" data-aos="fade-up">
-      <div class="hero-eyebrow">Manufacturing loss diagnostics for SMEs</div>
       <h1>Every manufacturer has losses.<br><em>Few know exactly where and why.</em></h1>
       <p class="sub">We pinpoint where your losses are happening, prove the root cause, and put a number on it.</p>
       <p class="hero-note">No new sensors. No IT project. Results in weeks, not months.</p>
       <a href="#contact" class="cta-btn">Request a diagnostic</a>
     </div>
   </section>
-
-  <!-- SUPPORTED BY -->
-  <div class="supported-bar">
-    <div class="container">
-      <div class="supported-inner">
-        <span class="supported-label">Supported by</span>
-        <div class="supported-logos">
-          <a href="https://www.herts.ac.uk/" rel="noopener" aria-label="University of Hertfordshire">
-            <img src="assets/uh-logo.png" alt="University of Hertfordshire" width="120" height="32">
-          </a>
-          <a href="https://www.natwest.com/" rel="noopener" aria-label="NatWest Bank">
-            <img src="assets/natwest.png" alt="NatWest Bank" width="120" height="32">
-          </a>
-          <a href="https://www.barclays.co.uk/" rel="noopener" aria-label="Barclays Bank">
-            <img src="assets/barclays.png" alt="Barclays Bank" width="120" height="32">
-          </a>
-          <a href="https://www.msduk.org.uk/" rel="noopener" aria-label="MSDUK">
-            <img src="assets/MSDUK.jpg" alt="MSDUK — Minority Supplier Development UK" width="120" height="32">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- PLATFORM -->
   <section id="platform" class="section" aria-labelledby="platform-heading">
@@ -695,6 +684,28 @@
 
   <!-- FOOTER -->
   <footer>
+  <!-- SUPPORTED BY -->
+    <div class="supported-bar">
+      <div class="container">
+        <div class="supported-inner">
+          <span class="supported-label">Supported by</span>
+          <div class="supported-logos">
+            <a href="https://www.herts.ac.uk/" rel="noopener" aria-label="University of Hertfordshire">
+              <img src="assets/uh-logo.png" alt="University of Hertfordshire" width="120" height="32">
+            </a>
+            <a href="https://www.natwest.com/" rel="noopener" aria-label="NatWest Bank">
+              <img src="assets/natwest.png" alt="NatWest Bank" width="120" height="32">
+            </a>
+            <a href="https://www.barclays.co.uk/" rel="noopener" aria-label="Barclays Bank">
+              <img src="assets/barclays.png" alt="Barclays Bank" width="120" height="32">
+            </a>
+            <a href="https://www.msduk.org.uk/" rel="noopener" aria-label="MSDUK">
+              <img src="assets/MSDUK.jpg" alt="MSDUK — Minority Supplier Development UK" width="120" height="32">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
