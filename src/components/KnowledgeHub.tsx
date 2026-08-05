@@ -203,6 +203,8 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [readingPost, setReadingPost] = useState<BlogPost | null>(null);
+  const [digestEmail, setDigestEmail] = useState('');
+  const [digestState, setDigestState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
 
   // Categories extraction
   const categories = useMemo(() => {
@@ -251,7 +253,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
         <div className="lg:col-span-7 space-y-3">
           <div className="flex items-center gap-1.5">
             <BookOpen className="w-4 h-4 text-teal-400" />
-            <span className="font-mono text-[10px] text-teal-400 font-bold uppercase tracking-wider">Operational Academy</span>
+            <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider">Operational Academy</span>
           </div>
           <h3 className="font-display text-2xl font-bold text-white tracking-tight">
             Industrial Decoupling & Decision Library
@@ -263,10 +265,12 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
 
         {/* Real-time search */}
         <div className="lg:col-span-5 relative">
-          <span className="absolute left-3.5 top-3.5 text-slate-500">
+          <span className="absolute left-3.5 top-3.5 text-slate-500" aria-hidden="true">
             <Search className="w-4.5 h-4.5" />
           </span>
+          <label htmlFor="guides-search" className="sr-only">Search the guides library</label>
           <input
+            id="guides-search"
             type="text"
             placeholder="Search guides (e.g., OEE, downtime, root cause)..."
             value={searchTerm}
@@ -282,13 +286,13 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
         <article id="expanded-article" className="bg-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
           <button
             onClick={handleBackToGrid}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-white font-mono text-[10px] font-bold border border-slate-800 transition-colors"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-white font-mono text-[12px] font-bold border border-slate-800 transition-colors"
           >
             ← Back to Library
           </button>
 
           <div className="space-y-4">
-            <span className="px-3 py-1 rounded bg-teal-500/10 border border-teal-500/20 font-mono text-[9px] text-teal-400 uppercase font-bold">
+            <span className="px-3 py-1 rounded bg-teal-500/10 border border-teal-500/20 font-mono text-[12px] text-teal-400 uppercase font-bold">
               {readingPost.category}
             </span>
             <h1 className="font-display text-xl sm:text-3xl font-extrabold text-white leading-tight tracking-tight">
@@ -312,16 +316,16 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
                     <span className="font-display text-xs font-bold text-slate-200 block">
                       {person.name}
                       {person.credentials && (
-                        <span className="font-mono text-[9px] text-teal-400 font-normal ml-1.5">
+                        <span className="font-mono text-[12px] text-teal-400 font-normal ml-1.5">
                           {person.credentials}
                         </span>
                       )}
                     </span>
-                    <span className="font-sans text-[10px] text-slate-500 block">{person.role}</span>
+                    <span className="font-sans text-[12px] text-slate-500 block">{person.role}</span>
                   </div>
                 </div>
               ))}
-              <div className="ml-auto flex items-center gap-3 font-mono text-[10px] text-slate-500">
+              <div className="ml-auto flex items-center gap-3 font-mono text-[12px] text-slate-500">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3.5 h-3.5" />
                   {readingPost.publishDate}
@@ -343,21 +347,57 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
           <div className="mt-8 pt-6 border-t border-slate-850 bg-slate-900/40 p-5 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <span className="font-display text-xs font-bold text-white block">Subscribe to SME Operations Intelligence Digest</span>
-              <p className="font-sans text-[11px] text-slate-400">Receive 1 practical diagnostic playbook per month. Zero buzzwords, guaranteed.</p>
+              <p className="font-sans text-[12px] text-slate-400">Receive 1 practical diagnostic playbook per month. Zero buzzwords, guaranteed.</p>
             </div>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="plant.manager@company.com"
-                className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs placeholder-slate-600 focus:outline-none focus:border-teal-500"
-              />
+            {/* Previously this button only fired an alert saying "You are
+                subscribed" while storing nothing anywhere. It now posts to the
+                same Formspree endpoint as the contact form, and only confirms
+                once the request actually succeeds. */}
+            <form
+              className="flex gap-2 items-start"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                if (!digestEmail) return;
+                setDigestState('sending');
+                try {
+                  const r = await fetch('https://formspree.io/f/xzzwerva', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify({ email: digestEmail, _subject: 'Operations Digest signup' })
+                  });
+                  if (!r.ok) throw new Error();
+                  setDigestState('done');
+                } catch {
+                  setDigestState('error');
+                }
+              }}
+            >
+              <div className="flex flex-col gap-1">
+                <label htmlFor="digest-email" className="sr-only">Email address for the Operations Digest</label>
+                <input
+                  id="digest-email"
+                  type="email"
+                  required
+                  value={digestEmail}
+                  onChange={(e) => setDigestEmail(e.target.value)}
+                  placeholder="you@yourcompany.co.uk"
+                  className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 min-h-[40px] text-xs placeholder-slate-600 focus:outline-none focus:border-teal-500"
+                />
+                {digestState === 'done' && (
+                  <span className="font-sans text-[12px] text-teal-400">Thanks — we have your address.</span>
+                )}
+                {digestState === 'error' && (
+                  <span className="font-sans text-[12px] text-red-400">Could not sign you up. Email info@inshira.co.uk instead.</span>
+                )}
+              </div>
               <button
-                onClick={() => alert('Thank you! You are subscribed to the Operations Digest.')}
-                className="px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-950 font-mono text-[10px] font-bold uppercase rounded-lg tracking-wide transition-colors"
+                type="submit"
+                disabled={digestState === 'sending'}
+                className="px-4 py-2 min-h-[40px] bg-teal-500 hover:bg-teal-400 disabled:opacity-60 text-slate-950 font-mono text-[12px] font-bold uppercase rounded-lg tracking-wide transition-colors"
               >
-                Subscribe
+                {digestState === 'sending' ? 'Sending…' : 'Subscribe'}
               </button>
-            </div>
+            </form>
           </div>
         </article>
       ) : (
@@ -369,7 +409,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-lg font-mono text-[10px] font-bold tracking-wide transition-all uppercase ${
+                className={`px-3.5 py-1.5 rounded-lg font-mono text-[12px] font-bold tracking-wide transition-all uppercase ${
                   selectedCategory === cat
                     ? 'bg-teal-500 text-slate-950'
                     : 'bg-slate-900 text-slate-400 hover:text-white'
@@ -394,10 +434,10 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
                 >
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-[8.5px] text-teal-400 font-bold uppercase tracking-wider">
+                      <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider">
                         {post.category}
                       </span>
-                      <span className="font-mono text-[8.5px] text-slate-500 flex items-center gap-1">
+                      <span className="font-mono text-[12px] text-slate-500 flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         {post.readingTime}
                       </span>
@@ -410,7 +450,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
                       {post.title}
                     </h4>
 
-                    <p className="font-sans text-[11.5px] text-slate-400 leading-relaxed line-clamp-3">
+                    <p className="font-sans text-[13px] text-slate-400 leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
                   </div>
@@ -432,7 +472,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
                           />
                         ))}
                       </div>
-                      <span className="font-sans text-[10px] text-slate-300 font-semibold">
+                      <span className="font-sans text-[12px] text-slate-300 font-semibold">
                         {post.coAuthors?.length
                           ? `${post.author.name} & ${post.coAuthors.map((c) => c.name).join(' & ')}`
                           : post.author.name}
@@ -441,7 +481,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
 
                     <button
                       onClick={() => handleReadPost(post)}
-                      className="flex items-center gap-1 font-mono text-[9px] font-bold text-teal-400 group-hover:text-teal-300 uppercase tracking-wider"
+                      className="flex items-center gap-1 font-mono text-[12px] font-bold text-teal-400 group-hover:text-teal-300 uppercase tracking-wider"
                     >
                       Read Guide
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
@@ -459,7 +499,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
         <div className="space-y-1.5 text-center sm:text-left">
           <div className="flex items-center gap-1 justify-center sm:justify-start">
             <HelpCircle className="w-4 h-4 text-teal-400" />
-            <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider">Common Inquiries</span>
+            <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider">Common Inquiries</span>
           </div>
           <h4 className="font-display text-lg font-bold text-white uppercase tracking-wider">Frequently Asked Questions</h4>
           <p className="font-sans text-xs text-slate-400 max-w-xl">

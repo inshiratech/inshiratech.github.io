@@ -285,14 +285,14 @@ export default function OperationalJourney() {
                 </div>
 
                 {/* Micro numerical label */}
-                <span className={`font-mono text-[9px] uppercase font-bold tracking-wider ${
+                <span className={`font-mono text-[12px] uppercase font-bold tracking-wider ${
                   isActive ? 'text-teal-400' : 'text-slate-500'
                 }`}>
                   Stage 0{idx + 1}
                 </span>
 
                 {/* High-level title text */}
-                <span className={`font-display text-[10.5px] font-bold text-center tracking-wide uppercase leading-tight ${
+                <span className={`font-display text-[13px] font-bold text-center tracking-wide uppercase leading-tight ${
                   isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
                 }`}>
                   {stage.title.split(' ')[0]} {stage.title.split(' ')[1] || ''}
@@ -318,10 +318,10 @@ export default function OperationalJourney() {
           
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <span className="font-mono text-[9px] bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full border border-teal-500/20 uppercase font-bold tracking-widest">
+              <span className="font-mono text-[12px] bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full border border-teal-500/20 uppercase font-bold tracking-widest">
                 {currentStage.badgeText}
               </span>
-              <span className="font-mono text-[10px] text-slate-500">
+              <span className="font-mono text-[12px] text-slate-500">
                 Philosophy Sync
               </span>
             </div>
@@ -338,7 +338,7 @@ export default function OperationalJourney() {
             </p>
 
             <div className="p-4 bg-slate-900/40 border border-white/5 rounded-xl space-y-2">
-              <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest block font-bold">
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest block font-bold">
                 The Practical Challenge:
               </span>
               <p className="font-sans text-xs text-slate-300 leading-relaxed">
@@ -347,7 +347,7 @@ export default function OperationalJourney() {
             </div>
 
             <div className="p-4 bg-teal-500/5 border border-teal-500/10 rounded-xl space-y-2">
-              <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest block font-bold">
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest block font-bold">
                 How Inshira Resolves It:
               </span>
               <p className="font-sans text-xs text-slate-300 leading-relaxed">
@@ -357,7 +357,7 @@ export default function OperationalJourney() {
           </div>
 
           <div className="border-t border-white/5 pt-5 mt-4 space-y-2.5">
-            <span className="font-mono text-[9px] text-slate-500 uppercase block tracking-wider font-bold">
+            <span className="font-mono text-[12px] text-slate-500 uppercase block tracking-wider font-bold">
               Journey Linkage Philosophy
             </span>
             <div className="flex items-start gap-2.5">
@@ -376,15 +376,15 @@ export default function OperationalJourney() {
 
           <div className="space-y-4 relative z-10">
             <div className="flex items-center justify-between pb-3 border-b border-white/5">
-              <span className="font-mono text-[10px] text-teal-400 uppercase font-bold tracking-wider">
+              <span className="font-mono text-[12px] text-teal-400 uppercase font-bold tracking-wider">
                 Interactive Causal Simulator
               </span>
-              <span className="font-mono text-[9px] text-slate-500">
+              <span className="font-mono text-[12px] text-slate-500">
                 Stage {activeStageIdx + 1}
               </span>
             </div>
 
-            <p className="font-sans text-[11px] text-slate-400 leading-relaxed">
+            <p className="font-sans text-[12px] text-slate-400 leading-relaxed">
               Simulate operational runs to inspect how OEE, material scrap levels, and carbon waste adapt as you evolve along our maturity framework.
             </p>
 
@@ -392,7 +392,7 @@ export default function OperationalJourney() {
             <div className="grid grid-cols-2 gap-3.5">
               
               <div className="p-3 bg-black/40 rounded-xl border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block">Telemetry Visibility</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block">Telemetry Visibility</span>
                 <span className="font-display text-base font-bold text-white block mt-0.5">
                   {currentStage.simulationStats.visibility}%
                 </span>
@@ -402,7 +402,7 @@ export default function OperationalJourney() {
               </div>
 
               <div className="p-3 bg-black/40 rounded-xl border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block">Causal Diagnosis</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block">Causal Diagnosis</span>
                 <span className="font-display text-base font-bold text-white block mt-0.5">
                   {currentStage.simulationStats.intelligence}%
                 </span>
@@ -412,7 +412,7 @@ export default function OperationalJourney() {
               </div>
 
               <div className="p-3 bg-black/40 rounded-xl border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block">Scrap Rate</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block">Scrap Rate</span>
                 <span className="font-display text-base font-bold text-red-400 block mt-0.5">
                   {currentStage.simulationStats.scrapRate}%
                 </span>
@@ -422,7 +422,7 @@ export default function OperationalJourney() {
               </div>
 
               <div className="p-3 bg-black/40 rounded-xl border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block">Weekly OEE Boost</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block">Weekly OEE Boost</span>
                 <span className="font-display text-base font-bold text-emerald-400 block mt-0.5">
                   +{currentStage.simulationStats.oeeGains}%
                 </span>
@@ -435,8 +435,8 @@ export default function OperationalJourney() {
 
             {/* Active Logs Ticker */}
             <div className="p-3 bg-slate-950 rounded-xl border border-white/5 space-y-1.5">
-              <span className="font-mono text-[9px] text-slate-500 uppercase font-bold block">Simulation telemetry logs:</span>
-              <div className="space-y-1 h-14 overflow-y-auto font-mono text-[8px] text-slate-400 select-none">
+              <span className="font-mono text-[12px] text-slate-500 uppercase font-bold block">Simulation telemetry logs:</span>
+              <div className="space-y-1 h-14 overflow-y-auto font-mono text-[12px] text-slate-400 select-none">
                 {simulationAlerts.length === 0 ? (
                   <div className="text-slate-600">No active cycles. Click "Trigger Simulated Cycle" below.</div>
                 ) : (
@@ -464,7 +464,7 @@ export default function OperationalJourney() {
             >
               {isSimulatingCycle ? 'Running Simulation...' : 'Trigger Simulated Cycle'}
             </button>
-            <div className="text-[9px] font-mono text-slate-500 text-center uppercase tracking-wider">
+            <div className="text-[12px] font-mono text-slate-500 text-center uppercase tracking-wider">
               Total Cycles Logged: {simulationCyclesCount} | status: OK nominal
             </div>
           </div>

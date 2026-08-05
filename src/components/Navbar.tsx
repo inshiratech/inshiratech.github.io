@@ -88,7 +88,7 @@ export default function Navbar({ currentPage, setCurrentPage, onSearchOpen }: Na
               <span className="font-display text-base font-extrabold text-white tracking-tight block leading-none group-hover:text-teal-300 transition-colors">
                 INSHIRA
               </span>
-              <span className="font-mono text-[8.5px] text-teal-400/90 tracking-widest leading-none mt-0.5 font-bold uppercase">
+              <span className="font-mono text-[12px] text-teal-400/90 tracking-widest leading-none mt-0.5 font-bold uppercase">
                 Operational Intelligence
               </span>
             </div>
@@ -125,7 +125,7 @@ export default function Navbar({ currentPage, setCurrentPage, onSearchOpen }: Na
               title="Search Knowledge Base"
             >
               <Search className="w-3.5 h-3.5 text-teal-400" />
-              <span className="text-[11px] font-mono text-slate-400">⌘K</span>
+              <span className="text-[12px] font-mono text-slate-400">⌘K</span>
             </button>
 
             <button

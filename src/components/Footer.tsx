@@ -73,34 +73,37 @@ export default function Footer({ setCurrentPage }: FooterProps) {
               </span>
             </div>
             
-            <p className="font-sans text-[11.5px] text-slate-400 leading-relaxed">
+            <p className="font-sans text-[13px] text-slate-400 leading-relaxed">
               We provide the leading Operational Intelligence and Decision Support layer for manufacturing SMEs (20-500 employees). Aggregate existing PLCs and ERP logs to uncover hidden capacity losses without physical downtime or capital expense.
             </p>
 
-            {/* Compliance Badge */}
+            {/* Factual badges only. "ISO 27001 Aligned" and "GDPR Secure" were
+                removed — Inshira holds no ISO certification, and "GDPR Secure"
+                is not a recognised status. These describe what is actually
+                true: how the connection works and where the company is. */}
             <div className="pt-2 flex flex-wrap gap-2">
-              <span className="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[9px] text-teal-400 font-bold">
+              <span className="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[12px] text-teal-400 font-bold">
                 <Shield className="w-3 h-3" />
-                ISO 27001 Aligned
+                Read-only connection
               </span>
-              <span className="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[9px] text-teal-400 font-bold">
-                GDPR Secure
+              <span className="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[12px] text-slate-400">
+                UK registered company
               </span>
-              <span className="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[9px] text-slate-400">
-                Read-Only TLS Pipeline
+              <span className="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[12px] text-slate-400">
+                No new hardware required
               </span>
             </div>
           </div>
 
           {/* Sitemap links */}
           <div>
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">Platform Suite</span>
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">Platform Suite</span>
             <ul className="space-y-2.5">
               {sitemap.platform.map((link, idx) => (
                 <li key={idx}>
                   <button
                     onClick={() => handleNav(link.page)}
-                    className="font-sans text-[11.5px] text-slate-400 hover:text-white transition-colors block text-left"
+                    className="font-sans text-[13px] text-slate-400 hover:text-white transition-colors block text-left"
                   >
                     {link.label}
                   </button>
@@ -110,13 +113,13 @@ export default function Footer({ setCurrentPage }: FooterProps) {
           </div>
 
           <div>
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">CI Solutions</span>
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">CI Solutions</span>
             <ul className="space-y-2.5">
               {sitemap.solutions.map((link, idx) => (
                 <li key={idx}>
                   <button
                     onClick={() => handleNav(link.page)}
-                    className="font-sans text-[11.5px] text-slate-400 hover:text-white transition-colors block text-left"
+                    className="font-sans text-[13px] text-slate-400 hover:text-white transition-colors block text-left"
                   >
                     {link.label}
                   </button>
@@ -126,13 +129,13 @@ export default function Footer({ setCurrentPage }: FooterProps) {
           </div>
 
           <div>
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">Authority Hub</span>
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">Authority Hub</span>
             <ul className="space-y-2.5">
               {sitemap.resources.map((link, idx) => (
                 <li key={idx}>
                   <button
                     onClick={() => handleNav(link.page)}
-                    className="font-sans text-[11.5px] text-slate-400 hover:text-white transition-colors block text-left"
+                    className="font-sans text-[13px] text-slate-400 hover:text-white transition-colors block text-left"
                   >
                     {link.label}
                   </button>
@@ -142,13 +145,13 @@ export default function Footer({ setCurrentPage }: FooterProps) {
           </div>
 
           <div>
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">Corporate Legal</span>
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">Corporate Legal</span>
             <ul className="space-y-2.5">
               {legalLinks.map((link, idx) => (
                 <li key={idx}>
                   <a
                     href={link.href}
-                    className="font-sans text-[11.5px] text-slate-400 hover:text-white transition-colors block text-left"
+                    className="font-sans text-[13px] text-slate-400 hover:text-white transition-colors block text-left"
                   >
                     {link.label}
                   </a>
@@ -161,7 +164,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
 
         {/* Supporter / programme logos — carried over from the previous site */}
         <div className="mt-14 pt-10 border-t border-slate-900">
-          <p className="font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold text-center mb-6">
+          <p className="font-mono text-[12px] text-slate-500 uppercase tracking-widest font-bold text-center mb-6">
             Supported through research, community, accelerator, and enterprise growth programmes
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
@@ -192,10 +195,10 @@ export default function Footer({ setCurrentPage }: FooterProps) {
               House / the previous site. The AI Studio draft had "Inshira
               Intelligence Ltd" at a Leeds address; both were incorrect. */}
           <div className="flex flex-col gap-1">
-            <span className="font-mono text-[10px] text-slate-500">
+            <span className="font-mono text-[12px] text-slate-500">
               © 2026 Inshira Technologies Ltd. All rights reserved. Registered in England &amp; Wales.
             </span>
-            <span className="font-mono text-[9px] text-slate-600 block">
+            <span className="font-mono text-[12px] text-slate-600 block">
               71-75 Shelton Street, London, WC2H 9JQ, United Kingdom.
             </span>
           </div>

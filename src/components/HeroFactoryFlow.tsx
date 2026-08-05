@@ -169,7 +169,7 @@ export default function HeroFactoryFlow() {
         onMouseMove={handleMouseMove}
         className="grid-living-env bg-[#080808]/90 border border-white/5 rounded-3xl p-6 sm:p-10 shadow-2xl overflow-hidden"
       >
-        <div className="absolute top-4 right-6 flex items-center gap-4 text-[10px] font-mono text-slate-500">
+        <div className="absolute top-4 right-6 flex items-center gap-4 text-[12px] font-mono text-slate-500">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
             <span className="uppercase tracking-wider">Simulated Ingest: {telemetryPulse}% Efficiency</span>
@@ -186,7 +186,7 @@ export default function HeroFactoryFlow() {
 
         <div className="space-y-6">
           <div className="text-center sm:text-left">
-            <span className="font-mono text-[10px] text-teal-400 font-bold uppercase tracking-widest block mb-1">
+            <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-widest block mb-1">
               Interactive Product Demonstration
             </span>
             <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
@@ -243,20 +243,20 @@ export default function HeroFactoryFlow() {
                     <IconComp className="w-5 h-5 stroke-[1.8]" />
                   </div>
                   
-                  <span className="font-mono text-[9px] text-slate-500 font-bold uppercase mt-3 tracking-widest block">
+                  <span className="font-mono text-[12px] text-slate-500 font-bold uppercase mt-3 tracking-widest block">
                     STAGE {stage.num}
                   </span>
                   
                   <h4 className="font-display text-xs font-bold text-white mt-1 leading-tight uppercase tracking-wider">
                     {stage.title}
                   </h4>
-                  <span className="font-sans text-[10px] text-slate-500 mt-0.5 leading-none">
+                  <span className="font-sans text-[12px] text-slate-500 mt-0.5 leading-none">
                     {stage.sub}
                   </span>
 
                   {/* Connecting indicator in mobile vertical view */}
                   <div className="md:hidden mt-2">
-                    {idx < 5 && <span className="text-[9px] text-teal-500">↓</span>}
+                    {idx < 5 && <span className="text-[12px] text-teal-500">↓</span>}
                   </div>
                 </button>
               );
@@ -290,7 +290,7 @@ export default function HeroFactoryFlow() {
               </p>
 
               {/* Simulated Live Command Output */}
-              <div className="p-3 bg-black/60 rounded-xl border border-white/5 font-mono text-[11px] text-slate-400 flex items-center gap-2">
+              <div className="p-3 bg-black/60 rounded-xl border border-white/5 font-mono text-[12px] text-slate-400 flex items-center gap-2">
                 <Activity className="w-3.5 h-3.5 text-teal-400 animate-pulse shrink-0" />
                 <span className="truncate">LOG: {simulatedLog}</span>
               </div>
@@ -299,7 +299,7 @@ export default function HeroFactoryFlow() {
             {/* Strategic KPI Metric Card on right */}
             <div className="w-full lg:w-80 shrink-0 p-6 bg-[#0c0c0c] border border-white/5 rounded-2xl relative z-10 space-y-4 flex flex-col justify-between">
               <div>
-                <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block font-bold">
+                <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block font-bold">
                   Operational Core Metric
                 </span>
                 <h4 className="font-display text-4xl font-extrabold text-teal-400 mt-2 tracking-tight">
@@ -310,7 +310,7 @@ export default function HeroFactoryFlow() {
                 </p>
               </div>
 
-              <div className="border-t border-white/5 pt-4 space-y-2 text-[11px]">
+              <div className="border-t border-white/5 pt-4 space-y-2 text-[12px]">
                 <div className="flex justify-between items-center text-slate-500">
                   <span>Reliability Check</span>
                   <span className="text-emerald-400 font-semibold">Active OK</span>

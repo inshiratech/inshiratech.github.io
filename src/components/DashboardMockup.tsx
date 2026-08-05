@@ -335,7 +335,7 @@ export default function DashboardMockup() {
         <div className="flex items-center gap-2.5">
           <div className="w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse" />
           <div>
-            <span className="font-mono text-[10px] text-teal-400 font-bold uppercase tracking-widest block">Live Simulated Inshira Overlay</span>
+            <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-widest block">Live Simulated Inshira Overlay</span>
             <h4 className="font-display text-sm sm:text-base font-bold text-white uppercase tracking-wider">Operational Decision Support Layer</h4>
           </div>
         </div>
@@ -380,14 +380,14 @@ export default function DashboardMockup() {
                 <h5 className="font-display text-base font-bold text-white uppercase tracking-wider">
                   {currentLine.name}
                 </h5>
-                <span className="px-2.5 py-0.5 rounded-md bg-teal-500/10 text-teal-400 border border-teal-500/20 font-mono text-[9px] font-bold uppercase tracking-wider">
+                <span className="px-2.5 py-0.5 rounded-md bg-teal-500/10 text-teal-400 border border-teal-500/20 font-mono text-[12px] font-bold uppercase tracking-wider">
                   {currentLine.methodology}
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-slate-400 uppercase block">{currentLine.industry}</span>
+              <span className="text-[12px] font-mono text-slate-400 uppercase block">{currentLine.industry}</span>
             </div>
             
-            <span className={`px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase border tracking-wider self-start sm:self-auto ${
+            <span className={`px-2.5 py-1 rounded-full text-[12px] font-mono font-bold uppercase border tracking-wider self-start sm:self-auto ${
               activeMetrics.health === 'Optimal' || activeMetrics.health === 'Stabilised'
                 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                 : activeMetrics.health === 'Warning'
@@ -407,18 +407,18 @@ export default function DashboardMockup() {
                 ? 'bg-emerald-500/5 border-emerald-500/30' 
                 : 'bg-slate-900/40 border-slate-800'
             }`}>
-              <span className="font-mono text-[9px] text-teal-400 uppercase tracking-wider font-bold block">{currentLine.primaryMetricTitle}</span>
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold block">{currentLine.primaryMetricTitle}</span>
               <div className="flex items-baseline gap-1.5 mt-1">
                 <span className={`font-display text-2xl font-bold transition-colors ${
                   activeMetrics.improvementGained ? 'text-emerald-400' : 'text-white'
                 }`}>{activeMetrics.oee}</span>
-                <span className={`font-mono text-[9px] ${
+                <span className={`font-mono text-[12px] ${
                   currentLine.oeeTrend.startsWith('+') || activeMetrics.improvementGained ? 'text-emerald-400' : 'text-amber-400'
                 }`}>
                   {activeMetrics.improvementGained ? '▲ Live Boost' : currentLine.oeeTrend.split(' ')[0]}
                 </span>
               </div>
-              <span className="font-mono text-[9px] text-slate-400 block mt-0.5">{currentLine.primaryTargetLabel}</span>
+              <span className="font-mono text-[12px] text-slate-400 block mt-0.5">{currentLine.primaryTargetLabel}</span>
             </div>
 
             {/* Secondary Metric 1 */}
@@ -427,14 +427,14 @@ export default function DashboardMockup() {
                 ? 'bg-emerald-500/5 border-emerald-500/25' 
                 : 'bg-slate-900/40 border-slate-800'
             }`}>
-              <span className="font-mono text-[9px] text-slate-400 uppercase tracking-wider block">{currentLine.secondaryMetrics[0].label}</span>
+              <span className="font-mono text-[12px] text-slate-400 uppercase tracking-wider block">{currentLine.secondaryMetrics[0].label}</span>
               <div className="flex items-baseline gap-1.5 mt-1">
                 <span className="font-display text-2xl font-bold text-white">{currentLine.secondaryMetrics[0].value}</span>
                 <TrendingUp className={`w-3.5 h-3.5 ${
                   activeMetrics.improvementGained ? 'text-emerald-400' : 'text-teal-400'
                 }`} />
               </div>
-              <span className="font-mono text-[9px] text-slate-500 block mt-0.5">{currentLine.secondaryMetrics[0].trend}</span>
+              <span className="font-mono text-[12px] text-slate-500 block mt-0.5">{currentLine.secondaryMetrics[0].trend}</span>
             </div>
 
             {/* Secondary Metric 2 */}
@@ -443,14 +443,14 @@ export default function DashboardMockup() {
                 ? 'bg-emerald-500/5 border-emerald-500/25' 
                 : 'bg-slate-900/40 border-slate-800'
             }`}>
-              <span className="font-mono text-[9px] text-slate-400 uppercase tracking-wider block">{currentLine.secondaryMetrics[1].label}</span>
+              <span className="font-mono text-[12px] text-slate-400 uppercase tracking-wider block">{currentLine.secondaryMetrics[1].label}</span>
               <div className="flex items-baseline gap-1.5 mt-1">
                 <span className={`font-display text-2xl font-bold ${
                   activeMetrics.improvementGained ? 'text-emerald-400' : 'text-white'
                 }`}>{currentLine.secondaryMetrics[1].value}</span>
-                <span className="font-mono text-[9px] text-teal-400">Live</span>
+                <span className="font-mono text-[12px] text-teal-400">Live</span>
               </div>
-              <span className="font-mono text-[9px] text-slate-500 block mt-0.5">{currentLine.secondaryMetrics[1].trend}</span>
+              <span className="font-mono text-[12px] text-slate-500 block mt-0.5">{currentLine.secondaryMetrics[1].trend}</span>
             </div>
 
             {/* Secondary Metric 3 */}
@@ -459,7 +459,7 @@ export default function DashboardMockup() {
                 ? 'bg-emerald-500/5 border-emerald-500/25' 
                 : 'bg-slate-900/40 border-slate-800'
             }`}>
-              <span className="font-mono text-[9px] text-slate-400 uppercase tracking-wider block">{currentLine.secondaryMetrics[2].label}</span>
+              <span className="font-mono text-[12px] text-slate-400 uppercase tracking-wider block">{currentLine.secondaryMetrics[2].label}</span>
               <div className="flex items-baseline gap-1.5 mt-1">
                 <span className={`font-display text-2xl font-bold transition-colors ${
                   activeMetrics.improvementGained ? 'text-emerald-400' : 'text-amber-300'
@@ -468,7 +468,7 @@ export default function DashboardMockup() {
                   activeMetrics.improvementGained ? 'text-emerald-400' : 'text-amber-400'
                 }`} />
               </div>
-              <span className="font-mono text-[9px] text-slate-500 block mt-0.5">{currentLine.secondaryMetrics[2].trend}</span>
+              <span className="font-mono text-[12px] text-slate-500 block mt-0.5">{currentLine.secondaryMetrics[2].trend}</span>
             </div>
 
           </div>
@@ -480,7 +480,7 @@ export default function DashboardMockup() {
                 <Clock className="w-4 h-4 text-teal-400" />
                 <span className="font-display text-xs font-bold text-white uppercase tracking-wider">Today’s State Timeline</span>
               </div>
-              <span className="font-mono text-[10px] text-slate-400">Shift Coverage: 08:00 - 16:00</span>
+              <span className="font-mono text-[12px] text-slate-400">Shift Coverage: 08:00 - 16:00</span>
             </div>
 
             {/* Custom Horizontal Stack Bar */}
@@ -509,19 +509,19 @@ export default function DashboardMockup() {
             <div id="timeline-legend" className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3 pt-2.5 border-t border-slate-800/50">
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                <span className="font-mono text-[10px] text-slate-400">Running (84%)</span>
+                <span className="font-mono text-[12px] text-slate-400">Running (84%)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
-                <span className="font-mono text-[10px] text-slate-400">Planned Stops</span>
+                <span className="font-mono text-[12px] text-slate-400">Planned Stops</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                <span className="font-mono text-[10px] text-slate-400">Micro-Stops</span>
+                <span className="font-mono text-[12px] text-slate-400">Micro-Stops</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                <span className="font-mono text-[10px] text-slate-400">Unplanned Outages</span>
+                <span className="font-mono text-[12px] text-slate-400">Unplanned Outages</span>
               </div>
             </div>
           </div>
@@ -548,7 +548,7 @@ export default function DashboardMockup() {
                   </div>
                   <button
                     onClick={() => triggerRootCause(alert.msg)}
-                    className="shrink-0 flex items-center gap-1 self-end sm:self-center px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-teal-400 hover:text-teal-300 font-mono text-[10px] font-bold tracking-wide border border-slate-800 transition-all cursor-pointer"
+                    className="shrink-0 flex items-center gap-1 self-end sm:self-center px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-teal-400 hover:text-teal-300 font-mono text-[12px] font-bold tracking-wide border border-slate-800 transition-all cursor-pointer"
                   >
                     Deconstruct Root Cause
                     <ChevronRight className="w-3 h-3" />
@@ -568,12 +568,12 @@ export default function DashboardMockup() {
                 <Sparkles className="w-4 h-4 text-teal-400 animate-pulse" />
                 <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Inshira Recommendation Engine</h5>
               </div>
-              <span className="font-mono text-[9px] bg-teal-500/10 text-teal-400 px-1.5 py-0.5 rounded border border-teal-500/20 font-bold uppercase">
+              <span className="font-mono text-[12px] bg-teal-500/10 text-teal-400 px-1.5 py-0.5 rounded border border-teal-500/20 font-bold uppercase">
                 Active
               </span>
             </div>
 
-            <p className="font-sans text-[11px] text-slate-400 leading-relaxed">
+            <p className="font-sans text-[12px] text-slate-400 leading-relaxed">
               We cross-reference physical PLC events, thermal telemetry, and shift patterns to recommend setpoints that stabilize continuous runs. Click below to apply calibration.
             </p>
 
@@ -591,22 +591,22 @@ export default function DashboardMockup() {
                   >
                     <div className="flex items-start justify-between gap-2">
                       <span className="font-display text-xs font-bold text-white block">{rec.title}</span>
-                      <span className={`font-mono text-[9px] font-bold tracking-wide shrink-0 ${
+                      <span className={`font-mono text-[12px] font-bold tracking-wide shrink-0 ${
                         isApplied ? 'text-emerald-400' : 'text-teal-400'
                       }`}>
                         {isApplied ? '✓ Applied' : rec.impact}
                       </span>
                     </div>
-                    <p className="font-sans text-[11px] text-slate-400 leading-relaxed mt-1.5">
+                    <p className="font-sans text-[12px] text-slate-400 leading-relaxed mt-1.5">
                       {rec.desc}
                     </p>
                     <div className="flex items-center justify-between pt-2 mt-1.5 border-t border-white/5">
-                      <span className="font-mono text-[9px] text-slate-500 font-medium">
+                      <span className="font-mono text-[12px] text-slate-500 font-medium">
                         {rec.confidence}
                       </span>
                       <button 
                         onClick={() => handleApplyRecommendation(rec.id, rec.action)}
-                        className={`flex items-center gap-1 text-[10px] font-mono font-bold uppercase transition-all px-2.5 py-1.5 rounded ${
+                        className={`flex items-center gap-1 text-[12px] font-mono font-bold uppercase transition-all px-2.5 py-1.5 rounded ${
                           isApplied 
                             ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20' 
                             : 'bg-teal-500/10 text-teal-400 hover:bg-teal-500/20 border border-teal-500/15'
@@ -623,7 +623,7 @@ export default function DashboardMockup() {
           </div>
 
           <div className="mt-6 pt-4 border-t border-slate-800 bg-teal-500/5 p-4 rounded-xl border border-teal-500/10 space-y-2.5">
-            <span className="font-mono text-[9px] text-teal-400 font-bold tracking-wider uppercase block">Operational Maturity Score</span>
+            <span className="font-mono text-[12px] text-teal-400 font-bold tracking-wider uppercase block">Operational Maturity Score</span>
             <div className="flex items-center gap-3">
               <div className="flex-1 bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
                 <div
@@ -635,7 +635,7 @@ export default function DashboardMockup() {
                 {activeMetrics.oee}
               </span>
             </div>
-            <p className="font-sans text-[10px] text-slate-500 leading-relaxed">
+            <p className="font-sans text-[12px] text-slate-500 leading-relaxed">
               {activeLine === 'A'
                 ? 'Your factory displays a reactive maturity. Resolving sealing micro-stops elevates you to preventative.'
                 : activeLine === 'B'
@@ -653,7 +653,7 @@ export default function DashboardMockup() {
           <div id="causal-modal-content" className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-5 relative">
             <div className="flex justify-between items-start">
               <div>
-                <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Inshira Intelligence Deep-Dive</span>
+                <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Inshira Intelligence Deep-Dive</span>
                 <h4 className="font-display text-base font-bold text-white mt-0.5">Automated Causal Chain Deconstruction</h4>
               </div>
               <button
@@ -665,7 +665,7 @@ export default function DashboardMockup() {
             </div>
 
             <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-850 space-y-1">
-              <span className="font-mono text-[10px] text-red-400 uppercase font-bold tracking-wider">Trigger Incident</span>
+              <span className="font-mono text-[12px] text-red-400 uppercase font-bold tracking-wider">Trigger Incident</span>
               <p className="font-sans text-xs text-slate-300 leading-relaxed">{selectedAlert}</p>
             </div>
 
@@ -673,7 +673,7 @@ export default function DashboardMockup() {
               
               <div className="relative">
                 <div className="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-teal-400" />
-                <span className="font-mono text-[9px] text-teal-400 uppercase font-bold tracking-wider block">Step 1: Signal Isolation</span>
+                <span className="font-mono text-[12px] text-teal-400 uppercase font-bold tracking-wider block">Step 1: Signal Isolation</span>
                 <p className="font-sans text-xs text-slate-300 mt-0.5 leading-relaxed">
                   The PLC logs micro-current spikes on the seal jaw motor during heat recovery cycles. Air pocket anomalies detected in polymer feed.
                 </p>
@@ -681,7 +681,7 @@ export default function DashboardMockup() {
 
               <div className="relative">
                 <div className="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-teal-400" />
-                <span className="font-mono text-[9px] text-teal-400 uppercase font-bold tracking-wider block">Step 2: Causal Mapping</span>
+                <span className="font-mono text-[12px] text-teal-400 uppercase font-bold tracking-wider block">Step 2: Causal Mapping</span>
                 <p className="font-sans text-xs text-slate-300 mt-0.5 leading-relaxed">
                   By matching raw material delivery times, we isolated these spikes to Batch #415 polypropylene resin. This batch exhibits a 1.2% higher moisture absorption rate.
                 </p>
@@ -689,11 +689,11 @@ export default function DashboardMockup() {
 
               <div className="relative">
                 <div className="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-emerald-400" />
-                <span className="font-mono text-[9px] text-emerald-400 uppercase font-bold tracking-wider block">Step 3: Business Quantified Solution</span>
+                <span className="font-mono text-[12px] text-emerald-400 uppercase font-bold tracking-wider block">Step 3: Business Quantified Solution</span>
                 <p className="font-sans text-xs text-slate-200 mt-0.5 leading-relaxed font-medium">
                   Recommendation: Apply a pre-heating delay profile of +8 seconds during Batch #415 changeovers. This fully stabilizes polymer moisture before extrusion.
                 </p>
-                <div className="mt-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg flex justify-between items-center text-[10px] font-mono">
+                <div className="mt-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg flex justify-between items-center text-[12px] font-mono">
                   <span className="text-emerald-400">Projected Downtime Avoided</span>
                   <span className="text-white font-bold">2.4 Hours/Wk (£7,200)</span>
                 </div>

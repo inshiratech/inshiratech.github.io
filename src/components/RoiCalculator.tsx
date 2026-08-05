@@ -35,7 +35,7 @@ export default function RoiCalculator() {
       <div className="bg-slate-900 px-4 sm:px-6 py-4 border-b border-slate-800 flex items-center gap-2">
         <Calculator className="w-5 h-5 text-teal-400" />
         <div>
-          <span className="font-mono text-[10px] text-teal-400 font-bold uppercase tracking-widest block">Audit Engine</span>
+          <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-widest block">Audit Engine</span>
           <h4 className="font-display text-sm sm:text-base font-bold text-white uppercase tracking-wider">Industrial ROI Calculator</h4>
         </div>
       </div>
@@ -45,9 +45,9 @@ export default function RoiCalculator() {
         {/* Left Hand: Slider inputs */}
         <div id="roi-inputs" className="lg:col-span-6 p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-slate-800 space-y-6">
           <div className="space-y-1">
-            <span className="font-mono text-[10px] text-teal-400 uppercase tracking-widest font-bold">Plant Baseline</span>
+            <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest font-bold">Plant Baseline</span>
             <h5 className="font-display text-sm font-bold text-white">Your Plant’s Estimated Variables</h5>
-            <p className="font-sans text-[11.5px] text-slate-400 leading-relaxed">
+            <p className="font-sans text-[13px] text-slate-400 leading-relaxed">
               We translate standard machinery bottlenecks into quantifiable business outcomes. Provide your rough figures below.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function RoiCalculator() {
                 onChange={(e) => setHourlyCost(Number(e.target.value))}
                 className="w-full h-1 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-teal-500 focus:outline-none"
               />
-              <p className="font-sans text-[9.5px] text-slate-500">
+              <p className="font-sans text-[12px] text-slate-500">
                 Includes lost throughput capacity, shift wages, and scheduled logistics delay penalties.
               </p>
             </div>
@@ -104,7 +104,7 @@ export default function RoiCalculator() {
                 onChange={(e) => setDowntimeHours(Number(e.target.value))}
                 className="w-full h-1 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-teal-500 focus:outline-none"
               />
-              <p className="font-sans text-[9.5px] text-slate-500">
+              <p className="font-sans text-[12px] text-slate-500">
                 Unplanned failures, minor micro-jams, and changeover delays.
               </p>
             </div>
@@ -133,18 +133,18 @@ export default function RoiCalculator() {
         <div id="roi-projections" className="lg:col-span-6 p-4 sm:p-6 bg-slate-950/40 flex flex-col justify-between space-y-6">
           
           <div className="space-y-4">
-            <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Estimated Annual Leakage vs Recuperation</span>
+            <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Estimated Annual Leakage vs Recuperation</span>
             
             <div className="space-y-3">
               {/* Current Losses */}
               <div className="p-3.5 bg-red-950/10 border border-red-900/30 rounded-xl flex justify-between items-center">
                 <div>
-                  <span className="font-mono text-[9px] text-slate-400 uppercase font-medium">Your Annual Losses (Downtime + Scrap)</span>
+                  <span className="font-mono text-[12px] text-slate-400 uppercase font-medium">Your Annual Losses (Downtime + Scrap)</span>
                   <span className="font-display text-lg font-bold text-slate-200 block mt-0.5">
                     £{totalAnnualLoss.toLocaleString('en-GB')}
                   </span>
                 </div>
-                <span className="font-mono text-[10px] text-red-400 font-bold bg-red-500/10 px-2 py-0.5 rounded border border-red-500/10">
+                <span className="font-mono text-[12px] text-red-400 font-bold bg-red-500/10 px-2 py-0.5 rounded border border-red-500/10">
                   Leaked Capital
                 </span>
               </div>
@@ -152,12 +152,12 @@ export default function RoiCalculator() {
               {/* Inshira Recoverable */}
               <div className="p-4 bg-gradient-to-tr from-slate-900 to-teal-950/40 border border-teal-500/30 rounded-xl flex justify-between items-center">
                 <div>
-                  <span className="font-mono text-[9px] text-teal-400 uppercase font-bold tracking-wider">Estimated Recuperated Profit (Inshira)</span>
+                  <span className="font-mono text-[12px] text-teal-400 uppercase font-bold tracking-wider">Estimated Recuperated Profit (Inshira)</span>
                   <span className="font-display text-2xl font-extrabold text-white block mt-0.5">
                     £{totalAnnualRecovered.toLocaleString('en-GB')}
                   </span>
                 </div>
-                <span className="font-mono text-[10px] text-slate-950 font-extrabold bg-teal-400 px-2.5 py-1 rounded-lg">
+                <span className="font-mono text-[12px] text-slate-950 font-extrabold bg-teal-400 px-2.5 py-1 rounded-lg">
                   Recovered / Yr
                 </span>
               </div>
@@ -166,19 +166,19 @@ export default function RoiCalculator() {
             {/* Financial Multiplier Bento */}
             <div className="grid grid-cols-2 gap-3 pt-1">
               <div className="bg-slate-900/40 p-3 rounded-xl border border-slate-850">
-                <span className="font-mono text-[8px] text-slate-500 uppercase tracking-wider block">Investment Multiplier</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase tracking-wider block">Investment Multiplier</span>
                 <span className="font-display text-base font-bold text-white block mt-0.5">
                   {roiMultiplier.toFixed(1)}x ROI
                 </span>
-                <span className="font-sans text-[8px] text-slate-400">Against base overlay cost</span>
+                <span className="font-sans text-[12px] text-slate-400">Against base overlay cost</span>
               </div>
 
               <div className="bg-slate-900/40 p-3 rounded-xl border border-slate-850">
-                <span className="font-mono text-[8px] text-slate-500 uppercase tracking-wider block">Payback Speed</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase tracking-wider block">Payback Speed</span>
                 <span className="font-display text-base font-bold text-emerald-400 block mt-0.5">
                   {paybackDays} Days
                 </span>
-                <span className="font-sans text-[8px] text-slate-400">To cover software pilot cost</span>
+                <span className="font-sans text-[12px] text-slate-400">To cover software pilot cost</span>
               </div>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function RoiCalculator() {
             <div className="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 shrink-0">
               <TrendingUp className="w-4 h-4" />
             </div>
-            <p className="font-sans text-[10.5px] text-slate-400 leading-relaxed">
+            <p className="font-sans text-[13px] text-slate-400 leading-relaxed">
               We guarantee pilot outcome thresholds. If Inshira does not identify at least <strong className="font-semibold text-white">3x the pilot license value</strong> in hidden losses within 60 days, we refund 100% of the platform cost.
             </p>
           </div>

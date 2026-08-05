@@ -199,7 +199,7 @@ export default function InteractiveDigitalTwin() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded border border-white/10">
+              <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded border border-white/10">
                 Decision Intelligence Module
               </span>
               <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
@@ -211,7 +211,7 @@ export default function InteractiveDigitalTwin() {
         </div>
         <button
           onClick={handleReset}
-          className="flex items-center gap-1.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-mono text-[10px] font-bold text-slate-300 hover:text-white transition-all uppercase tracking-wider self-stretch md:self-auto justify-center"
+          className="flex items-center gap-1.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-mono text-[12px] font-bold text-slate-300 hover:text-white transition-all uppercase tracking-wider self-stretch md:self-auto justify-center"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           Reset to Baseline
@@ -223,7 +223,7 @@ export default function InteractiveDigitalTwin() {
         {/* Left Side: Selectable "What-If" Engineering Queries (5 cols) */}
         <div className="lg:col-span-5 p-6 border-b lg:border-b-0 lg:border-r border-white/5 space-y-5">
           <div className="space-y-1">
-            <span className="font-mono text-[10px] text-teal-400 uppercase tracking-widest font-bold block">
+            <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest font-bold block">
               Step 1: Choose a "What-If" Scenario
             </span>
             <p className="font-sans text-xs text-white/50 leading-relaxed">
@@ -255,7 +255,7 @@ export default function InteractiveDigitalTwin() {
                     <span className="font-display text-xs font-bold block tracking-wide text-white">
                       {sc.title}
                     </span>
-                    <span className="font-sans text-[10px] text-slate-400 block leading-tight">
+                    <span className="font-sans text-[12px] text-slate-400 block leading-tight">
                       {sc.description}
                     </span>
                   </div>
@@ -270,16 +270,16 @@ export default function InteractiveDigitalTwin() {
           {/* Precision Sliders to Perturb outputs */}
           <div className="space-y-4 pt-4 border-t border-white/5">
             <div className="flex justify-between items-center">
-              <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-widest">
+              <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-widest">
                 Step 2: Perturb & Fine-Tune
               </span>
-              <span className="text-[10px] font-sans text-teal-400/80 italic">Simulate custom deviation</span>
+              <span className="text-[12px] font-sans text-teal-400/80 italic">Simulate custom deviation</span>
             </div>
 
             <div className="space-y-3">
               {/* Slider 1 */}
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px]">
+                <div className="flex justify-between text-[12px]">
                   <span className="font-sans text-slate-300">Target Changeover Time Reduction</span>
                   <span className="font-mono font-semibold text-teal-400">{changeover}%</span>
                 </div>
@@ -295,7 +295,7 @@ export default function InteractiveDigitalTwin() {
 
               {/* Slider 2 */}
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px]">
+                <div className="flex justify-between text-[12px]">
                   <span className="font-sans text-slate-300">Target Material Scrap Reduction</span>
                   <span className="font-mono font-semibold text-teal-400">{scrap}%</span>
                 </div>
@@ -311,7 +311,7 @@ export default function InteractiveDigitalTwin() {
 
               {/* Slider 3 */}
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px]">
+                <div className="flex justify-between text-[12px]">
                   <span className="font-sans text-slate-300">Rated Machine Speed Recovered</span>
                   <span className="font-mono font-semibold text-teal-400">{speed}%</span>
                 </div>
@@ -334,7 +334,7 @@ export default function InteractiveDigitalTwin() {
           <div className="space-y-4">
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-teal-400 animate-pulse" />
-              <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-widest block">
+              <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-widest block">
                 Estimated Operational Impact & Financial Feasibility
               </span>
             </div>
@@ -365,15 +365,15 @@ export default function InteractiveDigitalTwin() {
                     />
                   </svg>
                   <div className="absolute flex flex-col items-center justify-center">
-                    <span className="font-mono text-[8px] text-slate-500 uppercase tracking-widest font-bold">SAVINGS</span>
+                    <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest font-bold">SAVINGS</span>
                     <span className="font-display text-sm font-extrabold text-white mt-0.5">
                       {calculatedRoi}
                     </span>
-                    <span className="font-sans text-[8px] text-teal-400 font-semibold uppercase mt-0.5">ROI Rate</span>
+                    <span className="font-sans text-[12px] text-teal-400 font-semibold uppercase mt-0.5">ROI Rate</span>
                   </div>
                 </div>
                 <div className="mt-2 text-center">
-                  <span className="font-mono text-[9px] text-slate-500 uppercase block font-semibold">
+                  <span className="font-mono text-[12px] text-slate-500 uppercase block font-semibold">
                     Cap Ex Ref: £{baseInvestment.toLocaleString('en-GB')}
                   </span>
                 </div>
@@ -382,18 +382,18 @@ export default function InteractiveDigitalTwin() {
               {/* Textual financial breakdown */}
               <div className="md:col-span-7 flex flex-col justify-between space-y-3 md:pl-2">
                 <div>
-                  <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">
+                  <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">
                     TOTAL ESTIMATED ANNUAL CASH RECOVERY
                   </span>
                   <div className="text-3xl font-display font-black text-white tracking-tight mt-1">
                     £{annualSavings.toLocaleString('en-GB')}
                   </div>
-                  <p className="font-sans text-[11px] text-slate-400 leading-relaxed mt-1">
+                  <p className="font-sans text-[12px] text-slate-400 leading-relaxed mt-1">
                     Recovered by identifying unrecorded micro-stops and sequence bottlenecks.
                   </p>
                 </div>
 
-                <div className="text-[10px] text-slate-500 italic font-sans bg-white/[0.01] p-2 rounded border border-white/5">
+                <div className="text-[12px] text-slate-500 italic font-sans bg-white/[0.01] p-2 rounded border border-white/5">
                   "{currentSc.note}"
                 </div>
               </div>
@@ -402,7 +402,7 @@ export default function InteractiveDigitalTwin() {
 
             {/* Visual KPI bar charts / indicators */}
             <div className="space-y-4 pt-2">
-              <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-widest block">
+              <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-widest block">
                 Visual Impact Breakdowns
               </span>
 
@@ -420,7 +420,7 @@ export default function InteractiveDigitalTwin() {
                       style={{ width: `${Math.min(100, (capacityGain / 45) * 100)}%` }}
                     ></div>
                   </div>
-                  <span className="text-[9px] text-slate-500 block leading-none">Unlocks additional shift hours</span>
+                  <span className="text-[12px] text-slate-500 block leading-none">Unlocks additional shift hours</span>
                 </div>
 
                 {/* KPI 2: Downtime Reduction */}
@@ -435,7 +435,7 @@ export default function InteractiveDigitalTwin() {
                       style={{ width: `${Math.min(100, (downtimeRed / 35) * 100)}%` }}
                     ></div>
                   </div>
-                  <span className="text-[9px] text-slate-500 block leading-none">Prevents mechanical stall cycles</span>
+                  <span className="text-[12px] text-slate-500 block leading-none">Prevents mechanical stall cycles</span>
                 </div>
 
                 {/* KPI 3: Material Savings */}
@@ -450,7 +450,7 @@ export default function InteractiveDigitalTwin() {
                       style={{ width: `${Math.min(100, (materialSaved / 30) * 100)}%` }}
                     ></div>
                   </div>
-                  <span className="text-[9px] text-slate-500 block leading-none">Minimizes startup scrap and raw waste</span>
+                  <span className="text-[12px] text-slate-500 block leading-none">Minimizes startup scrap and raw waste</span>
                 </div>
 
                 {/* KPI 4: Energy Savings */}
@@ -467,7 +467,7 @@ export default function InteractiveDigitalTwin() {
                       style={{ width: `${Math.min(100, Math.abs(energySaved) * 4)}%` }}
                     ></div>
                   </div>
-                  <span className="text-[9px] text-slate-500 block leading-none">Calculated thermal cycle optimization</span>
+                  <span className="text-[12px] text-slate-500 block leading-none">Calculated thermal cycle optimization</span>
                 </div>
 
               </div>
@@ -479,7 +479,7 @@ export default function InteractiveDigitalTwin() {
             <div className="flex items-center gap-2.5">
               <Shield className="w-4 h-4 text-slate-500 shrink-0" />
               <div>
-                <span className="font-mono text-[9px] text-slate-500 uppercase block">Model Confidence</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block">Model Confidence</span>
                 <span className="font-display text-xs font-bold text-white block">
                   {confidenceScore}% Signal Confidence
                 </span>
@@ -487,8 +487,8 @@ export default function InteractiveDigitalTwin() {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[9px] text-slate-500 uppercase">Process Risk Level:</span>
-              <span className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase border ${risk.color}`}>
+              <span className="font-mono text-[12px] text-slate-500 uppercase">Process Risk Level:</span>
+              <span className={`px-2 py-0.5 rounded text-[12px] font-mono font-bold uppercase border ${risk.color}`}>
                 {risk.label}
               </span>
             </div>
