@@ -230,10 +230,12 @@ The truth is, **traditional BI dashboards are passive spectators in an active ar
 Standard BI dashboards excel at displaying correlations—for example, showing that "Production Line 3 had higher downtime on Tuesdays." What they cannot tell you is *why*. Was it due to a specific raw material supplier, a particular team shift, a delayed changeover, or an electrical frequency fluctuation? Without automated causal mapping, engineers spend hours in manual meetings trying to untangle the "why."
 
 #### 2. The Lack of Economic Quantification
-When a machine goes down for 45 minutes, a dashboard records "45 minutes downtime." It does not translate that event into:
-* **The direct labor cost** of idle operators (£350)
-* **The energy wasted** in maintaining auxiliary heat while non-productive (£120)
-* **The delayed delivery penalty** of missing the next shipment (£1,200)
+When a machine goes down for 45 minutes, a dashboard records "45 minutes downtime." It does not translate that event into the cost lines that actually matter. Taking a worked example, a single 45-minute stoppage decomposes into at least three separate costs:
+* **The direct labour cost** of idle operators
+* **The energy wasted** maintaining auxiliary heat while non-productive
+* **The delayed delivery penalty** of missing the next shipment
+
+The specific values differ for every plant, which is the point. Until those three lines are populated with *your* numbers, downtime remains a duration rather than a decision.
 
 By failing to quantify the business impact in financial terms, standard dashboards prevent operations directors from prioritizing continuous improvement budgets where they matter most.
 
@@ -246,8 +248,10 @@ A traditional dashboard cannot answer a simple but vital question: *"If I invest
 
 Operational Intelligence bridges the gap between data display and executive action. Instead of presenting a chart and leaving the analysis to a busy team, Inshira generates a **Weekly Action Hub** containing specific, prioritized recommendations:
 
-* **Recommendation #1:** "Adjust cooling rate of Extruder 2 by 1.8°C during polypropylene transitions. Expected scrap reduction: 4.2% (£1,150/week)."
-* **Recommendation #2:** "Reschedule Batch #459 to run immediately after Batch #452 to cut changeover clean time by 18 minutes. Annual savings: £8,400."
+* **Format of a recommendation:** "Adjust cooling rate of Extruder 2 during polypropylene transitions." Paired with the expected scrap reduction and its value per week, derived from that plant's own material and energy costs.
+* **Format of a sequencing recommendation:** "Reschedule Batch #459 to run immediately after Batch #452." Paired with the changeover minutes saved and the annual value of those minutes at that line's throughput.
+
+Note the shape of these: an action a shift lead can take, and a number derived from that plant's data rather than an industry average.
 
 This transforms factory analytics from a reactive, administrative report into an active, strategic advisor that speaks the language of both engineers and financial stakeholders.
     `
@@ -277,9 +281,11 @@ This transforms factory analytics from a reactive, administrative report into an
     content: `
 ### Downtime: The Silent Profit Killer in UK Manufacturing
 
-In SME manufacturing, unplanned downtime costs an average of **£12,000 per hour** in lost productivity, wasted materials, and penalty fees. Most organizations accept a certain level of disruption as "the cost of doing business." 
+Siemens and Senseye's [True Cost of Downtime](https://assets.new.siemens.com/siemens/assets/api/uuid:3d606495-dbe0-43e4-80b1-d04e27ada920/dics-b10153-00-7600truecostofdowntime2022-144.pdf) research puts unplanned downtime at roughly **11% of annual turnover** across the world's 500 largest companies, and found that **two thirds of plants surveyed experience unplanned downtime at least monthly**. Hourly costs vary enormously by sector — from around $36,000/hour in FMCG to $2.3m/hour in automotive.
 
-However, Inshira's industrial data shows that **up to 70% of unplanned downtime is entirely preventable** without purchasing new machines or replacing existing lines.
+Those are large-enterprise figures, and that is precisely the problem. **An SME cannot borrow someone else's downtime number.** Your cost per hour depends on your margin, your labour profile, your energy draw and your contractual penalties. The first useful step is not benchmarking against a published average — it is deriving your own figure from your own data.
+
+What the engineering evidence does support is that a substantial share of unplanned downtime is *addressable without capital expenditure*, because so much of it originates in recurring, under-recorded micro-stoppages rather than in genuine equipment failure.
 
 ---
 
@@ -303,9 +309,15 @@ By correlating sensor signals, quality reports, and batch tracking, Inshira maps
 ### Step 3: Implement the "What-If" Evaluation
 Once a continuous improvement manager identifies the root cause, they can model solutions inside Inshira's digital twin simulator:
 * **Proposed action:** Automate mechanical alignment calibration during raw material changes.
-* **Simulated ROI:** 14% reduction in downtime, with a calculated payback period of 3.4 months.
+* **What the simulator returns:** the modelled downtime reduction and payback period for that specific change, computed from the line's own cycle times and cost base.
 
 This evidence-backed approach allows engineering teams to secure executive buy-in with absolute clarity.
+
+---
+
+### Sources
+
+* Siemens & Senseye, [The True Cost of Downtime](https://assets.new.siemens.com/siemens/assets/api/uuid:3d606495-dbe0-43e4-80b1-d04e27ada920/dics-b10153-00-7600truecostofdowntime2022-144.pdf) — downtime as a share of turnover, and sector hourly cost ranges.
     `
   }
 ];
@@ -369,7 +381,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     question: "How long does it take to implement and see initial value?",
-    answer: "Most of our manufacturing clients are up and running in under two weeks. Because we connect directly to your existing data repositories via secure read-only APIs, there is no physical installation delay. Initial insights and root cause recommendations are typically generated within 48 to 72 hours of data connection."
+    answer: "Connection is designed to take days rather than months. Because we connect to your existing data repositories via secure read-only APIs, there is no physical installation, no hardware lead time and no ERP migration. Once a connection is live, the causal engine begins producing root cause output from the historical data already in those repositories, so you are not waiting on new data to accumulate before seeing anything."
   },
   {
     question: "Is our factory data secure? We have strict confidentiality rules.",

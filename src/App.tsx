@@ -21,38 +21,51 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedArticleSlug, setSelectedArticleSlug] = useState<string | undefined>(undefined);
 
-  // Hash router synchronization
+  /* ==========================================================================
+     PATH ROUTER
+     --------------------------------------------------------------------------
+     Uses real paths (/case-studies) rather than hash fragments (#/case-studies).
+     Search engines ignore fragments, so the previous hash router collapsed every
+     view into the single URL "/" — no page could rank on its own. Real paths
+     give each view its own indexable URL and canonical.
+
+     GitHub Pages has no server-side rewrite, so deep links are handled by
+     404.html, which bounces the request to "/?/path". The snippet in index.html
+     restores the real path before React mounts. See public/404.html.
+     ========================================================================== */
+  const VALID_PAGES: PageId[] = [
+    'home',
+    'platform',
+    'solutions',
+    'industries',
+    'case-studies',
+    'resources',
+    'about',
+    'contact',
+    'privacy',
+    'terms',
+  ];
+
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#/', '');
-      const validPages: PageId[] = [
-        'home',
-        'platform',
-        'solutions',
-        'industries',
-        'case-studies',
-        'resources',
-        'about',
-        'contact',
-        'privacy',
-        'terms',
-      ];
-      
-      if (validPages.includes(hash as PageId)) {
-        setCurrentPage(hash as PageId);
-      } else {
-        setCurrentPage('home');
+    const resolve = () => {
+      // Legacy #/slug links (previously published, possibly bookmarked or
+      // indexed) are rewritten to the equivalent real path.
+      const legacy = window.location.hash.replace(/^#\//, '');
+      if (legacy && VALID_PAGES.includes(legacy as PageId)) {
+        window.history.replaceState(null, '', legacy === 'home' ? '/' : `/${legacy}`);
       }
+
+      const slug = window.location.pathname.replace(/^\/+|\/+$/g, '');
+      if (!slug) return setCurrentPage('home');
+      if (VALID_PAGES.includes(slug as PageId)) return setCurrentPage(slug as PageId);
+      setCurrentPage('home');
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    // Initial load sync
-    handleHashChange();
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', resolve);
+    resolve();
+    return () => window.removeEventListener('popstate', resolve);
   }, []);
 
-  // Update URL hash when page changes programmatically
   const navigateToPage = (pageId: PageId) => {
     setCurrentPage(pageId);
     // Leaving the Knowledge Hub clears the open article, so its title,
@@ -60,7 +73,7 @@ export default function App() {
     if (pageId !== 'resources') {
       setSelectedArticleSlug(undefined);
     }
-    window.location.hash = `#/${pageId}`;
+    window.history.pushState(null, '', pageId === 'home' ? '/' : `/${pageId}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
