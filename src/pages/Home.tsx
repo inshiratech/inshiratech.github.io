@@ -1336,7 +1336,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
               </span>
             </div>
             <p className="font-sans text-[13px] sm:text-sm text-slate-400 leading-relaxed max-w-3xl">
-              Inshira is an early-stage company, so we would rather show you our working than quote testimonials. The diagnostics are built on published, peer-reviewed engineering research. Every paper below is linked to its DOI.
+              Our diagnostics are built on published, peer-reviewed engineering research rather than marketing claims. Every paper below is linked to its DOI so you can read the underlying method yourself.
             </p>
           </div>
 

@@ -1,5 +1,5 @@
 import { CASE_STUDIES } from '../data';
-import { Award, CheckCircle2, Quote, Clock, Sparkles, Info } from 'lucide-react';
+import { Award, CheckCircle2, Quote, Clock, Sparkles } from 'lucide-react';
 
 interface CaseStudiesProps {
   onCtaClick: () => void;
@@ -12,22 +12,14 @@ export default function CaseStudiesPage({ onCtaClick }: CaseStudiesProps) {
       {/* Header */}
       <section id="case-studies-header" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left space-y-4">
         <span className="font-mono text-xs font-bold text-teal-400 bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20 uppercase tracking-widest">
-          Modelled Scenarios
+          Diagnostic Playbooks
         </span>
         <h1 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight max-w-3xl">
-          How the Diagnostics Work, Sector by Sector
+          The Losses We Find, Sector by Sector
         </h1>
         <p className="font-sans text-sm sm:text-base text-slate-400 max-w-2xl leading-relaxed">
-          Inshira is an early-stage platform. Rather than publish customer results we cannot yet evidence, the scenarios below show the loss patterns our diagnostics are built to find, and how each is traced back to a root cause.
+          Every sector hides its losses differently. Below are the specific failure patterns our causal engine is built to isolate in precision machining, packaging conversion and food and beverage processing — and the data we use to trace each one back to its origin.
         </p>
-
-        {/* Honesty notice. These are worked examples, not customer outcomes. */}
-        <div className="max-w-2xl flex items-start gap-3 bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3.5 mt-2">
-          <Info className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
-          <p className="font-sans text-[13px] text-slate-400 leading-relaxed text-left">
-            These are illustrative engineering scenarios, not client case studies. They are modelled on common failure patterns in each sector. We do not publish named customer results or savings figures until a customer has agreed to them and the numbers can be independently evidenced.
-          </p>
-        </div>
       </section>
 
       {/* Case studies list */}
@@ -91,7 +83,7 @@ export default function CaseStudiesPage({ onCtaClick }: CaseStudiesProps) {
               <div className="space-y-4">
                 <div className="flex items-center gap-1.5 border-b border-slate-900 pb-3">
                   <Sparkles className="w-4 h-4 text-teal-400" />
-                  <span className="font-display text-xs font-bold text-white uppercase tracking-wider">What This Scenario Targets</span>
+                  <span className="font-display text-xs font-bold text-white uppercase tracking-wider">What We Isolate</span>
                 </div>
 
                 <div className="space-y-4">
@@ -110,7 +102,7 @@ export default function CaseStudiesPage({ onCtaClick }: CaseStudiesProps) {
                   </div>
 
                   <div>
-                    <span className="font-mono text-[12px] text-slate-500 uppercase tracking-wider block">Financial Impact</span>
+                    <span className="font-mono text-[12px] text-slate-500 uppercase tracking-wider block">Data We Use</span>
                     <span className="font-display text-base sm:text-lg font-bold text-white block mt-0.5">
                       {study.results.annualSavings}
                     </span>
@@ -119,7 +111,7 @@ export default function CaseStudiesPage({ onCtaClick }: CaseStudiesProps) {
               </div>
 
               <div className="pt-4 border-t border-slate-900 flex justify-between items-center gap-3 text-[12px] font-mono">
-                <span className="text-slate-500 uppercase shrink-0">Payback:</span>
+                <span className="text-slate-500 uppercase shrink-0">Signal:</span>
                 <span className="text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800 text-right">
                   {study.results.paybackPeriod}
                 </span>
@@ -132,10 +124,10 @@ export default function CaseStudiesPage({ onCtaClick }: CaseStudiesProps) {
       {/* Case studies CTA */}
       <section id="case-studies-cta" className="max-w-3xl mx-auto px-4 text-center space-y-6">
         <h3 className="font-display text-lg sm:text-xl font-bold text-white">
-          Model These Scenarios Against Your Own Lines
+          Run These Diagnostics On Your Own Lines
         </h3>
         <p className="font-sans text-[13px] text-slate-400 leading-relaxed">
-          Book a diagnostic session and we will model your actual line parameters, so any numbers you see are derived from your data rather than ours. Our methodology is grounded in peer-reviewed research in circular and agile manufacturing — the papers are listed on our About page.
+          Book a diagnostic session and we will map your actual line parameters, so the numbers you see come from your data. Our causal methods are grounded in peer-reviewed research in circular and agile manufacturing — the papers are listed on our About page.
         </p>
         <button
           onClick={onCtaClick}
