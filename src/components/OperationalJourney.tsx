@@ -239,8 +239,11 @@ export default function OperationalJourney() {
         <h3 className="font-display text-2xl sm:text-4xl font-extrabold text-white uppercase tracking-tight">
           THE OPERATIONAL EVOLUTION JOURNEY
         </h3>
+        {/* Absorbs the framing from the removed hero flow: raw floor records
+            are ingested, contextualised, and turned into decisions. Also drops
+            "every factory we partner with", which implied a client base. */}
         <p className="font-sans text-xs sm:text-sm text-slate-400 leading-relaxed">
-          Every factory we partner with follows the same systematic progression. We transform unlinked, noisy floor records into a predictable, waste-free continuous operation.
+          Factories move through the same progression, and most stall early in it. Unlinked, noisy floor records get ingested and contextualised, become causal explanations, then become decisions a shift lead can act on. Click any stage to see what it takes to reach it.
         </p>
       </div>
 
