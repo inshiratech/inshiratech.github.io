@@ -301,7 +301,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-3.5 py-2 rounded-full mx-auto select-none">
             <span className="w-2 h-2 bg-teal-500 rounded-full animate-ping"></span>
-            <span className="text-[10px] uppercase tracking-widest font-mono font-semibold text-white/80">
+            <span className="text-[12px] uppercase tracking-widest font-mono font-semibold text-white/80">
               Operational Intelligence for Bespoke Manufacturing
             </span>
           </div>
@@ -337,10 +337,10 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
 
           {/* Targeted Industry Footprint */}
           <div className="pt-10 max-w-4xl mx-auto">
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block mb-4 font-bold">
               Calibrated for High-Mix Low-Volume, ETO, CTO, MTO, and Complex Production Lines
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 font-display text-[10px] font-semibold text-slate-400 uppercase tracking-widest">
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 font-display text-[12px] font-semibold text-slate-400 uppercase tracking-widest">
               <span>Bespoke Manufacturing</span>
               <span className="text-white/10">•</span>
               <span>Advanced Plastics & Extrusion</span>
@@ -408,7 +408,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
               onMouseMove={handleMouseMove}
               className="lg:col-span-5 glow-card rounded-2xl p-6 space-y-4 relative"
             >
-              <div className="absolute top-4 right-4 text-[10px] font-mono text-slate-600 uppercase font-bold tracking-widest">
+              <div className="absolute top-4 right-4 text-[12px] font-mono text-slate-600 uppercase font-bold tracking-widest">
                 System Logic
               </div>
               <span className="w-1.5 h-1.5 bg-teal-500 rounded-full inline-block"></span>
@@ -420,11 +420,11 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
               </p>
               <div className="border-t border-white/5 pt-4 flex items-center justify-between relative z-10">
                 <div>
-                  <span className="font-mono text-[9px] text-slate-500 uppercase block">Implementation Style</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase block">Implementation Style</span>
                   <span className="font-display text-xs font-bold text-white block mt-0.5">Software Overlay</span>
                 </div>
                 <div className="text-right">
-                  <span className="font-mono text-[9px] text-slate-500 uppercase block">No New Sensors</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase block">No New Sensors</span>
                   <span className="font-sans text-xs font-bold text-emerald-400 block mt-0.5">Zero Hardware CapEx</span>
                 </div>
               </div>
@@ -487,7 +487,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           {activeFramework === 'shif' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 space-y-5">
-                <span className="font-mono text-[10px] text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-500/20 uppercase tracking-widest font-semibold inline-block">
+                <span className="font-mono text-[12px] text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-500/20 uppercase tracking-widest font-semibold inline-block">
                   Sustainable Hybrid Intelligence Framework
                 </span>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
@@ -504,33 +504,33 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
               {/* Dynamic converging visual representation */}
               <div className="lg:col-span-7 bg-slate-950 p-6 sm:p-8 rounded-2xl border border-white/5 relative space-y-6 overflow-hidden">
                 <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-teal-500/5 rounded-full blur-3xl"></div>
-                <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-widest block">
+                <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-widest block">
                   Interactive Converging Model
                 </span>
 
                 <div className="grid grid-cols-2 gap-3 relative z-10">
                   <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl space-y-1">
-                    <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 01</span>
+                    <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 01</span>
                     <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Human Expertise</h5>
-                    <p className="text-[10px] text-slate-500 leading-tight">Operator setup routines, shift comments & notes.</p>
+                    <p className="text-[12px] text-slate-500 leading-tight">Operator setup routines, shift comments & notes.</p>
                   </div>
                   
                   <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl space-y-1">
-                    <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 02</span>
+                    <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 02</span>
                     <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Operational Data</h5>
-                    <p className="text-[10px] text-slate-500 leading-tight">PLC halts, cycle speeds, and ERP batch numbers.</p>
+                    <p className="text-[12px] text-slate-500 leading-tight">PLC halts, cycle speeds, and ERP batch numbers.</p>
                   </div>
 
                   <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl space-y-1">
-                    <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 03</span>
+                    <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 03</span>
                     <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Artificial Intelligence</h5>
-                    <p className="text-[10px] text-slate-500 leading-tight">Causal algorithms, bottleneck isolation & modeling.</p>
+                    <p className="text-[12px] text-slate-500 leading-tight">Causal algorithms, bottleneck isolation & modeling.</p>
                   </div>
 
                   <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl space-y-1">
-                    <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 04</span>
+                    <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Pillar 04</span>
                     <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Sustainability Goals</h5>
-                    <p className="text-[10px] text-slate-500 leading-tight">Thermal stabilization to slash startup resin scrap.</p>
+                    <p className="text-[12px] text-slate-500 leading-tight">Thermal stabilization to slash startup resin scrap.</p>
                   </div>
                 </div>
 
@@ -538,11 +538,11 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                 <div className="pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
                   <div className="flex items-center gap-2">
                     <Network className="w-5 h-5 text-teal-400" />
-                    <span className="font-mono text-[10px] text-slate-300 font-semibold uppercase tracking-wider">SHIF Core Engine</span>
+                    <span className="font-mono text-[12px] text-slate-300 font-semibold uppercase tracking-wider">SHIF Core Engine</span>
                   </div>
                   
                   {/* Flow Arrow layout */}
-                  <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-400 font-bold bg-teal-500/15 text-teal-400 px-3 py-1.5 rounded-full border border-teal-500/20">
+                  <div className="flex items-center gap-1.5 text-[12px] font-mono text-slate-400 font-bold bg-teal-500/15 text-teal-400 px-3 py-1.5 rounded-full border border-teal-500/20">
                     <span>Better Decisions</span>
                     <ArrowRight className="w-3 h-3" />
                     <span className="text-white">Continuous Excellence</span>
@@ -555,7 +555,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           {activeFramework === 'siri' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 space-y-5">
-                <span className="font-mono text-[10px] text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-500/20 uppercase tracking-widest font-semibold inline-block">
+                <span className="font-mono text-[12px] text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-500/20 uppercase tracking-widest font-semibold inline-block">
                   Smart Industry Readiness Index
                 </span>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
@@ -571,28 +571,28 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
 
               {/* SIRI visual cards */}
               <div className="lg:col-span-7 bg-slate-950 p-6 sm:p-8 rounded-2xl border border-white/5 space-y-4">
-                <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-widest block">
+                <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-widest block">
                   SIRI Assessment Alignment
                 </span>
                 
                 <div className="space-y-3">
                   <div className="p-3 bg-white/[0.01] border-l-2 border-teal-500 rounded-r-xl">
                     <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Process Integration</h5>
-                    <p className="text-[11px] text-slate-400 mt-1 leading-normal">
+                    <p className="text-[12px] text-slate-400 mt-1 leading-normal">
                       Connects machine events directly to batch work order parameters to maintain accurate product margins.
                     </p>
                   </div>
                   
                   <div className="p-3 bg-white/[0.01] border-l-2 border-teal-500 rounded-r-xl">
                     <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Operational Transparency</h5>
-                    <p className="text-[11px] text-slate-400 mt-1 leading-normal">
+                    <p className="text-[12px] text-slate-400 mt-1 leading-normal">
                       Highlights unlogged micro-stoppages, turning chaotic shifts into highly predictable, transparent operations.
                     </p>
                   </div>
 
                   <div className="p-3 bg-white/[0.01] border-l-2 border-teal-500 rounded-r-xl">
                     <h5 className="font-display text-xs font-bold text-white uppercase tracking-wider">Decentralised Decision Making</h5>
-                    <p className="text-[11px] text-slate-400 mt-1 leading-normal">
+                    <p className="text-[12px] text-slate-400 mt-1 leading-normal">
                       Delivers localized recommendations straight to shift supervisors, authorizing swift bottleneck clearance.
                     </p>
                   </div>
@@ -604,7 +604,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           {activeFramework === 'operi' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 space-y-5">
-                <span className="font-mono text-[10px] text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-500/20 uppercase tracking-widest font-semibold inline-block">
+                <span className="font-mono text-[12px] text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-500/20 uppercase tracking-widest font-semibold inline-block">
                   Operational Performance & Excellence
                 </span>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
@@ -620,27 +620,27 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
 
               {/* OPERI cards */}
               <div className="lg:col-span-7 bg-slate-950 p-6 sm:p-8 rounded-2xl border border-white/5 space-y-4">
-                <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-widest block">
+                <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-widest block">
                   Continuous Excellence Cycle
                 </span>
                 
                 <div className="grid grid-cols-3 gap-3 text-center">
                   <div className="p-4 bg-white/[0.01] border border-white/5 rounded-xl">
                     <TrendingUp className="w-5 h-5 text-teal-400 mx-auto mb-2" />
-                    <h5 className="font-display text-[10px] font-bold text-white uppercase">Isolate Loss</h5>
-                    <p className="text-[9px] text-slate-500 mt-1">Daily unlogged OEE leak audits.</p>
+                    <h5 className="font-display text-[12px] font-bold text-white uppercase">Isolate Loss</h5>
+                    <p className="text-[12px] text-slate-500 mt-1">Daily unlogged OEE leak audits.</p>
                   </div>
 
                   <div className="p-4 bg-white/[0.01] border border-white/5 rounded-xl">
                     <Cpu className="w-5 h-5 text-teal-400 mx-auto mb-2" />
-                    <h5 className="font-display text-[10px] font-bold text-white uppercase">Calibrate Set</h5>
-                    <p className="text-[9px] text-slate-500 mt-1">Model shifts with What-If simulations.</p>
+                    <h5 className="font-display text-[12px] font-bold text-white uppercase">Calibrate Set</h5>
+                    <p className="text-[12px] text-slate-500 mt-1">Model shifts with What-If simulations.</p>
                   </div>
 
                   <div className="p-4 bg-white/[0.01] border border-white/5 rounded-xl">
                     <Shield className="w-5 h-5 text-teal-400 mx-auto mb-2" />
-                    <h5 className="font-display text-[10px] font-bold text-white uppercase">Sustain Gain</h5>
-                    <p className="text-[9px] text-slate-500 mt-1">Continuous signal monitoring.</p>
+                    <h5 className="font-display text-[12px] font-bold text-white uppercase">Sustain Gain</h5>
+                    <p className="text-[12px] text-slate-500 mt-1">Continuous signal monitoring.</p>
                   </div>
                 </div>
 
@@ -675,7 +675,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             <div className="p-4 bg-slate-950 border border-white/5 rounded-2xl flex items-center gap-3">
               <Award className="w-5 h-5 text-teal-400 shrink-0" />
               <div>
-                <span className="font-mono text-[9px] text-slate-500 uppercase block font-bold">UK/EU High-Mix Average</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block font-bold">UK/EU High-Mix Average</span>
                 <span className="font-sans text-xs font-semibold text-white">Most advanced plants stall at Level 2.6 (Logged) due to spreadsheet fatigue.</span>
               </div>
             </div>
@@ -694,7 +694,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                 >
-                  <span className="font-mono text-[10px] uppercase block tracking-wider">Level</span>
+                  <span className="font-mono text-[12px] uppercase block tracking-wider">Level</span>
                   <span className={`font-display text-lg font-black ${selectedMaturityLevel === lvl ? 'text-teal-400' : 'text-slate-500'}`}>
                     0{lvl}
                   </span>
@@ -706,7 +706,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             <div className="p-6 sm:p-8 space-y-5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
                 <div>
-                  <span className="font-mono text-[10px] text-teal-400 uppercase tracking-widest font-bold">
+                  <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest font-bold">
                     Active Level Assessment
                   </span>
                   <h4 className="font-display text-lg font-bold text-white mt-0.5">
@@ -714,7 +714,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                   </h4>
                 </div>
                 <div className="text-left sm:text-right">
-                  <span className="font-mono text-[9px] text-slate-500 uppercase block font-semibold">Est. Recoverable Loss</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase block font-semibold">Est. Recoverable Loss</span>
                   <span className="font-display text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 inline-block mt-0.5">
                     {maturityLevels[selectedMaturityLevel - 1].recovery}
                   </span>
@@ -727,13 +727,13 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
                 <div className="p-3.5 bg-white/[0.01] border border-white/5 rounded-xl space-y-1.5">
-                  <span className="font-mono text-[9px] text-rose-400 font-bold uppercase tracking-wider block">Critical Gaps Isolated:</span>
-                  <p className="text-slate-400 text-[11px] leading-relaxed">{maturityLevels[selectedMaturityLevel - 1].gaps}</p>
+                  <span className="font-mono text-[12px] text-rose-400 font-bold uppercase tracking-wider block">Critical Gaps Isolated:</span>
+                  <p className="text-slate-400 text-[12px] leading-relaxed">{maturityLevels[selectedMaturityLevel - 1].gaps}</p>
                 </div>
 
                 <div className="p-3.5 bg-white/[0.01] border border-white/5 rounded-xl space-y-1.5">
-                  <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Sector Benchmark Rating:</span>
-                  <p className="text-slate-400 text-[11px] leading-relaxed">{maturityLevels[selectedMaturityLevel - 1].benchmark}</p>
+                  <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Sector Benchmark Rating:</span>
+                  <p className="text-slate-400 text-[12px] leading-relaxed">{maturityLevels[selectedMaturityLevel - 1].benchmark}</p>
                 </div>
               </div>
 
@@ -769,7 +769,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
           <div className="p-6 bg-slate-900/30 border border-white/5 rounded-2xl space-y-3 relative overflow-hidden">
-            <span className="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest block">The Fallacy 01</span>
+            <span className="font-mono text-[12px] text-slate-500 font-bold uppercase tracking-widest block">The Fallacy 01</span>
             <h4 className="font-display text-sm font-bold text-white uppercase tracking-wider">High-Volume Assumptions</h4>
             <p className="font-sans text-xs text-slate-400 leading-relaxed">
               Standard software assumes parts will run continuously for days. If you switch setups 4 times per shift on high-mix lines, your OEE metrics sink because the systems fail to separate changeover sequences from machine failures.
@@ -777,7 +777,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           </div>
 
           <div className="p-6 bg-slate-900/30 border border-white/5 rounded-2xl space-y-3 relative overflow-hidden">
-            <span className="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest block">The Fallacy 02</span>
+            <span className="font-mono text-[12px] text-slate-500 font-bold uppercase tracking-widest block">The Fallacy 02</span>
             <h4 className="font-display text-sm font-bold text-white uppercase tracking-wider">Rigid Product Routing</h4>
             <p className="font-sans text-xs text-slate-400 leading-relaxed">
               Traditional ERP routers expect rigid, linear operational sequences. In real high-mix cells, operators reroute parts dynamically to Line 3 or hold steps during thermal bottlenecks to bypass mechanical stall cycles.
@@ -785,7 +785,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           </div>
 
           <div className="p-6 bg-slate-900/30 border border-white/5 rounded-2xl space-y-3 relative overflow-hidden">
-            <span className="font-mono text-[9px] text-slate-500 font-bold uppercase tracking-widest block">The Fallacy 03</span>
+            <span className="font-mono text-[12px] text-slate-500 font-bold uppercase tracking-widest block">The Fallacy 03</span>
             <h4 className="font-display text-sm font-bold text-white uppercase tracking-wider">The Sensor Requirement</h4>
             <p className="font-sans text-xs text-slate-400 leading-relaxed">
               Generic IIoT and AI solutions demand massive sensor installations and machine code rewrites. If you run legacy CNC mills, extrusion tunnels, or manual assembly benches, this hardware cost completely kills your ROI.
@@ -815,47 +815,47 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             {/* Vertical Flow Steps representation */}
             <div className="space-y-3 font-sans text-xs">
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[10px] font-mono text-teal-400 shrink-0">1</div>
-                <div className="text-slate-300 font-semibold uppercase font-display text-[11px] tracking-wider">
+                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[12px] font-mono text-teal-400 shrink-0">1</div>
+                <div className="text-slate-300 font-semibold uppercase font-display text-[12px] tracking-wider">
                   Raw Operational Logs Ingested
                 </div>
               </div>
               <div className="w-0.5 h-3 bg-white/10 ml-3"></div>
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[10px] font-mono text-teal-400 shrink-0">2</div>
-                <div className="text-slate-300 font-semibold uppercase font-display text-[11px] tracking-wider">
+                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[12px] font-mono text-teal-400 shrink-0">2</div>
+                <div className="text-slate-300 font-semibold uppercase font-display text-[12px] tracking-wider">
                   Hidden Micro-Losses Isolated
                 </div>
               </div>
               <div className="w-0.5 h-3 bg-white/10 ml-3"></div>
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[10px] font-mono text-teal-400 shrink-0">3</div>
-                <div className="text-slate-300 font-semibold uppercase font-display text-[11px] tracking-wider">
+                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[12px] font-mono text-teal-400 shrink-0">3</div>
+                <div className="text-slate-300 font-semibold uppercase font-display text-[12px] tracking-wider">
                   Root Cause Synthesis & Scenario Modeling
                 </div>
               </div>
               <div className="w-0.5 h-3 bg-white/10 ml-3"></div>
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[10px] font-mono text-teal-400 shrink-0">4</div>
-                <div className="text-slate-300 font-semibold uppercase font-display text-[11px] tracking-wider">
+                <div className="w-6 h-6 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-[12px] font-mono text-teal-400 shrink-0">4</div>
+                <div className="text-slate-300 font-semibold uppercase font-display text-[12px] tracking-wider">
                   Decision Support & Continuous Excellence
                 </div>
               </div>
             </div>
 
-            <p className="font-sans text-[11.5px] text-slate-500 italic">
+            <p className="font-sans text-[13px] text-slate-500 italic">
               Click the different factory stations in the interactive visualizer below to explore how unlogged OEE losses are localized and fixed without physical sensor installs.
             </p>
           </div>
 
           {/* Interactive Flow Visual representation (7 cols) */}
           <div className="lg:col-span-7 bg-[#0d0d0d] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
-            <div className="absolute top-4 right-4 flex items-center gap-1.5 text-[9px] font-mono text-slate-500 font-bold uppercase tracking-wider">
+            <div className="absolute top-4 right-4 flex items-center gap-1.5 text-[12px] font-mono text-slate-500 font-bold uppercase tracking-wider">
               <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
               Live Flow Map
             </div>
 
-            <span className="font-mono text-[9px] text-teal-400 uppercase font-bold tracking-widest block">
+            <span className="font-mono text-[12px] text-teal-400 uppercase font-bold tracking-widest block">
               Visual Bottleneck Diagnostics
             </span>
 
@@ -876,7 +876,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                 <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-xs font-bold text-white">
                   01
                 </div>
-                <span className="text-[9px] font-mono uppercase font-bold tracking-wide">Feeding</span>
+                <span className="text-[12px] font-mono uppercase font-bold tracking-wide">Feeding</span>
               </button>
 
               {/* Node 2 Button */}
@@ -891,8 +891,8 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                 <div className="w-7 h-7 rounded-full bg-rose-500/20 border border-rose-500/40 flex items-center justify-center font-mono text-xs font-bold text-rose-400 animate-pulse">
                   02
                 </div>
-                <span className="text-[9px] font-mono uppercase font-bold tracking-wide">Extrusion</span>
-                <span className="absolute -top-1.5 bg-rose-500 text-white text-[7px] font-bold px-1 py-0.5 rounded uppercase leading-none">Limit</span>
+                <span className="text-[12px] font-mono uppercase font-bold tracking-wide">Extrusion</span>
+                <span className="absolute -top-1.5 bg-rose-500 text-white text-[12px] font-bold px-1 py-0.5 rounded uppercase leading-none">Limit</span>
               </button>
 
               {/* Node 3 Button */}
@@ -907,7 +907,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                 <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-xs font-bold text-white">
                   03
                 </div>
-                <span className="text-[9px] font-mono uppercase font-bold tracking-wide">Cutting CNC</span>
+                <span className="text-[12px] font-mono uppercase font-bold tracking-wide">Cutting CNC</span>
               </button>
 
               {/* Node 4 Button */}
@@ -922,7 +922,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                 <div className="w-7 h-7 rounded-full bg-rose-500/20 border border-rose-500/40 flex items-center justify-center font-mono text-xs font-bold text-rose-400">
                   04
                 </div>
-                <span className="text-[9px] font-mono uppercase font-bold tracking-wide">Packaging</span>
+                <span className="text-[12px] font-mono uppercase font-bold tracking-wide">Packaging</span>
               </button>
 
             </div>
@@ -933,20 +933,20 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                 <h5 className="font-display text-sm font-bold text-white uppercase tracking-wider">
                   {flowNodes[selectedNode as keyof typeof flowNodes].title}
                 </h5>
-                <span className="font-mono text-[9px] text-teal-400 font-bold bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20 uppercase tracking-widest self-start sm:self-auto">
+                <span className="font-mono text-[12px] text-teal-400 font-bold bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20 uppercase tracking-widest self-start sm:self-auto">
                   {flowNodes[selectedNode as keyof typeof flowNodes].lossType}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <span className="text-slate-500 font-mono text-[9px] block uppercase font-bold">Unlogged Frequency:</span>
+                  <span className="text-slate-500 font-mono text-[12px] block uppercase font-bold">Unlogged Frequency:</span>
                   <span className="text-slate-200 mt-0.5 block font-semibold">
                     {flowNodes[selectedNode as keyof typeof flowNodes].frequency}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 font-mono text-[9px] block uppercase font-bold">Identified Root Cause:</span>
+                  <span className="text-slate-500 font-mono text-[12px] block uppercase font-bold">Identified Root Cause:</span>
                   <span className="text-slate-200 mt-0.5 block">
                     {flowNodes[selectedNode as keyof typeof flowNodes].cause}
                   </span>
@@ -964,7 +964,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             {/* Simulated Live Plant Feed */}
             <div className="p-3 bg-black/60 rounded-xl border border-white/5 flex items-center gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-              <span className="font-mono text-[10px] text-slate-500">
+              <span className="font-mono text-[12px] text-slate-500">
                 ACTIVE PIPELINE: Extruder thermal cycle log unified with Shift B setter roster.
               </span>
             </div>
@@ -1009,7 +1009,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           {/* Controls column (4 cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between gap-3 bg-slate-950 p-4 rounded-2xl border border-white/5">
             <div className="space-y-2.5">
-              <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block font-bold">
+              <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block font-bold">
                 Select Reporting Vector
               </span>
               
@@ -1026,20 +1026,20 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                         : 'bg-transparent border-transparent text-slate-400 hover:bg-white/[0.02] hover:text-slate-200'
                     }`}
                   >
-                    <span className="font-mono text-[8px] text-slate-500 uppercase font-semibold">Indicator</span>
+                    <span className="font-mono text-[12px] text-slate-500 uppercase font-semibold">Indicator</span>
                     <h4 className="font-display text-xs font-bold uppercase tracking-wider text-white">
                       {metric.title}
                     </h4>
                     <div className="flex justify-between items-center mt-1">
                       <span className="font-mono text-xs font-bold text-teal-400">{metric.value}</span>
-                      <span className="text-[9px] text-slate-500">{metric.trend}</span>
+                      <span className="text-[12px] text-slate-500">{metric.trend}</span>
                     </div>
                   </button>
                 );
               })}
             </div>
 
-            <div className="p-3 bg-white/[0.01] rounded-xl border border-white/5 text-[11px] text-slate-400 leading-relaxed italic mt-4">
+            <div className="p-3 bg-white/[0.01] rounded-xl border border-white/5 text-[12px] text-slate-400 leading-relaxed italic mt-4">
               "We've linked floor performance indicators to our standard board reports, allowing us to substantiate OEE capital expenditure."
             </div>
           </div>
@@ -1051,7 +1051,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             <div className="space-y-6 relative z-10">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
                 <div>
-                  <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest font-bold">
+                  <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest font-bold">
                     C-Suite KPI Breakdown
                   </span>
                   <h3 className="font-display text-lg font-bold text-white uppercase mt-0.5">
@@ -1059,7 +1059,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                   </h3>
                 </div>
                 <div className="text-left sm:text-right">
-                  <span className="font-mono text-[8px] text-slate-500 uppercase block font-semibold">Active Sector Benchmark</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase block font-semibold">Active Sector Benchmark</span>
                   <span className="font-mono text-xs font-bold text-emerald-400">
                     {executiveMetrics[selectedExecMetric as keyof typeof executiveMetrics].benchmark}
                   </span>
@@ -1068,14 +1068,14 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
                 <div className="space-y-1.5">
-                  <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-wider block">Bottom-Line Recovery Impact:</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-wider block">Bottom-Line Recovery Impact:</span>
                   <p className="font-sans text-xs text-slate-300 leading-relaxed">
                     {executiveMetrics[selectedExecMetric as keyof typeof executiveMetrics].impact}
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
-                  <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-wider block">Recommended Priority Next Step:</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-wider block">Recommended Priority Next Step:</span>
                   <p className="font-sans text-xs text-slate-300 leading-relaxed">
                     {executiveMetrics[selectedExecMetric as keyof typeof executiveMetrics].priority}
                   </p>
@@ -1084,18 +1084,18 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
 
               {/* Realistic Mock Visual elements */}
               <div className="p-4 bg-slate-950 rounded-xl border border-white/5 space-y-4 mt-2">
-                <div className="flex justify-between items-center text-[10px] font-mono">
+                <div className="flex justify-between items-center text-[12px] font-mono">
                   <span className="text-slate-500">Live Calibration Alignment Index</span>
                   <span className="text-teal-400">94.2% Confidence Signal</span>
                 </div>
                 
                 <div className="h-4 bg-white/5 rounded overflow-hidden flex">
-                  <div className="h-full bg-teal-600 w-[60%] border-r border-slate-950 flex items-center justify-center text-[8px] font-mono font-bold text-white">Active Stable (60%)</div>
-                  <div className="h-full bg-emerald-500 w-[28%] border-r border-slate-950 flex items-center justify-center text-[8px] font-mono font-bold text-slate-950">Improved (28%)</div>
-                  <div className="h-full bg-rose-500 w-[12%] flex items-center justify-center text-[8px] font-mono font-bold text-white">Loss (12%)</div>
+                  <div className="h-full bg-teal-600 w-[60%] border-r border-slate-950 flex items-center justify-center text-[12px] font-mono font-bold text-white">Active Stable (60%)</div>
+                  <div className="h-full bg-emerald-500 w-[28%] border-r border-slate-950 flex items-center justify-center text-[12px] font-mono font-bold text-slate-950">Improved (28%)</div>
+                  <div className="h-full bg-rose-500 w-[12%] flex items-center justify-center text-[12px] font-mono font-bold text-white">Loss (12%)</div>
                 </div>
 
-                <div className="flex justify-between items-center text-[9px] text-slate-500 font-mono">
+                <div className="flex justify-between items-center text-[12px] text-slate-500 font-mono">
                   <span>Shift A: 96%</span>
                   <span>Shift B: 88%</span>
                   <span>Shift C: 92%</span>
@@ -1105,7 +1105,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             </div>
 
             <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-6 relative z-10 text-xs">
-              <span className="text-slate-500 font-mono text-[10px]">REPORT CALIBRATION: Standard ETO Sector parameters applied</span>
+              <span className="text-slate-500 font-mono text-[12px]">REPORT CALIBRATION: Standard ETO Sector parameters applied</span>
               <button
                 onClick={() => handleNav('solutions')}
                 className="font-bold text-teal-400 hover:text-white transition-colors flex items-center gap-1"
@@ -1145,7 +1145,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
                     isActive ? 'text-teal-400' : 'text-slate-500 hover:text-slate-300'
                   }`}
                 >
-                  <span className="font-mono text-[9px] uppercase font-bold tracking-wider">Step 0{idx + 1}</span>
+                  <span className="font-mono text-[12px] uppercase font-bold tracking-wider">Step 0{idx + 1}</span>
                   <span className="font-display text-xs font-bold truncate max-w-[100px] text-white">
                     {step.title}
                   </span>
@@ -1178,36 +1178,36 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           </div>
 
           <div className="lg:col-span-5 bg-slate-950 p-5 rounded-2xl border border-white/5 space-y-4">
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block font-bold">
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block font-bold">
               Milestone Parameters & METRICS
             </span>
 
             <div className="grid grid-cols-2 gap-4 text-xs font-sans">
               <div className="p-2.5 bg-white/[0.01] rounded-lg border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block font-semibold">Estimated ROI</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block font-semibold">Estimated ROI</span>
                 <span className="font-display font-bold text-white block mt-0.5">{roadmapSteps[activeRoadmapStep].roi}</span>
               </div>
               <div className="p-2.5 bg-white/[0.01] rounded-lg border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block font-semibold">Effort Level</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block font-semibold">Effort Level</span>
                 <span className="font-sans font-bold text-teal-400 block mt-0.5">{roadmapSteps[activeRoadmapStep].effort}</span>
               </div>
               <div className="p-2.5 bg-white/[0.01] rounded-lg border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block font-semibold">Confidence</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block font-semibold">Confidence</span>
                 <span className="font-mono font-bold text-emerald-400 block mt-0.5">{roadmapSteps[activeRoadmapStep].confidence}</span>
               </div>
               <div className="p-2.5 bg-white/[0.01] rounded-lg border border-white/5">
-                <span className="font-mono text-[9px] text-slate-500 uppercase block font-semibold">Timeline</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block font-semibold">Timeline</span>
                 <span className="font-sans font-bold text-white block mt-0.5">{roadmapSteps[activeRoadmapStep].timeline}</span>
               </div>
             </div>
 
             <div className="border-t border-white/5 pt-3 flex items-center justify-between text-xs">
               <div>
-                <span className="font-mono text-[8px] text-slate-500 uppercase block">Process Risk Level</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block">Process Risk Level</span>
                 <span className="font-sans font-bold text-slate-300 block mt-0.5">{roadmapSteps[activeRoadmapStep].risk}</span>
               </div>
               <div>
-                <span className="font-mono text-[8px] text-slate-500 uppercase block">Priority Action Status</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase block">Priority Action Status</span>
                 <span className="font-sans font-bold text-emerald-400 block mt-0.5">Pre-Calibrated</span>
               </div>
             </div>
@@ -1250,7 +1250,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
         <div className="bg-slate-950 border border-white/5 rounded-2xl overflow-x-auto shadow-2xl">
           <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
-              <tr className="border-b border-white/5 font-mono text-[10px] text-slate-400 uppercase tracking-wider bg-white/[0.01]">
+              <tr className="border-b border-white/5 font-mono text-[12px] text-slate-400 uppercase tracking-wider bg-white/[0.01]">
                 <th className="p-4 sm:p-5 font-semibold">Solution Vector</th>
                 <th className="p-4 sm:p-5 font-semibold">Standard Role</th>
                 <th className="p-4 sm:p-5 font-semibold">Where It Falls Short on High-Mix OEE</th>
@@ -1320,40 +1320,79 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
         <RoiCalculator />
       </section>
 
-      {/* 13. CLIENT TRUST & TESTIMONIALS (Experienced engineering voice) */}
-      <section id="testimonials-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 13. CREDIBILITY — verifiable signals only.
+          This section previously carried two invented testimonials attributed
+          to named people at named companies. Both were removed. Everything
+          below is checkable: the papers have DOIs, the credentials are real,
+          and the programmes are ones Inshira has actually been through. */}
+      <section id="credibility-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-900/40 rounded-3xl border border-white/5 p-8 sm:p-12 space-y-8 relative overflow-hidden">
-          
-          <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-teal-400" />
-            <span className="font-mono text-xs font-bold text-teal-400 uppercase tracking-wider font-bold">
-              Human-in-the-Loop Validation
-            </span>
+
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Award className="w-5 h-5 text-teal-400" />
+              <span className="font-mono text-xs font-bold text-teal-400 uppercase tracking-wider">
+                Where our methods come from
+              </span>
+            </div>
+            <p className="font-sans text-[13px] sm:text-sm text-slate-400 leading-relaxed max-w-3xl">
+              Inshira is an early-stage company, so we would rather show you our working than quote testimonials. The diagnostics are built on published, peer-reviewed engineering research. Every paper below is linked to its DOI.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="space-y-4">
-              <p className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed italic">
-                “Our operations team was drowning in spreadsheets. Standard dashboards merely reported OEE losses retroactively, which did nothing to prevent recurrence. Inshira isolated a thermal-cycle deviation in our extruder line within 48 hours. We recovered capacity without adding a single physical sensor.”
-              </p>
-              <div>
-                <span className="font-display text-sm font-bold text-white block">David Vance</span>
-                <span className="font-mono text-[9px] text-slate-500 uppercase font-semibold font-bold">
-                  Operations Director, Apex Automotive (Bespoke Machinery)
-                </span>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a
+              href="https://doi.org/10.1016/j.jclepro.2025.146731"
+              target="_blank"
+              rel="noopener"
+              className="group bg-slate-950/60 rounded-xl border border-slate-850 p-5 space-y-2 hover:border-teal-500/40 transition-colors"
+            >
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block">Circular manufacturing</span>
+              <span className="font-display text-[13px] font-bold text-white block leading-snug group-hover:text-teal-400 transition-colors">
+                SHIF Framework for heat sink development
+              </span>
+              <span className="font-sans text-[12px] text-slate-500 block">Journal of Cleaner Production, 2025</span>
+            </a>
 
-            <div className="space-y-4">
-              <p className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed italic">
-                “Inshira turned our high-mix CNC shift rotations from an art form into an exact, highly repeatable process. We recovered 18 production minutes per shift, slashed startup scrap on our metal packaging runs by 34%, and achieved complete process alignment without any capital expenditure.”
+            <a
+              href="https://doi.org/10.1016/j.ijheatmasstransfer.2024.126581"
+              target="_blank"
+              rel="noopener"
+              className="group bg-slate-950/60 rounded-xl border border-slate-850 p-5 space-y-2 hover:border-teal-500/40 transition-colors"
+            >
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block">Machine learning</span>
+              <span className="font-display text-[13px] font-bold text-white block leading-snug group-hover:text-teal-400 transition-colors">
+                Agile manufacturing and ML for heat transfer
+              </span>
+              <span className="font-sans text-[12px] text-slate-500 block">Int. Journal of Heat and Mass Transfer, 2024</span>
+            </a>
+
+            <a
+              href="https://doi.org/10.1007/s43069-021-00102-y"
+              target="_blank"
+              rel="noopener"
+              className="group bg-slate-950/60 rounded-xl border border-slate-850 p-5 space-y-2 hover:border-teal-500/40 transition-colors"
+            >
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block">Process optimisation</span>
+              <span className="font-display text-[13px] font-bold text-white block leading-snug group-hover:text-teal-400 transition-colors">
+                Sensor production via TQM, TPM and ML
+              </span>
+              <span className="font-sans text-[12px] text-slate-500 block">Operations Research Forum, 2021</span>
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 border-t border-slate-850">
+            <div className="pt-6 space-y-2">
+              <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block">Who builds it</span>
+              <p className="font-sans text-[13px] text-slate-300 leading-relaxed">
+                Founded by <strong className="font-semibold text-white">Dr. Mohammad Harris</strong> (PhD, MRes, BEng Hons, FHEA, MIET), advised by Professor Hongwei Wu (FIMechE, FRAeS, FEI) of the University of Hertfordshire, Puja Hazlehurst (FIMechE, CEng) and Dr. Saed Hussain.
               </p>
-              <div>
-                <span className="font-display text-sm font-bold text-white block">Helen McGregor</span>
-                <span className="font-mono text-[9px] text-slate-500 uppercase font-semibold font-bold">
-                  Continuous Improvement Lead, Vanguard Packaging (HMLV Batch)
-                </span>
-              </div>
+            </div>
+            <div className="pt-6 space-y-2">
+              <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block">Backing and programmes</span>
+              <p className="font-sans text-[13px] text-slate-300 leading-relaxed">
+                Supported through University of Hertfordshire research, NatWest and Barclays Eagle Labs accelerators, MSDUK, Sustainable Ventures and Carbon13. Inshira Technologies Ltd is registered in England &amp; Wales.
+              </p>
             </div>
           </div>
         </div>

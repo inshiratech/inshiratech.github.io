@@ -42,9 +42,16 @@ export default function LegalPage({ type }: LegalProps) {
           </section>
 
           <section className="space-y-2.5">
-            <h3 className="font-display text-sm sm:text-base font-bold text-white uppercase tracking-wider">3. GDPR & ISO 27001 Alignment</h3>
+            <h3 className="font-display text-sm sm:text-base font-bold text-white uppercase tracking-wider">3. Data Protection</h3>
             <p>
-              Inshira fully complies with the General Data Protection Regulation (GDPR). Our connection pipelines actively filter out and scrub any operator-specific names, IDs, or shift logs to maintain strict anonymity. We actively align our internal software development, testing, and logging procedures with the ISO/IEC 27001 information security standard.
+              Inshira Technologies Ltd is a UK registered company and processes personal data in accordance with the UK GDPR and the Data Protection Act 2018. Our connection pipelines are designed to filter out operator-specific names, IDs and shift identifiers, so the data we analyse is operational rather than personal wherever technically possible.
+            </p>
+            <p>
+              {/* Rewritten from "fully complies with GDPR" and a claim of ISO/IEC
+                  27001 alignment. Inshira holds no ISO certification, and
+                  "fully complies" is an absolute that cannot be substantiated.
+                  Update this section if and when certification is obtained. */}
+              We are not currently certified to ISO/IEC 27001. We follow its principles in how we develop, test and log our software, but we make no claim of certification or formal alignment, and we will say so plainly here if that changes.
             </p>
             <div className="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex items-center gap-3 mt-3">
               <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0" />
@@ -67,7 +74,11 @@ export default function LegalPage({ type }: LegalProps) {
           <section className="space-y-2.5">
             <h3 className="font-display text-sm sm:text-base font-bold text-white uppercase tracking-wider">2. System Reliability & Liabilities</h3>
             <p>
-              While Inshira operates with a targeted SLA availability of 99.9%, we provide decision support recommendations strictly for operational evaluation. The final operational execution of parameters, calibration shifts, and PLC settings remains the exclusive responsibility of the licensee’s certified plant engineers.
+              {/* The 99.9% SLA figure was removed. Publishing a specific
+                  availability commitment on a public legal page creates a
+                  contractual expectation. Availability terms belong in the
+                  signed agreement, where they can be negotiated per customer. */}
+              Availability commitments, where offered, are set out in each customer’s signed service agreement rather than on this page. Inshira provides decision support recommendations for operational evaluation only. The final execution of parameters, calibration shifts and PLC settings remains the exclusive responsibility of the licensee’s own qualified plant engineers.
             </p>
           </section>
 

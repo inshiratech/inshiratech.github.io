@@ -323,7 +323,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-mono text-[10px] uppercase tracking-widest block mx-auto font-bold"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-mono text-[12px] uppercase tracking-widest block mx-auto font-bold"
         >
           <Sparkles className="w-3.5 h-3.5" />
           <span>Our Identity & Purpose</span>
@@ -354,7 +354,7 @@ export default function AboutPage() {
       {/* Chapter 1: Interactive Storytelling (Scrolling / Transforming Chapter Selection) */}
       <section id="about-storytelling-chapters" className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center sm:text-left mb-10 space-y-2">
-          <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest block font-bold">
+          <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest block font-bold">
             Chapter I
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">
@@ -406,7 +406,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.4 }}
                 className="space-y-6 relative z-10"
               >
-                <span className="font-mono text-[10px] text-teal-400 uppercase tracking-widest block font-bold">
+                <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest block font-bold">
                   {storyChapters[activeStoryChapter].subtitle}
                 </span>
 
@@ -425,7 +425,7 @@ export default function AboutPage() {
             </AnimatePresence>
 
             {/* Interactive Progress Line */}
-            <div className="border-t border-white/5 pt-6 mt-8 flex items-center justify-between text-[11px] font-mono text-slate-500 relative z-10">
+            <div className="border-t border-white/5 pt-6 mt-8 flex items-center justify-between text-[12px] font-mono text-slate-500 relative z-10">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
                 <span>Active Reading Step: Chapter 0{activeStoryChapter + 1} of 04</span>
@@ -453,7 +453,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 space-y-6 relative z-10">
             <div className="inline-flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-teal-400"></span>
-              <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-widest">
+              <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-widest">
                 The Origin Story
               </span>
             </div>
@@ -472,13 +472,13 @@ export default function AboutPage() {
 
             {/* Selector Node Description Panel */}
             <div className="p-4 bg-[#0d0d0d] border border-white/5 rounded-xl space-y-2">
-              <span className="font-mono text-[10px] text-teal-400 font-bold uppercase block tracking-wider">
+              <span className="font-mono text-[12px] text-teal-400 font-bold uppercase block tracking-wider">
                 {nameNodes[selectedNameNode as keyof typeof nameNodes].title}
               </span>
               <p className="font-sans text-xs text-slate-300 leading-relaxed">
                 {nameNodes[selectedNameNode as keyof typeof nameNodes].definition}
               </p>
-              <div className="flex items-center justify-between pt-2 border-t border-white/5 text-[10px] font-mono text-slate-500">
+              <div className="flex items-center justify-between pt-2 border-t border-white/5 text-[12px] font-mono text-slate-500">
                 <span>System Manifest: {nameNodes[selectedNameNode as keyof typeof nameNodes].visualText}</span>
               </div>
             </div>
@@ -531,9 +531,9 @@ export default function AboutPage() {
 
               {/* Central Glowing Core Button (INSHIRA) */}
               <div className="absolute z-10 w-24 h-24 rounded-full bg-[#070707] border-2 border-teal-500/50 flex flex-col items-center justify-center text-center shadow-2xl shadow-teal-500/10">
-                <span className="font-mono text-[9px] text-teal-400 font-bold tracking-widest block leading-none">CORE</span>
+                <span className="font-mono text-[12px] text-teal-400 font-bold tracking-widest block leading-none">CORE</span>
                 <span className="font-display text-xs font-black text-white block mt-1 uppercase tracking-widest">INSHIRA</span>
-                <span className="font-mono text-[8px] text-slate-500 block leading-none mt-1 animate-pulse">EXPANSION</span>
+                <span className="font-mono text-[12px] text-slate-500 block leading-none mt-1 animate-pulse">EXPANSION</span>
               </div>
 
               {/* Orbital Button 1: TOP-LEFT (Understanding / Data) */}
@@ -546,7 +546,7 @@ export default function AboutPage() {
                 }`}
               >
                 <Database className="w-5 h-5 stroke-[1.5]" />
-                <span className="font-mono text-[8px] mt-1 font-semibold uppercase tracking-wider">DATA</span>
+                <span className="font-mono text-[12px] mt-1 font-semibold uppercase tracking-wider">DATA</span>
               </button>
 
               {/* Orbital Button 2: TOP-RIGHT (Possibilities / Engineering) */}
@@ -559,7 +559,7 @@ export default function AboutPage() {
                 }`}
               >
                 <Cpu className="w-5 h-5 stroke-[1.5]" />
-                <span className="font-mono text-[8px] mt-1 font-semibold uppercase tracking-wider">ENGINEERING</span>
+                <span className="font-mono text-[12px] mt-1 font-semibold uppercase tracking-wider">ENGINEERING</span>
               </button>
 
               {/* Orbital Button 3: BOTTOM-LEFT (Potential / CI) */}
@@ -572,7 +572,7 @@ export default function AboutPage() {
                 }`}
               >
                 <TrendingUp className="w-5 h-5 stroke-[1.5]" />
-                <span className="font-mono text-[8px] mt-1 font-semibold uppercase tracking-wider">POTENTIAL</span>
+                <span className="font-mono text-[12px] mt-1 font-semibold uppercase tracking-wider">POTENTIAL</span>
               </button>
 
               {/* Orbital Button 4: BOTTOM-RIGHT (Human / People) */}
@@ -585,13 +585,13 @@ export default function AboutPage() {
                 }`}
               >
                 <Users className="w-5 h-5 stroke-[1.5]" />
-                <span className="font-mono text-[8px] mt-1 font-semibold uppercase tracking-wider">PEOPLE</span>
+                <span className="font-mono text-[12px] mt-1 font-semibold uppercase tracking-wider">PEOPLE</span>
               </button>
 
             </div>
 
             {/* Simulated Live Connection Stats */}
-            <div className="mt-4 p-3.5 bg-black/60 rounded-xl border border-white/5 font-mono text-[10px] text-slate-400 flex items-center justify-between gap-4 w-full max-w-sm">
+            <div className="mt-4 p-3.5 bg-black/60 rounded-xl border border-white/5 font-mono text-[12px] text-slate-400 flex items-center justify-between gap-4 w-full max-w-sm">
               <span className="text-teal-400 font-semibold uppercase">Selected Node: {selectedNameNode}</span>
               <span className="text-white">CO-ORDINATION FEED: nominal</span>
             </div>
@@ -630,7 +630,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="border-t border-white/5 pt-6 mt-8 flex items-center justify-between text-[11px] font-mono text-slate-500 relative z-10">
+            <div className="border-t border-white/5 pt-6 mt-8 flex items-center justify-between text-[12px] font-mono text-slate-500 relative z-10">
               <span>Primary Execution Goal</span>
               <span className="text-teal-400">Direct Margins Protection</span>
             </div>
@@ -662,7 +662,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="border-t border-white/5 pt-6 mt-8 flex items-center justify-between text-[11px] font-mono text-slate-500 relative z-10">
+            <div className="border-t border-white/5 pt-6 mt-8 flex items-center justify-between text-[12px] font-mono text-slate-500 relative z-10">
               <span>Strategic Milestone 2030</span>
               <span className="text-indigo-400">Autonomous Decision Sync</span>
             </div>
@@ -674,7 +674,7 @@ export default function AboutPage() {
       {/* Chapter 4: Core Values Grid with Mouse-Follow Lighting */}
       <section id="about-values" className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center sm:text-left mb-10 space-y-2">
-          <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest block font-bold">
+          <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest block font-bold">
             Chapter II
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">
@@ -701,7 +701,7 @@ export default function AboutPage() {
                     <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/15 flex items-center justify-center text-teal-400">
                       <IconComponent className="w-5 h-5 stroke-[1.8]" />
                     </div>
-                    <span className="font-mono text-[9px] bg-white/5 text-slate-400 px-2 py-0.5 rounded border border-white/5">
+                    <span className="font-mono text-[12px] bg-white/5 text-slate-400 px-2 py-0.5 rounded border border-white/5">
                       {value.metric}
                     </span>
                   </div>
@@ -717,7 +717,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="border-t border-white/5 pt-4 mt-4 relative z-10">
-                  <p className="font-sans text-[10.5px] text-slate-400 leading-relaxed">
+                  <p className="font-sans text-[13px] text-slate-400 leading-relaxed">
                     {value.detail}
                   </p>
                 </div>
@@ -730,7 +730,7 @@ export default function AboutPage() {
       {/* Chapter 5: Meet the Team (Reused & Enhanced from inshira.co.uk) */}
       <section id="about-team-roster" className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center sm:text-left mb-10 space-y-2">
-          <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest block font-bold">
+          <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest block font-bold">
             Chapter III
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">
@@ -776,16 +776,16 @@ export default function AboutPage() {
                   </div>
 
                   <div>
-                    <span className="font-mono text-[8px] text-slate-500 uppercase tracking-widest font-bold block mb-1">
+                    <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest font-bold block mb-1">
                       {member.group}
                     </span>
                     <h3 className="font-display text-sm font-bold text-white uppercase tracking-wider block">
                       {member.name}
                     </h3>
-                    <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest font-bold">
+                    <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest font-bold">
                       {member.role}
                     </span>
-                    <p className="font-sans text-[11px] text-slate-300 italic mt-2 leading-snug">
+                    <p className="font-sans text-[12px] text-slate-300 italic mt-2 leading-snug">
                       "{member.tagline}"
                     </p>
                   </div>
@@ -797,7 +797,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="border-t border-white/5 pt-4 mt-4 space-y-2">
-                  <div className="flex items-center justify-between text-[10px] font-mono text-slate-500">
+                  <div className="flex items-center justify-between text-[12px] font-mono text-slate-500">
                     <span>{isSelected ? 'Click to collapse' : 'Click to inspect passion'}</span>
                     <ArrowUpRight className={`w-3 h-3 transition-transform ${isSelected ? 'rotate-90 text-teal-400' : ''}`} />
                   </div>
@@ -812,19 +812,19 @@ export default function AboutPage() {
                         className="space-y-2.5 pt-2 border-t border-white/5"
                       >
                         <div className="p-3 bg-black/60 rounded-xl border border-teal-500/20">
-                          <span className="font-mono text-[8px] text-teal-400 font-bold block uppercase tracking-wider mb-1">
+                          <span className="font-mono text-[12px] text-teal-400 font-bold block uppercase tracking-wider mb-1">
                             Battle Passion & Problem
                           </span>
-                          <p className="font-sans text-[11px] text-slate-200 font-semibold leading-relaxed">
+                          <p className="font-sans text-[12px] text-slate-200 font-semibold leading-relaxed">
                             {member.passion}
                           </p>
                         </div>
                         
                         <div className="p-2">
-                          <span className="font-mono text-[8px] text-slate-500 font-bold block uppercase tracking-wider mb-0.5">
+                          <span className="font-mono text-[12px] text-slate-500 font-bold block uppercase tracking-wider mb-0.5">
                             Our Origins
                           </span>
-                          <p className="font-sans text-[10.5px] text-slate-400 leading-normal">
+                          <p className="font-sans text-[13px] text-slate-400 leading-normal">
                             {member.story}
                           </p>
                         </div>
@@ -845,7 +845,7 @@ export default function AboutPage() {
           ==================================================================== */}
       <section id="about-research" className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center sm:text-left mb-10 space-y-2">
-          <span className="font-mono text-[9px] text-teal-400 uppercase tracking-widest block font-bold">
+          <span className="font-mono text-[12px] text-teal-400 uppercase tracking-widest block font-bold">
             Evidence Base
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">
@@ -870,7 +870,7 @@ export default function AboutPage() {
                 <span className="font-sans text-[13px] font-semibold text-white group-hover:text-teal-400 transition-colors block leading-snug">
                   {paper.title}
                 </span>
-                <span className="font-mono text-[10px] text-slate-500 italic block mt-1">
+                <span className="font-mono text-[12px] text-slate-500 italic block mt-1">
                   {paper.citation}
                 </span>
               </div>
@@ -892,7 +892,7 @@ export default function AboutPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-teal-500/5 rounded-full blur-[110px] pointer-events-none"></div>
 
           <div className="space-y-8 relative z-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-mono text-[9px] uppercase tracking-widest font-bold block mx-auto">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-mono text-[12px] uppercase tracking-widest font-bold block mx-auto">
               <Award className="w-3.5 h-3.5 animate-pulse" />
               <span>Decades of Industrial Alignment</span>
             </div>
@@ -910,7 +910,7 @@ export default function AboutPage() {
             </p>
 
             {/* Simulated Live Environment Status Panel inside closing card */}
-            <div className="p-4 bg-slate-950/60 rounded-2xl border border-white/5 font-mono text-[10px] text-slate-500 max-w-md mx-auto flex justify-between items-center gap-4">
+            <div className="p-4 bg-slate-950/60 rounded-2xl border border-white/5 font-mono text-[12px] text-slate-500 max-w-md mx-auto flex justify-between items-center gap-4">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span className="text-slate-300">Continuous OEE Delivery Layer</span>

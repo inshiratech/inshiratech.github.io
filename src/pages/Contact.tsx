@@ -87,7 +87,7 @@ export default function ContactPage() {
           {/* Left Side: Contact Information Cards (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-slate-900/30 p-6 rounded-2xl border border-slate-800 space-y-6">
-              <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">Corporate Office</span>
+              <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">Corporate Office</span>
               <h3 className="font-display text-base font-bold text-white uppercase tracking-wider">Inshira Intelligence Ltd</h3>
               
               <div className="space-y-4 font-sans text-xs text-slate-400">
@@ -151,7 +151,7 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <p className="font-sans text-[11px] text-slate-500 max-w-sm mx-auto leading-relaxed">
+                <p className="font-sans text-[12px] text-slate-500 max-w-sm mx-auto leading-relaxed">
                   Dr. Mohammad Harris will dial in at the scheduled time. Please have your rough historical downtime or PLC log exports ready.
                 </p>
 
@@ -171,7 +171,7 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-1">
-                  <span className="font-mono text-[9px] text-teal-400 uppercase tracking-wider font-bold block">Inshira Scheduler</span>
+                  <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold block">Inshira Scheduler</span>
                   <h3 className="font-display text-base font-bold text-white uppercase tracking-wider">Operational Audit Request</h3>
                   <p className="font-sans text-xs text-slate-400 leading-relaxed">
                     Provide your details and select an available consultation slot below to schedule your call.
@@ -180,44 +180,44 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-sans text-[11px] text-slate-300 font-semibold block">Full Name *</label>
-                    <input
+                    <label htmlFor="contact-name" className="font-sans text-[12px] text-slate-300 font-semibold block">Full Name *</label>
+                    <input id="contact-name"
                       type="text"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. David Vance"
+                      placeholder="Your full name"
                       className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 font-sans text-xs text-white focus:outline-none focus:border-teal-500"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-sans text-[11px] text-slate-300 font-semibold block">Corporate Email *</label>
-                    <input
+                    <label htmlFor="contact-email" className="font-sans text-[12px] text-slate-300 font-semibold block">Corporate Email *</label>
+                    <input id="contact-email"
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="e.g. d.vance@apexautomotive.co.uk"
+                      placeholder="you@yourcompany.co.uk"
                       className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 font-sans text-xs text-white focus:outline-none focus:border-teal-500"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-sans text-[11px] text-slate-300 font-semibold block">Manufacturing SME Company *</label>
-                    <input
+                    <label htmlFor="contact-company" className="font-sans text-[12px] text-slate-300 font-semibold block">Manufacturing SME Company *</label>
+                    <input id="contact-company"
                       type="text"
                       required
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      placeholder="e.g. Apex Automotive Components"
+                      placeholder="Your company name"
                       className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 font-sans text-xs text-white focus:outline-none focus:border-teal-500"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-sans text-[11px] text-slate-300 font-semibold block">SME Employee Count</label>
-                    <select
+                    <label htmlFor="contact-headcount" className="font-sans text-[12px] text-slate-300 font-semibold block">SME Employee Count</label>
+                    <select id="contact-headcount"
                       value={headcount}
                       onChange={(e) => setHeadcount(e.target.value)}
                       className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 font-sans text-xs text-white focus:outline-none focus:border-teal-500"
@@ -231,8 +231,8 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-sans text-[11px] text-slate-300 font-semibold block">Primary Machinery Bottleneck / Focus</label>
-                  <select
+                  <label htmlFor="contact-bottleneck" className="font-sans text-[12px] text-slate-300 font-semibold block">Primary Machinery Bottleneck / Focus</label>
+                  <select id="contact-bottleneck"
                     value={bottleneck}
                     onChange={(e) => setBottleneck(e.target.value)}
                     className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 font-sans text-xs text-white focus:outline-none focus:border-teal-500"
@@ -246,7 +246,7 @@ export default function ContactPage() {
 
                 {/* Slot Selector */}
                 <div className="space-y-2">
-                  <label className="font-sans text-[11px] text-slate-300 font-semibold block">
+                  <label className="font-sans text-[12px] text-slate-300 font-semibold block">
                     Select Available Consultation Slot *
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

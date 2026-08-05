@@ -61,7 +61,7 @@ export default function PlatformPage({ onCtaClick }: PlatformProps) {
       {/* Embedded Live Dashboard Mockup */}
       <section id="platform-dashboard-preview" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-4 text-center mb-8">
-          <span className="font-mono text-[10px] text-slate-500 uppercase tracking-widest block font-bold">Interactive Platform Live Preview</span>
+          <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block font-bold">Interactive Platform Live Preview</span>
           <h2 className="font-display text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">
             Observe the Inshira Interface in Real Time
           </h2>
@@ -75,7 +75,7 @@ export default function PlatformPage({ onCtaClick }: PlatformProps) {
       {/* Detailed Technical Capabilities Grid */}
       <section id="platform-features-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center sm:text-left space-y-2">
-          <span className="font-mono text-[10px] text-teal-400 uppercase tracking-wider font-bold block">Engineering Architecture</span>
+          <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold block">Engineering Architecture</span>
           <h3 className="font-display text-xl sm:text-2xl font-bold text-white">How We Solve Operational Blind Spots</h3>
         </div>
 
@@ -98,7 +98,7 @@ export default function PlatformPage({ onCtaClick }: PlatformProps) {
       {/* Decision Twin modeling section */}
       <section id="platform-twin-modeling" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="font-mono text-[10px] text-teal-400 uppercase tracking-wider font-bold block">Interactive Digital Twin</span>
+          <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold block">Interactive Digital Twin</span>
           <h3 className="font-display text-xl sm:text-2xl font-bold text-white">Model Before You Deploy</h3>
           <p className="font-sans text-xs text-slate-400">
             Estimate paybacks, efficiency gains, and carbon reduction before investing engineering time. Drag the controls below to calculate your yields.
@@ -141,7 +141,7 @@ export default function PlatformPage({ onCtaClick }: PlatformProps) {
             </ul>
           </div>
 
-          <div className="lg:col-span-5 bg-slate-950 p-5 rounded-xl border border-slate-850 space-y-3 font-mono text-[11px] text-slate-400">
+          <div className="lg:col-span-5 bg-slate-950 p-5 rounded-xl border border-slate-850 space-y-3 font-mono text-[12px] text-slate-400">
             <div className="flex justify-between border-b border-slate-900 pb-2 text-teal-400 font-bold">
               <span>Secure Gateway Status</span>
               <span className="flex items-center gap-1.5">

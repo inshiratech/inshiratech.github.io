@@ -79,7 +79,7 @@ export default function SolutionsPage({ onCtaClick }: SolutionsProps) {
           
           {/* Left Navigation: 4 cols */}
           <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold block mb-1">Select Your Core Focus</span>
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest font-bold block mb-1">Select Your Core Focus</span>
             
             {(['director', 'manager', 'engineer'] as const).map((role) => (
               <button
@@ -114,7 +114,7 @@ export default function SolutionsPage({ onCtaClick }: SolutionsProps) {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4.5 h-4.5 text-teal-400 animate-pulse" />
-                <span className="font-mono text-[9px] text-teal-400 uppercase tracking-wider font-bold">
+                <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold">
                   {currentRole.roleTitle} Focus Suite
                 </span>
               </div>
@@ -125,13 +125,13 @@ export default function SolutionsPage({ onCtaClick }: SolutionsProps) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
                 <div>
-                  <span className="font-mono text-[9px] text-slate-500 uppercase tracking-wider block font-bold mb-1">Typical Plant Pain</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase tracking-wider block font-bold mb-1">Typical Plant Pain</span>
                   <div className="p-3.5 bg-slate-950/60 rounded-xl border border-slate-850 italic text-slate-300 font-sans text-xs leading-relaxed">
                     {currentRole.pain}
                   </div>
                 </div>
                 <div>
-                  <span className="font-mono text-[9px] text-slate-500 uppercase tracking-wider block font-bold mb-1">Operational Challenge</span>
+                  <span className="font-mono text-[12px] text-slate-500 uppercase tracking-wider block font-bold mb-1">Operational Challenge</span>
                   <p className="font-sans text-xs text-slate-400 leading-relaxed">
                     {currentRole.challenge}
                   </p>
@@ -139,15 +139,15 @@ export default function SolutionsPage({ onCtaClick }: SolutionsProps) {
               </div>
 
               <div className="pt-4 space-y-3">
-                <span className="font-mono text-[9px] text-teal-400 uppercase tracking-wider block font-bold">Inshira Operational Outcomes</span>
+                <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block font-bold">Inshira Operational Outcomes</span>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {currentRole.outcomes.map((out, index) => (
                     <div key={index} className="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-1.5">
                       <div className="flex items-center gap-1.5 text-teal-400">
                         <CheckCircle2 className="w-4 h-4 shrink-0" />
-                        <span className="font-display text-[11px] font-bold text-white tracking-wide uppercase">{out.title}</span>
+                        <span className="font-display text-[12px] font-bold text-white tracking-wide uppercase">{out.title}</span>
                       </div>
-                      <p className="font-sans text-[10.5px] text-slate-400 leading-relaxed">
+                      <p className="font-sans text-[13px] text-slate-400 leading-relaxed">
                         {out.text}
                       </p>
                     </div>
@@ -157,12 +157,12 @@ export default function SolutionsPage({ onCtaClick }: SolutionsProps) {
             </div>
 
             <div className="pt-6 border-t border-slate-850 flex items-center justify-between gap-4">
-              <span className="font-sans text-[11px] text-slate-500">
+              <span className="font-sans text-[12px] text-slate-500">
                 Contact our engineering consultants to schedule a tailored walkthrough of this focus suite.
               </span>
               <button
                 onClick={onCtaClick}
-                className="px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-950 rounded-lg font-sans text-[11px] font-bold tracking-wide transition-all shadow-lg"
+                className="px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-950 rounded-lg font-sans text-[12px] font-bold tracking-wide transition-all shadow-lg"
               >
                 Inquire For This Role
               </button>

@@ -91,7 +91,7 @@ export default function IndustriesPage({ onCtaClick }: IndustriesProps) {
           
           {/* Horizontal / Vertical Selector List */}
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <span className="font-mono text-[9px] text-slate-500 uppercase tracking-widest block font-bold mb-1">Industrial Verticals</span>
+            <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block font-bold mb-1">Industrial Verticals</span>
             
             {(['automotive', 'beverage', 'packaging', 'machinery'] as const).map((ind) => {
               const IndIcon = industries[ind].icon;
@@ -115,7 +115,7 @@ export default function IndustriesPage({ onCtaClick }: IndustriesProps) {
                     <span className="font-display text-xs sm:text-sm font-bold tracking-wide block">
                       {industries[ind].title.split(' & ')[0]}
                     </span>
-                    <span className="font-mono text-[9px] text-slate-500 block">
+                    <span className="font-mono text-[12px] text-slate-500 block">
                       {ind === 'automotive' ? 'Automotive & CNC' : ind === 'beverage' ? 'Food & Drink' : ind === 'packaging' ? 'Paper & Plastics' : 'Discrete Assembly'}
                     </span>
                   </div>
@@ -128,7 +128,7 @@ export default function IndustriesPage({ onCtaClick }: IndustriesProps) {
           <div className="lg:col-span-8 bg-slate-900/30 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4.5 h-4.5 text-teal-400 animate-pulse" />
-              <span className="font-mono text-[9px] text-teal-400 uppercase tracking-wider font-bold">
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold">
                 Specialized Sector Deep-Dive
               </span>
             </div>
@@ -143,14 +143,14 @@ export default function IndustriesPage({ onCtaClick }: IndustriesProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-wider">The Sector Bottleneck</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-wider">The Sector Bottleneck</span>
                 <p className="font-sans text-xs text-slate-400 leading-relaxed">
                   {currentInd.challenge}
                 </p>
               </div>
 
               <div className="space-y-2">
-                <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-wider">The Inshira Overlay Solution</span>
+                <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-wider">The Inshira Overlay Solution</span>
                 <p className="font-sans text-xs text-slate-400 leading-relaxed">
                   {currentInd.solution}
                 </p>
@@ -158,7 +158,7 @@ export default function IndustriesPage({ onCtaClick }: IndustriesProps) {
             </div>
 
             <div className="pt-4 border-t border-slate-850 space-y-3">
-              <span className="font-mono text-[9px] text-teal-400 uppercase tracking-wider block font-bold">Audited Pilot Ratios</span>
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block font-bold">Audited Pilot Ratios</span>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {currentInd.results.map((res, index) => (
                   <div key={index} className="bg-slate-950 p-4 rounded-xl border border-slate-850 flex items-center gap-3">
@@ -170,7 +170,7 @@ export default function IndustriesPage({ onCtaClick }: IndustriesProps) {
             </div>
 
             <div className="pt-6 border-t border-slate-850 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <span className="font-sans text-[11px] text-slate-500">
+              <span className="font-sans text-[12px] text-slate-500">
                 Inshira operates with a guaranteed pilot threshold model for all listed sectors.
               </span>
               <button
