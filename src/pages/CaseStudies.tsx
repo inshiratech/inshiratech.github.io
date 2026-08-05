@@ -127,7 +127,7 @@ export default function CaseStudiesPage({ onCtaClick }: CaseStudiesProps) {
           Run These Diagnostics On Your Own Lines
         </h3>
         <p className="font-sans text-[13px] text-slate-400 leading-relaxed">
-          Book a diagnostic session and we will map your actual line parameters, so the numbers you see come from your data. Our causal methods are grounded in peer-reviewed research in circular and agile manufacturing — the papers are listed on our About page.
+          Book a diagnostic session and we will map your actual line parameters, so the numbers you see come from your data rather than a borrowed benchmark. These diagnostics come from engineers who have delivered improvements on real production lines across aerospace, automotive and process manufacturing. We keep client names confidential — the engineering is on the record.
         </p>
         <button
           onClick={onCtaClick}

@@ -986,6 +986,9 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           <p className="font-sans text-sm text-slate-400">
             How is Operational Intelligence different from Business Intelligence? While traditional BI tracks retrospective static charts, Inshira operates as a real-time decision-support layer. It maps machine signals directly to active shift boundaries, identifying chronic micro-stoppages.
           </p>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[12px] text-slate-400">
+            Product preview · sample data
+          </span>
         </div>
         <DashboardMockup />
       </section>
@@ -1000,8 +1003,13 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             Executive Benchmarking & OEE Oversight
           </h2>
           <p className="font-sans text-sm text-slate-400">
-            This high-fidelity dashboard represents the C-suite reporting screen, connecting raw operational performance to financial margins. Click through the primary metrics on the left to review strategic actions.
+            This is the C-suite reporting screen, connecting raw operational performance to financial margins. Click through the primary metrics on the left to review strategic actions.
           </p>
+          {/* Explicit sample-data label. The figures inside the demo are
+              representative of the output format, not achieved results. */}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[12px] text-slate-400">
+            Interactive demo · sample data
+          </span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -1332,11 +1340,39 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             <div className="flex items-center gap-2">
               <Award className="w-5 h-5 text-teal-400" />
               <span className="font-mono text-xs font-bold text-teal-400 uppercase tracking-wider">
-                Where our methods come from
+                Engineering credentials
               </span>
             </div>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Built by people who have run the lines
+            </h2>
             <p className="font-sans text-[13px] sm:text-sm text-slate-400 leading-relaxed max-w-3xl">
-              Our diagnostics are built on published, peer-reviewed engineering research rather than marketing claims. Every paper below is linked to its DOI so you can read the underlying method yourself.
+              Inshira is built by industrial engineers with delivery experience across aerospace, automotive, defence and process manufacturing — not by analysts writing about factories from the outside. We hold client work in confidence. The engineering behind it is documented and independently reviewed.
+            </p>
+          </div>
+
+          {/* Industry pedigree leads. Research follows as supporting evidence. */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-slate-950/60 rounded-xl border border-slate-850 p-5 space-y-1.5">
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block">Manufacturing &amp; energy systems</span>
+              <span className="font-display text-[13px] font-bold text-white block leading-snug">Dr. Mohammad Harris</span>
+              <span className="font-sans text-[12px] text-slate-500 block">Founder. PhD, MRes, BEng (Hons), FHEA, MIET</span>
+            </div>
+            <div className="bg-slate-950/60 rounded-xl border border-slate-850 p-5 space-y-1.5">
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block">Aerospace &amp; product engineering</span>
+              <span className="font-display text-[13px] font-bold text-white block leading-snug">Puja Hazlehurst</span>
+              <span className="font-sans text-[12px] text-slate-500 block">Ex-Rolls-Royce, ex-Caeli Nova. FIMechE, CEng</span>
+            </div>
+            <div className="bg-slate-950/60 rounded-xl border border-slate-850 p-5 space-y-1.5">
+              <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider block">Applied AI &amp; optimisation</span>
+              <span className="font-display text-[13px] font-bold text-white block leading-snug">Dr. Saed Hussain</span>
+              <span className="font-sans text-[12px] text-slate-500 block">Sage AI. Ex-Thales, ex-BAE Systems</span>
+            </div>
+          </div>
+
+          <div className="pt-2">
+            <p className="font-mono text-[12px] text-slate-500 uppercase tracking-widest font-bold mb-3">
+              Methods on the record
             </p>
           </div>
 
@@ -1383,15 +1419,15 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 border-t border-slate-850">
             <div className="pt-6 space-y-2">
-              <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block">Who builds it</span>
+              <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block">Sectors we have worked in</span>
               <p className="font-sans text-[13px] text-slate-300 leading-relaxed">
-                Founded by <strong className="font-semibold text-white">Dr. Mohammad Harris</strong> (PhD, MRes, BEng Hons, FHEA, MIET), advised by Professor Hongwei Wu (FIMechE, FRAeS, FEI) of the University of Hertfordshire, Puja Hazlehurst (FIMechE, CEng) and Dr. Saed Hussain.
+                Aerospace, automotive, defence, precision machining, packaging and process manufacturing. Chartered and professionally registered engineers across mechanical, thermal and control disciplines.
               </p>
             </div>
             <div className="pt-6 space-y-2">
               <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block">Backing and programmes</span>
               <p className="font-sans text-[13px] text-slate-300 leading-relaxed">
-                Supported through University of Hertfordshire research, NatWest and Barclays Eagle Labs accelerators, MSDUK, Sustainable Ventures and Carbon13. Inshira Technologies Ltd is registered in England &amp; Wales.
+                NatWest and Barclays Eagle Labs accelerators, MSDUK, Sustainable Ventures, Carbon13, and research collaboration with the University of Hertfordshire. Inshira Technologies Ltd is registered in England &amp; Wales.
               </p>
             </div>
           </div>
