@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import DashboardMockup from '../components/DashboardMockup';
 import InteractiveDigitalTwin from '../components/InteractiveDigitalTwin';
 import RoiCalculator from '../components/RoiCalculator';
-import HeroFactoryFlow from '../components/HeroFactoryFlow';
 import OperationalJourney from '../components/OperationalJourney';
 import FuturePipeline from '../components/FuturePipeline';
 import { PageId } from '../types';
@@ -335,10 +334,14 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             </button>
           </div>
 
-          {/* Immersive Digital Factory Flow */}
-          <div className="pt-6">
-            <HeroFactoryFlow />
-          </div>
+          {/* HeroFactoryFlow was removed here. It was a six-step click-through
+              (Factory Floor → Data Ingestion → Operational Intelligence →
+              Actionable Insights → Better Decisions → Operational Excellence)
+              sitting immediately above the Operational Evolution Journey, which
+              is the same six-step progression over the same arc and even shares
+              two step names. Two identical interactions within one scroll. The
+              Journey is the richer of the two and now carries it alone, which
+              also keeps the hero to headline, proposition and CTA. */}
 
           {/* Targeted Industry Footprint */}
           <div className="pt-10 max-w-4xl mx-auto">
