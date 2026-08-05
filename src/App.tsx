@@ -55,6 +55,11 @@ export default function App() {
   // Update URL hash when page changes programmatically
   const navigateToPage = (pageId: PageId) => {
     setCurrentPage(pageId);
+    // Leaving the Knowledge Hub clears the open article, so its title,
+    // description and BlogPosting schema do not leak onto the next page.
+    if (pageId !== 'resources') {
+      setSelectedArticleSlug(undefined);
+    }
     window.location.hash = `#/${pageId}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

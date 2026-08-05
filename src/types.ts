@@ -23,7 +23,26 @@ export interface BlogPost {
     name: string;
     role: string;
     avatar: string;
+    /* Author credentials and profile URL. Used by BlogPosting JSON-LD to
+       establish E-E-A-T (experience, expertise, authoritativeness, trust). */
+    credentials?: string;
+    url?: string;
   };
+
+  /* ---- SEO / GEO fields --------------------------------------------------
+     Consumed by SeoGeoMetadata.tsx to emit per-article <title>, description
+     and BlogPosting structured data. Keep metaTitle under ~60 characters and
+     metaDescription between 140-160 so neither is truncated in results. */
+  metaTitle: string;
+  metaDescription: string;
+  keywords: string[];
+  /* ISO 8601 dates for datePublished / dateModified in schema. */
+  datePublishedISO: string;
+  dateModifiedISO: string;
+  /* Absolute URL of the article's social share image. */
+  image: string;
+  /* GEO targeting: where this content is written for. */
+  areaServed: string[];
 }
 
 export interface CaseStudy {

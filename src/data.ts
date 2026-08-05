@@ -5,14 +5,23 @@ export const BLOG_POSTS: BlogPost[] = [
     id: 'what-is-operational-intelligence',
     title: 'What is Operational Intelligence in Manufacturing? The SME Blueprint',
     slug: 'what-is-operational-intelligence',
+    metaTitle: 'What is Operational Intelligence in Manufacturing? | Inshira',
+    metaDescription: 'Operational Intelligence explained for UK SME manufacturers. How OI differs from traditional BI, the three pillars it rests on, and how to apply it without new sensors or an ERP migration.',
+    keywords: ['operational intelligence manufacturing','operational intelligence vs business intelligence','manufacturing analytics SME','industry 4.0 for SMEs','causal analysis manufacturing','decision support manufacturing UK'],
+    datePublishedISO: '2026-06-18',
+    dateModifiedISO: '2026-08-05',
+    image: 'https://www.inshira.co.uk/assets/og-image.jpg',
+    areaServed: ['GB','EU'],
     category: 'Educational Guides',
     excerpt: 'Explore how Operational Intelligence (OI) goes beyond traditional Business Intelligence (BI) to deliver continuous, real-time decision support directly to the factory floor without ERP upgrades.',
     publishDate: 'June 18, 2026',
     readingTime: '7 min read',
     author: {
-      name: 'Sarah Jenkins',
-      role: 'Head of Industrial Practice, Continuous Improvement Expert',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
+      name: 'Dr. Mohammad Harris',
+      role: 'Founder & Managing Director, Inshira Technologies',
+      credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
+      url: 'https://www.inshira.co.uk/#/about',
+      avatar: '/assets/FLARE 2026 051.JPG'
     },
     content: `
 ### What is Operational Intelligence (OI) in Manufacturing?
@@ -64,14 +73,23 @@ By converting raw factory data into clear, quantified continuous improvement tar
     id: 'why-bi-is-not-enough',
     title: 'Why Traditional BI Dashboards are Insufficient for Factory Floor Performance',
     slug: 'why-bi-is-not-enough',
+    metaTitle: 'Why BI Dashboards Fail on the Factory Floor | Inshira',
+    metaDescription: 'Traditional BI dashboards report yesterday\u2019s numbers and leave interpretation to you. Here is why that fails manufacturing operations teams, and what decision-support intelligence does differently.',
+    keywords: ['business intelligence manufacturing limitations','factory floor dashboards','powerbi manufacturing alternative','dashboard fatigue','manufacturing KPI reporting','real time production monitoring UK'],
+    datePublishedISO: '2026-06-22',
+    dateModifiedISO: '2026-08-05',
+    image: 'https://www.inshira.co.uk/assets/og-image.jpg',
+    areaServed: ['GB','EU'],
     category: 'Continuous Improvement',
     excerpt: 'BI dashboards tell you how much money you lost last month. Discover why manufacturers need decision intelligence, real-time root cause analysis, and proactive "what-if" modeling to survive.',
     publishDate: 'June 22, 2026',
     readingTime: '6 min read',
     author: {
-      name: 'Marcus Thorne',
-      role: 'Operations Consultant & Former Lean Director',
-      avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&q=80'
+      name: 'Dr. Mohammad Harris',
+      role: 'Founder & Managing Director, Inshira Technologies',
+      credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
+      url: 'https://www.inshira.co.uk/#/about',
+      avatar: '/assets/FLARE 2026 051.JPG'
     },
     content: `
 ### The Dashboard Fatigue Epidemic in B2B Manufacturing
@@ -114,14 +132,23 @@ This transforms factory analytics from a reactive, administrative report into an
     id: 'how-to-reduce-manufacturing-downtime',
     title: 'How to Reduce Manufacturing Downtime: A Proactive Root Cause Analysis Framework',
     slug: 'how-to-reduce-manufacturing-downtime',
+    metaTitle: 'How to Reduce Manufacturing Downtime | Inshira',
+    metaDescription: 'A proactive root cause analysis framework for reducing unplanned downtime in SME manufacturing. Covers micro-stoppages, hidden speed losses and how to quantify each in cost terms.',
+    keywords: ['reduce manufacturing downtime','root cause analysis manufacturing','unplanned downtime SME','micro stoppages production','OEE improvement UK','downtime cost calculation'],
+    datePublishedISO: '2026-05-30',
+    dateModifiedISO: '2026-08-05',
+    image: 'https://www.inshira.co.uk/assets/og-image.jpg',
+    areaServed: ['GB','EU'],
     category: 'Operational Excellence',
     excerpt: 'A comprehensive step-by-step operational guide for continuous improvement leads on diagnosing micro-stoppages, analyzing PLC logs, and using automated root cause systems.',
     publishDate: 'May 30, 2026',
     readingTime: '8 min read',
     author: {
-      name: 'Sarah Jenkins',
-      role: 'Head of Industrial Practice, Continuous Improvement Expert',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
+      name: 'Dr. Mohammad Harris',
+      role: 'Founder & Managing Director, Inshira Technologies',
+      credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
+      url: 'https://www.inshira.co.uk/#/about',
+      avatar: '/assets/FLARE 2026 051.JPG'
     },
     content: `
 ### Downtime: The Silent Profit Killer in UK Manufacturing
