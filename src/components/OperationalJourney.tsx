@@ -321,7 +321,7 @@ export default function OperationalJourney() {
           
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <span className="font-mono text-[12px] bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full border border-teal-500/20 uppercase font-bold tracking-widest">
+              <span className="font-mono text-[12px] bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full border border-teal-500/20 uppercase font-bold tracking-widest whitespace-nowrap">
                 {currentStage.badgeText}
               </span>
               <span className="font-mono text-[12px] text-slate-500">

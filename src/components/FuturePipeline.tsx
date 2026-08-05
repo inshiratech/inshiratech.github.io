@@ -208,7 +208,7 @@ export default function FuturePipeline() {
                     <IconComp className="w-5 h-5 stroke-[1.8]" />
                   </div>
 
-                  <span className="font-mono text-[12px] bg-white/5 text-slate-400 px-2.5 py-1 rounded-full border border-white/10 uppercase tracking-wider font-bold">
+                  <span className="font-mono text-[12px] bg-white/5 text-slate-400 px-2.5 py-1 rounded-full border border-white/10 uppercase tracking-wider font-bold whitespace-nowrap">
                     {prod.releaseEta}
                   </span>
                 </div>
@@ -269,7 +269,7 @@ export default function FuturePipeline() {
           <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-[12px] bg-teal-500/10 text-teal-400 px-3 py-1 rounded-full border border-teal-500/20 uppercase font-bold tracking-widest">
+                <span className="font-mono text-[12px] bg-teal-500/10 text-teal-400 px-3 py-1 rounded-full border border-teal-500/20 uppercase font-bold tracking-widest whitespace-nowrap">
                   {current.category}
                 </span>
                 <span className="font-mono text-[12px] text-slate-400 font-bold uppercase">

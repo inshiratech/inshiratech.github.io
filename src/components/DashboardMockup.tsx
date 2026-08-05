@@ -374,9 +374,18 @@ export default function DashboardMockup() {
         
         {/* Left Side: KPIs and Alerts */}
         <div id="dashboard-kpis-and-alerts" className="lg:col-span-2 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
+          {/* Header row alignment fixes:
+              - items-start, not items-center: the status pill was vertically
+                centring against a title that wraps to two lines, so it floated
+                mid-block instead of sitting level with the line name.
+              - flex-wrap on the title row: the long methodology pill now drops
+                to its own line cleanly instead of squeezing the title and
+                forcing everything to wrap at once.
+              - whitespace-nowrap + shrink-0 on the status pill: it was breaking
+                "Status:" onto one line and the value onto another. */}
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+            <div className="space-y-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
                 <h5 className="font-display text-base font-bold text-white uppercase tracking-wider">
                   {currentLine.name}
                 </h5>
@@ -386,8 +395,8 @@ export default function DashboardMockup() {
               </div>
               <span className="text-[12px] font-mono text-slate-400 uppercase block">{currentLine.industry}</span>
             </div>
-            
-            <span className={`px-2.5 py-1 rounded-full text-[12px] font-mono font-bold uppercase border tracking-wider self-start sm:self-auto ${
+
+            <span className={`px-2.5 py-1 rounded-full text-[12px] font-mono font-bold uppercase border tracking-wider self-start whitespace-nowrap shrink-0 ${
               activeMetrics.health === 'Optimal' || activeMetrics.health === 'Stabilised'
                 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                 : activeMetrics.health === 'Warning'
