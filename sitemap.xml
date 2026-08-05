@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The site uses a hash router (#/platform, #/about ...). Search engines ignore
+  URL fragments, so every in-app view resolves to the same indexable URL: "/".
+  Listing hash URLs here would have no effect. Only real, separately-served
+  documents belong in this file.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.inshira.co.uk/</loc>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
