@@ -10,6 +10,16 @@ export type PageId =
   | 'privacy'
   | 'terms';
 
+export interface Author {
+  name: string;
+  role: string;
+  avatar: string;
+  /* Credentials and profile URL. Used by BlogPosting JSON-LD to establish
+     E-E-A-T (experience, expertise, authoritativeness, trust). */
+  credentials?: string;
+  url?: string;
+}
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -19,15 +29,10 @@ export interface BlogPost {
   content: string;
   publishDate: string;
   readingTime: string;
-  author: {
-    name: string;
-    role: string;
-    avatar: string;
-    /* Author credentials and profile URL. Used by BlogPosting JSON-LD to
-       establish E-E-A-T (experience, expertise, authoritativeness, trust). */
-    credentials?: string;
-    url?: string;
-  };
+  author: Author;
+  /* Additional named authors for co-written pieces. Rendered in the byline and
+     emitted as extra Person entries in the article schema. */
+  coAuthors?: Author[];
 
   /* ---- SEO / GEO fields --------------------------------------------------
      Consumed by SeoGeoMetadata.tsx to emit per-article <title>, description

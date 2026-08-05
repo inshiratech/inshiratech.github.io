@@ -2,6 +2,130 @@ import { BlogPost, CaseStudy, FAQItem, ScenarioImpact } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 'waste-to-energy-circular-manufacturing',
+    title: 'Waste to Energy in Manufacturing: Where It Fits in a Circular Strategy',
+    slug: 'waste-to-energy-circular-manufacturing',
+    metaTitle: 'Waste to Energy in Manufacturing | Circular Strategy',
+    metaDescription: 'How SME manufacturers should place waste-to-energy inside a circular strategy. Covers the statutory waste hierarchy, 2026 Landfill Tax, UK ETS from 2028, and the recovery routes worth evaluating.',
+    keywords: ['waste to energy manufacturing','circular manufacturing UK','anaerobic digestion manufacturing waste','refuse derived fuel SME','waste hierarchy compliance','landfill tax 2026','UK ETS energy from waste','material yield loss recovery'],
+    datePublishedISO: '2026-08-05',
+    dateModifiedISO: '2026-08-05',
+    image: 'https://www.inshira.co.uk/assets/og-image.jpg',
+    areaServed: ['GB','EU'],
+    category: 'Circular Economy',
+    excerpt: 'Energy recovery is the fourth rung of the statutory waste hierarchy, not the first. This guide sets out where waste-to-energy genuinely belongs for SME manufacturers, what the 2026 Landfill Tax and 2028 UK ETS changes mean for the numbers, and how to identify the waste worth preventing before you burn it.',
+    publishDate: 'August 5, 2026',
+    readingTime: '9 min read',
+    author: {
+      name: 'Dr. Mohammad Harris',
+      role: 'Founder & Managing Director, Inshira Technologies',
+      credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
+      url: 'https://www.inshira.co.uk/#/about',
+      avatar: '/assets/FLARE 2026 051.JPG'
+    },
+    coAuthors: [
+      {
+        name: 'Van Nguyen',
+        role: 'Market Development Lead (Vietnam), Inshira Technologies',
+        credentials: 'MSc, BSc',
+        url: 'https://www.inshira.co.uk/#/about',
+        avatar: '/assets/van.jpeg'
+      }
+    ],
+    content: `
+### Circularity Is a Sequence, Not a Slogan
+
+"Circular" has become a difficult word in manufacturing. It appears in sustainability reports, on supplier questionnaires, and increasingly in customer tender documents, but it is rarely accompanied by an operational definition. For a plant manager being asked to demonstrate circular credentials, the practical question is narrower and much more useful: **of the material leaving this factory as waste, how much should never have become waste, and what is the best available destination for the rest?**
+
+That question already has a legal answer in the form of the waste hierarchy. Introduced in the EU Waste Framework Directive and carried into domestic law through the Waste (England and Wales) Regulations 2011, it sets a priority order that businesses have a duty to apply:
+
+1. **Prevention** — do not generate the waste in the first place.
+2. **Preparing for re-use** — clean, repair or recondition so the item is used again.
+3. **Recycling** — reprocess the material into new material or products.
+4. **Other recovery** — including energy recovery, where recycling is not practicable.
+5. **Disposal** — landfill or incineration without recovery, as a last resort.
+
+Waste-to-energy sits at position four. Not first, not second, and crucially, not a substitute for the three rungs above it.
+
+---
+
+### Why Energy Recovery Sits Where It Does
+
+The logic is straightforward once stated plainly. When you recover energy from a tonne of production scrap, you capture a fraction of the embodied energy that went into making it. You do not recover the raw material cost, the machine hours, the labour, the consumables, or the energy already spent processing it up to the point of failure.
+
+A polymer offcut burned for energy returns a portion of its calorific value. The same offcut prevented returns its full purchase price, the processing energy, the machine capacity it occupied, and the downstream handling cost. The gap between those two outcomes is usually an order of magnitude.
+
+This is why the framing matters. *Waste-to-energy is a good answer to the wrong question if the waste was avoidable.* It is a genuinely valuable route for residues that are unavoidable, contaminated beyond economic recycling, or for which no viable reprocessing market exists. It is a poor route for yield loss you have simply not measured yet.
+
+---
+
+### The Economics Have Moved
+
+Two policy changes have altered the arithmetic for UK manufacturers, and both point in the same direction.
+
+**Landfill Tax.** From 1 April 2026 the standard rate is £130.75 per tonne, with the lower rate for qualifying inert material at £8.65 per tonne. Scotland and Wales have aligned their rates. For a manufacturer sending mixed production waste to landfill, the disposal line is now dominated by tax rather than gate fee or haulage.
+
+**Carbon pricing on energy from waste.** Energy-from-waste and waste incineration facilities are scheduled to enter the UK Emissions Trading Scheme from 1 January 2028, preceded by a two-year monitoring, reporting and verification period beginning in 2026. Operators will need to surrender allowances covering the fossil-derived share of their emissions — principally the plastics content of residual waste. The scope follows Small Waste Incineration Plant thresholds.
+
+The second point deserves attention from anyone treating waste-to-energy as a settled long-term answer. Gate fees at energy-recovery facilities are unlikely to be immune from a carbon cost applied to the fossil fraction of what they burn. The more plastic in your residual stream, the more exposed that route becomes.
+
+---
+
+### Recovery Routes Worth Evaluating
+
+Different waste streams suit different recovery routes. The table below covers the options most commonly available to SME manufacturers.
+
+| Route | Best suited to | Practical notes |
+| :--- | :--- | :--- |
+| **Anaerobic digestion** | Food and beverage residues, organic sludges, washwater solids | Produces biogas and digestate. Segregation at source is the main constraint. |
+| **Refuse-derived fuel (RDF/SRF)** | Mixed non-recyclable residual waste | Diverts from landfill. Exposure to future carbon cost on the fossil fraction. |
+| **Biomass combustion** | Untreated wood, pallets, timber offcuts, paper residues | Well-established. Treated or coated timber usually falls outside scope. |
+| **Solvent recovery and reuse** | Coating, cleaning and printing operations | Recovery for reuse ranks above energy recovery in the hierarchy. |
+| **Process heat recovery** | Ovens, dryers, curing lines, compressors | Not waste-to-energy strictly, but frequently the highest-return option on site. |
+
+The last row is the one most often overlooked. Recovering waste *heat* from an existing thermal process requires no waste contract, no gate fee, and no external counterparty, and it reduces purchased energy directly.
+
+---
+
+### Prevention First: Finding the Waste Worth Not Making
+
+The reason prevention sits at the top of the hierarchy and yet receives the least attention is not ideological. It is that prevention requires knowing precisely where material is being lost, and most SME manufacturers do not have that visibility.
+
+Aggregate scrap figures are almost always available. Stage-level figures rarely are. A plant may know it is running at 94% material yield without being able to say which stage, which shift, which grade change or which batch condition accounts for the missing 6%. Without that resolution, prevention becomes guesswork, and energy recovery becomes the path of least resistance.
+
+Useful questions to answer before committing capital to any recovery route:
+
+* **Which production stage generates each waste stream?** Not the department. The stage.
+* **What proportion is structural versus variable?** Structural loss is inherent to the process design. Variable loss changes with setup, operator, material batch or ambient conditions, and is usually addressable without capital.
+* **What does each stream actually cost?** Raw material at purchase price, plus processing energy consumed before the loss occurred, plus machine time, plus handling and disposal.
+* **What is the contamination profile?** This determines which recovery routes are open to you and at what gate fee.
+
+Answering these turns a waste problem into a ranked list of interventions with financial values attached.
+
+---
+
+### Building the Business Case
+
+A defensible evaluation runs roughly as follows.
+
+1. **Baseline by stage, not by site.** Establish where each stream originates and in what quantity. Existing data — ERP consumption records, weighbridge tickets, batch reports, machine logs — is usually sufficient to start.
+2. **Separate avoidable from unavoidable.** Apply prevention effort to the avoidable fraction first. It has the shorter payback and no ongoing contract.
+3. **Route the genuine residue.** Match the unavoidable remainder to the recovery option that fits its composition, volume and contamination profile.
+4. **Stress-test against policy.** Model the route against rising landfill tax and, for energy recovery, a carbon cost on the fossil fraction from 2028.
+5. **Measure continuously.** Waste profiles drift as product mix, suppliers and volumes change. A one-off audit dates quickly.
+
+---
+
+### Where Inshira Fits
+
+Inshira works on the first two steps. The platform maps material and energy flows at stage level using data manufacturers already hold, quantifies losses in cost, material and energy terms, and identifies which losses are variable and therefore addressable.
+
+The approach draws on peer-reviewed research into circular manufacturing, including the SHIF Framework published in the *Journal of Cleaner Production*, which examines how circular principles can be embedded in product and process development rather than applied after the fact.
+
+The conclusion we keep returning to is unglamorous but consistent: **the cheapest tonne of waste to manage is the one never produced, and the second cheapest is the one you understood well enough to route correctly.** Energy recovery has a legitimate and useful place in that sequence. It simply is not the beginning of it.
+`
+  },
+  {
     id: 'what-is-operational-intelligence',
     title: 'What is Operational Intelligence in Manufacturing? The SME Blueprint',
     slug: 'what-is-operational-intelligence',
