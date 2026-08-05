@@ -295,25 +295,32 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
               {readingPost.title}
             </h1>
 
-            {/* Author Meta Row */}
-            <div className="flex items-center gap-3.5 pt-2 pb-5 border-b border-slate-850">
-              <img
-                src={readingPost.author.avatar}
-                alt={readingPost.author.name}
-                className="w-10 h-10 rounded-full border border-slate-800 object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div>
-                <span className="font-display text-xs font-bold text-slate-200 block">
-                  {readingPost.author.name}
-                  {readingPost.author.credentials && (
-                    <span className="font-mono text-[9px] text-teal-400 font-normal ml-1.5">
-                      {readingPost.author.credentials}
+            {/* Author Meta Row — supports co-written articles */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 pb-5 border-b border-slate-850">
+              {[readingPost.author, ...(readingPost.coAuthors ?? [])].map((person, aIdx) => (
+                <div key={aIdx} className="flex items-center gap-3">
+                  <img
+                    src={person.avatar}
+                    alt={`${person.name}, ${person.role}`}
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    className="w-10 h-10 rounded-full border border-slate-800 object-cover shrink-0"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div>
+                    <span className="font-display text-xs font-bold text-slate-200 block">
+                      {person.name}
+                      {person.credentials && (
+                        <span className="font-mono text-[9px] text-teal-400 font-normal ml-1.5">
+                          {person.credentials}
+                        </span>
+                      )}
                     </span>
-                  )}
-                </span>
-                <span className="font-sans text-[10px] text-slate-500 block">{readingPost.author.role}</span>
-              </div>
+                    <span className="font-sans text-[10px] text-slate-500 block">{person.role}</span>
+                  </div>
+                </div>
+              ))}
               <div className="ml-auto flex items-center gap-3 font-mono text-[10px] text-slate-500">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3.5 h-3.5" />
@@ -410,13 +417,26 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
 
                   <div className="flex items-center justify-between pt-4 border-t border-slate-900 mt-4">
                     <div className="flex items-center gap-2">
-                      <img
-                        src={post.author.avatar}
-                        alt={post.author.name}
-                        className="w-6 h-6 rounded-full border border-slate-800 object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                      <span className="font-sans text-[10px] text-slate-300 font-semibold">{post.author.name}</span>
+                      {/* Overlapping avatars when an article is co-written */}
+                      <div className="flex -space-x-2 shrink-0">
+                        {[post.author, ...(post.coAuthors ?? [])].map((person, aIdx) => (
+                          <img
+                            key={aIdx}
+                            src={person.avatar}
+                            alt={person.name}
+                            width={24}
+                            height={24}
+                            loading="lazy"
+                            className="w-6 h-6 rounded-full border border-slate-800 object-cover bg-slate-900"
+                            referrerPolicy="no-referrer"
+                          />
+                        ))}
+                      </div>
+                      <span className="font-sans text-[10px] text-slate-300 font-semibold">
+                        {post.coAuthors?.length
+                          ? `${post.author.name} & ${post.coAuthors.map((c) => c.name).join(' & ')}`
+                          : post.author.name}
+                      </span>
                     </div>
 
                     <button

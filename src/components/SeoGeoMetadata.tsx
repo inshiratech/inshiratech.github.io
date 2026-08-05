@@ -209,18 +209,20 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
           '@type': 'WebPage',
           '@id': `https://www.inshira.co.uk/#/resources`,
         },
-        author: {
+        /* Every named author, so co-written pieces credit both people.
+           schema.org accepts either a single Person or an array. */
+        author: [article.author, ...(article.coAuthors ?? [])].map((person) => ({
           '@type': 'Person',
-          name: article.author.name,
-          jobTitle: article.author.role,
-          honorificSuffix: article.author.credentials,
-          url: article.author.url,
+          name: person.name,
+          jobTitle: person.role,
+          honorificSuffix: person.credentials,
+          url: person.url,
           worksFor: {
             '@type': 'Organization',
             name: 'Inshira Technologies',
             url: 'https://www.inshira.co.uk',
           },
-        },
+        })),
         publisher: {
           '@type': 'Organization',
           name: 'Inshira Technologies',
