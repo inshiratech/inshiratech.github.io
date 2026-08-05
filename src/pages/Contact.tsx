@@ -126,7 +126,7 @@ export default function ContactPage() {
                 <span className="font-display text-xs font-bold text-white uppercase tracking-wider">Our Pilot Guarantee</span>
               </div>
               <p className="font-sans text-xs text-slate-500 leading-relaxed">
-                If our decision support engine does not identify at least **3x the platform pilot cost** in hidden operational losses within 60 days of connection, we will refund 100% of the platform license fee. No administrative friction.
+                If our decision support engine does not identify at least <strong className="font-semibold text-white">3x the platform pilot cost</strong> in hidden operational losses within 60 days of connection, we will refund 100% of the platform license fee. No administrative friction.
               </p>
             </div>
           </div>
@@ -143,7 +143,8 @@ export default function ContactPage() {
                   <span className="font-mono text-xs font-bold text-emerald-400 uppercase tracking-widest">Consultation Reserved</span>
                   <h4 className="font-display text-lg sm:text-2xl font-bold text-white tracking-tight">Your Diagnostic Call is Confirmed</h4>
                   <p className="font-sans text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
-                    Thank you, {name}. A calendar invitation has been dispatched to **{email}** for:
+                    Thank you, {name}. We have received your request and will confirm{' '}
+                    <strong className="font-semibold text-white">{email}</strong> for:
                   </p>
                   <p className="font-mono text-xs text-teal-400 bg-slate-950 px-4 py-2 rounded-lg border border-slate-850 inline-block mt-3">
                     {selectedSlot}
@@ -151,7 +152,7 @@ export default function ContactPage() {
                 </div>
 
                 <p className="font-sans text-[11px] text-slate-500 max-w-sm mx-auto leading-relaxed">
-                  Our industrial practice lead, Sarah Jenkins, will dial in at the scheduled time. Please have your rough historical downtime or PLC log exports ready.
+                  Dr. Mohammad Harris will dial in at the scheduled time. Please have your rough historical downtime or PLC log exports ready.
                 </p>
 
                 <button

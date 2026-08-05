@@ -30,7 +30,7 @@ export default function LegalPage({ type }: LegalProps) {
           <section className="space-y-2.5">
             <h3 className="font-display text-sm sm:text-base font-bold text-white uppercase tracking-wider">1. Industrial Security-by-Design</h3>
             <p>
-              Inshira is built from the ground up to respect the absolute confidentiality and integrity of industrial operations. We operate strictly as a **read-only database overlay**. We do not connect active write-back loops, and our software is incapable of altering PLC states, machine controllers, or conveyor logic.
+              Inshira is built from the ground up to respect the absolute confidentiality and integrity of industrial operations. We operate strictly as a <strong className="font-semibold text-white">read-only database overlay</strong>. We do not connect active write-back loops, and our software is incapable of altering PLC states, machine controllers, or conveyor logic.
             </p>
           </section>
 

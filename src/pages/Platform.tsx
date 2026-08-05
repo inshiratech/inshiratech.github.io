@@ -66,7 +66,7 @@ export default function PlatformPage({ onCtaClick }: PlatformProps) {
             Observe the Inshira Interface in Real Time
           </h2>
           <p className="font-sans text-xs text-slate-400 max-w-2xl mx-auto">
-            Interact with the line selectors or trigger a **Root Cause Deconstruction** below to see how our causal algorithm exposes hidden capacity losses.
+            Interact with the line selectors or trigger a <strong className="font-semibold text-white">Root Cause Deconstruction</strong> below to see how our causal algorithm exposes hidden capacity losses.
           </p>
         </div>
         <DashboardMockup />
