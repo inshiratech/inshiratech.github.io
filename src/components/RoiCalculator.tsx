@@ -188,7 +188,7 @@ export default function RoiCalculator() {
               <TrendingUp className="w-4 h-4" />
             </div>
             <p className="font-sans text-[10.5px] text-slate-400 leading-relaxed">
-              We guarantee pilot outcome thresholds. If Inshira does not identify at least **3x the pilot license value** in hidden losses within 60 days, we refund 100% of the platform cost.
+              We guarantee pilot outcome thresholds. If Inshira does not identify at least <strong className="font-semibold text-white">3x the pilot license value</strong> in hidden losses within 60 days, we refund 100% of the platform cost.
             </p>
           </div>
 

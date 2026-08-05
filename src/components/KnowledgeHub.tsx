@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, type ReactNode } from 'react';
 import { BLOG_POSTS, FAQS } from '../data';
 import { BlogPost } from '../types';
 import {
@@ -16,7 +16,45 @@ import {
 } from 'lucide-react';
 
 interface KnowledgeHubProps {
-  onSelectArticle?: (slug: string) => void;
+  onSelectArticle?: (slug: string | undefined) => void;
+}
+
+/* ============================================================================
+   INLINE MARKDOWN RENDERER
+   ----------------------------------------------------------------------------
+   Article bodies in data.ts are authored in markdown. The renderer previously
+   only handled block-level syntax (###, lists, tables), so inline markers were
+   printed literally and readers saw raw "**" all over the page.
+
+   This turns **bold** into <strong> and *italic* into <em>. Anything it does
+   not recognise is emitted as plain text, so no markdown syntax ever reaches
+   the screen.
+   ========================================================================== */
+function renderInline(text: string, keyPrefix: string) {
+  const nodes: ReactNode[] = [];
+  // Split on **bold** first, then *italic*, keeping the delimiters as groups.
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+
+  parts.forEach((part, i) => {
+    if (!part) return;
+    if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+      nodes.push(
+        <strong key={`${keyPrefix}-b-${i}`} className="font-semibold text-white">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    } else if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+      nodes.push(
+        <em key={`${keyPrefix}-i-${i}`} className="italic text-slate-200">
+          {part.slice(1, -1)}
+        </em>
+      );
+    } else {
+      nodes.push(<span key={`${keyPrefix}-t-${i}`}>{part}</span>);
+    }
+  });
+
+  return nodes;
 }
 
 export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
@@ -53,6 +91,11 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
 
   const handleBackToGrid = () => {
     setReadingPost(null);
+    // Clear the article slug too, otherwise the article's title, description
+    // and BlogPosting schema would stay applied to the Knowledge Hub index.
+    if (onSelectArticle) {
+      onSelectArticle(undefined);
+    }
   };
 
   const toggleFaq = (index: number) => {
@@ -120,7 +163,14 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
                 referrerPolicy="no-referrer"
               />
               <div>
-                <span className="font-display text-xs font-bold text-slate-200 block">{readingPost.author.name}</span>
+                <span className="font-display text-xs font-bold text-slate-200 block">
+                  {readingPost.author.name}
+                  {readingPost.author.credentials && (
+                    <span className="font-mono text-[9px] text-teal-400 font-normal ml-1.5">
+                      {readingPost.author.credentials}
+                    </span>
+                  )}
+                </span>
                 <span className="font-sans text-[10px] text-slate-500 block">{readingPost.author.role}</span>
               </div>
               <div className="ml-auto flex items-center gap-3 font-mono text-[10px] text-slate-500">
@@ -139,18 +189,44 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
           {/* Body Content */}
           <div className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed space-y-5 prose prose-invert max-w-none">
             {readingPost.content.split('\n\n').map((paragraph, pIdx) => {
-              if (paragraph.trim().startsWith('###')) {
+              const block = paragraph.trim();
+              if (!block) return null;
+
+              // Horizontal rule. Previously rendered as a literal "---" line.
+              if (/^-{3,}$/.test(block)) {
+                return <hr key={pIdx} className="border-slate-850 my-8" />;
+              }
+
+              if (block.startsWith('###')) {
                 return (
                   <h3 key={pIdx} className="font-display text-sm sm:text-base font-bold text-white pt-4 pb-1 uppercase tracking-wider block">
-                    {paragraph.replace('###', '').trim()}
+                    {renderInline(block.replace(/^#{1,6}\s*/, '').trim(), `h${pIdx}`)}
                   </h3>
                 );
               }
-              if (paragraph.trim().startsWith('*')) {
+
+              // Numbered list, e.g. "1. Contextual Data Orchestration: ..."
+              if (/^\d+\.\s/.test(block)) {
                 return (
-                  <ul key={pIdx} className="list-disc pl-5 space-y-1.5">
-                    {paragraph.split('\n').map((li, liIdx) => (
-                      <li key={liIdx}>{li.replace('*', '').trim()}</li>
+                  <ol key={pIdx} className="list-decimal pl-5 space-y-1.5 marker:text-teal-400 marker:font-semibold">
+                    {block.split('\n').map((li, liIdx) => (
+                      <li key={liIdx}>
+                        {renderInline(li.replace(/^\s*\d+\.\s*/, '').trim(), `o${pIdx}-${liIdx}`)}
+                      </li>
+                    ))}
+                  </ol>
+                );
+              }
+
+              // Bullet list. Must be checked AFTER bold, since a paragraph can
+              // legitimately begin with "**". Only treat "* " or "- " as bullets.
+              if (/^[*-]\s/.test(block)) {
+                return (
+                  <ul key={pIdx} className="list-disc pl-5 space-y-1.5 marker:text-teal-400">
+                    {block.split('\n').map((li, liIdx) => (
+                      <li key={liIdx}>
+                        {renderInline(li.replace(/^\s*[*-]\s*/, '').trim(), `u${pIdx}-${liIdx}`)}
+                      </li>
                     ))}
                   </ul>
                 );
@@ -171,7 +247,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
                             <tr key={rIdx} className={isHeader ? 'bg-slate-900 text-white font-semibold' : 'text-slate-300'}>
                               {cells.map((cell, cIdx) => (
                                 <td key={cIdx} className="px-4 py-3 font-sans">
-                                  {cell.trim()}
+                                  {renderInline(cell.trim(), `c${pIdx}-${rIdx}-${cIdx}`)}
                                 </td>
                               ))}
                             </tr>
@@ -184,7 +260,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
               }
               return (
                 <p key={pIdx} className="whitespace-pre-line">
-                  {paragraph}
+                  {renderInline(block, `p${pIdx}`)}
                 </p>
               );
             })}

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { PageId } from '../types';
+import { BLOG_POSTS } from '../data';
 
 /* ============================================================================
    SEO / GEO METADATA
@@ -43,6 +44,13 @@ interface SeoProps {
   pageId: PageId;
   subTopic?: string;
 }
+
+/* Captured once on load so the site-wide keyword list can be restored after an
+   article view overwrites it. Read from the static tag in index.html. */
+const SITE_KEYWORDS =
+  typeof document !== 'undefined'
+    ? document.querySelector('meta[name="keywords"]')?.getAttribute('content') ?? ''
+    : '';
 
 const BASE_TITLE = 'Inshira – Find and Fix Manufacturing Losses, Stage by Stage';
 const BASE_DESCRIPTION =
@@ -102,10 +110,26 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
   useEffect(() => {
     const meta = PAGE_META[pageId] ?? PAGE_META.home;
 
-    const title = subTopic ? `${subTopic} | Inshira` : meta.title;
-    const description = meta.description;
+    /* When an article is open, its own SEO fields take priority over the
+       generic Knowledge Hub page metadata. `subTopic` carries the slug. */
+    const article = subTopic
+      ? BLOG_POSTS.find((p) => p.slug === subTopic)
+      : undefined;
+
+    const title = article ? article.metaTitle : meta.title;
+    const description = article ? article.metaDescription : meta.description;
 
     document.title = title;
+
+    // Article keywords replace the site-wide list while an article is open.
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      if (article) {
+        metaKeywords.setAttribute('content', article.keywords.join(', '));
+      } else if (SITE_KEYWORDS) {
+        metaKeywords.setAttribute('content', SITE_KEYWORDS);
+      }
+    }
 
     // Update the existing description tag in place. Never create a duplicate —
     // the base tag already exists in index.html.
@@ -163,6 +187,64 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
         },
       },
     ];
+
+    /* ---- Article schema (SEO + GEO) --------------------------------------
+       Emitted only while an article is open. Gives Google the headline,
+       author with credentials, publish/modify dates, publisher, and the
+       geographic audience the piece is written for. */
+    if (article) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: article.title,
+        description: article.metaDescription,
+        articleSection: article.category,
+        keywords: article.keywords.join(', '),
+        inLanguage: 'en-GB',
+        datePublished: article.datePublishedISO,
+        dateModified: article.dateModifiedISO,
+        wordCount: article.content.trim().split(/\s+/).length,
+        image: article.image,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://www.inshira.co.uk/#/resources`,
+        },
+        author: {
+          '@type': 'Person',
+          name: article.author.name,
+          jobTitle: article.author.role,
+          honorificSuffix: article.author.credentials,
+          url: article.author.url,
+          worksFor: {
+            '@type': 'Organization',
+            name: 'Inshira Technologies',
+            url: 'https://www.inshira.co.uk',
+          },
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Inshira Technologies',
+          url: 'https://www.inshira.co.uk',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://www.inshira.co.uk/assets/logo.png',
+          },
+        },
+        // GEO targeting — who and where this content is written for.
+        audience: {
+          '@type': 'BusinessAudience',
+          audienceType: 'SME manufacturers',
+          geographicArea: article.areaServed.map((code) => ({
+            '@type': 'Country',
+            name: code,
+          })),
+        },
+        spatialCoverage: article.areaServed.map((code) => ({
+          '@type': 'Country',
+          name: code,
+        })),
+      });
+    }
 
     const script = document.createElement('script');
     script.id = 'inshira-page-jsonld';
