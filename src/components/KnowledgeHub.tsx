@@ -20,6 +20,142 @@ interface KnowledgeHubProps {
 }
 
 /* ============================================================================
+   BLOCK MARKDOWN RENDERER
+   ----------------------------------------------------------------------------
+   Works line by line rather than per blank-line block. The article source
+   frequently packs a heading, an intro sentence and its bullets into a single
+   block with no blank lines between them, e.g.
+
+     #### 2. The Lack of Economic Quantification
+     When a machine goes down..., it does not translate that event into:
+     * **The direct labor cost** of idle operators (£350)
+
+   A block-level check only ever inspected the first line, so everything after
+   it was swallowed into a heading or a paragraph and the raw markers leaked
+   onto the page. Scanning per line keeps each construct intact.
+   ========================================================================== */
+function renderMarkdown(content: string): ReactNode[] {
+  const lines = content.split('\n');
+  const out: ReactNode[] = [];
+
+  let buffer: string[] = [];
+  let mode: 'text' | 'ul' | 'ol' | 'table' = 'text';
+
+  const isBullet = (l: string) => /^\s*[*-]\s+/.test(l);
+  const isNumbered = (l: string) => /^\s*\d+\.\s+/.test(l);
+  const isHeading = (l: string) => /^\s*#{1,6}\s+/.test(l);
+  const isRule = (l: string) => /^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(l);
+  const isTable = (l: string) => /^\s*\|/.test(l);
+
+  const flush = () => {
+    if (!buffer.length) return;
+    const items = buffer;
+    const k = out.length;
+    buffer = [];
+
+    if (mode === 'ul') {
+      out.push(
+        <ul key={`ul-${k}`} className="list-disc pl-5 space-y-1.5 marker:text-teal-400">
+          {items.map((li, i) => (
+            <li key={i}>{renderInline(li.replace(/^\s*[*-]\s+/, '').trim(), `u${k}-${i}`)}</li>
+          ))}
+        </ul>
+      );
+    } else if (mode === 'ol') {
+      out.push(
+        <ol key={`ol-${k}`} className="list-decimal pl-5 space-y-1.5 marker:text-teal-400 marker:font-semibold">
+          {items.map((li, i) => (
+            <li key={i}>{renderInline(li.replace(/^\s*\d+\.\s+/, '').trim(), `o${k}-${i}`)}</li>
+          ))}
+        </ol>
+      );
+    } else if (mode === 'table') {
+      const rows = items.filter((r) => r.trim() && !/^\s*\|[\s:|-]+\|?\s*$/.test(r));
+      out.push(
+        <div key={`tb-${k}`} className="overflow-x-auto my-6 border border-slate-850 rounded-xl">
+          <table className="min-w-full divide-y divide-slate-850 text-left font-sans text-xs">
+            <tbody className="divide-y divide-slate-900 bg-slate-950">
+              {rows.map((row, rIdx) => {
+                const cells = row.split('|').filter((c) => c.trim() !== '');
+                const isHeader = rIdx === 0;
+                return (
+                  <tr key={rIdx} className={isHeader ? 'bg-slate-900 text-white font-semibold' : 'text-slate-300'}>
+                    {cells.map((cell, cIdx) => (
+                      <td key={cIdx} className="px-4 py-3 font-sans align-top">
+                        {renderInline(cell.trim(), `c${k}-${rIdx}-${cIdx}`)}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
+    } else {
+      const text = items.join('\n').trim();
+      if (text) {
+        out.push(
+          <p key={`p-${k}`} className="whitespace-pre-line">
+            {renderInline(text, `p${k}`)}
+          </p>
+        );
+      }
+    }
+  };
+
+  lines.forEach((line) => {
+    if (isRule(line)) {
+      flush();
+      mode = 'text';
+      out.push(<hr key={`hr-${out.length}`} className="border-slate-850 my-8" />);
+      return;
+    }
+
+    if (isHeading(line)) {
+      flush();
+      mode = 'text';
+      const level = (line.match(/^\s*(#{1,6})/) as RegExpMatchArray)[1].length;
+      const text = line.replace(/^\s*#{1,6}\s+/, '').trim();
+      const cls =
+        level <= 3
+          ? 'font-display text-sm sm:text-base font-bold text-white pt-4 pb-1 uppercase tracking-wider block'
+          : 'font-display text-[13px] sm:text-sm font-bold text-slate-100 pt-3 pb-0.5 block';
+      out.push(
+        <h3 key={`h-${out.length}`} className={cls}>
+          {renderInline(text, `h${out.length}`)}
+        </h3>
+      );
+      return;
+    }
+
+    const next: typeof mode = isBullet(line)
+      ? 'ul'
+      : isNumbered(line)
+        ? 'ol'
+        : isTable(line)
+          ? 'table'
+          : 'text';
+
+    // A blank line ends the current run.
+    if (!line.trim()) {
+      flush();
+      mode = 'text';
+      return;
+    }
+
+    if (next !== mode) {
+      flush();
+      mode = next;
+    }
+    buffer.push(line);
+  });
+
+  flush();
+  return out;
+}
+
+/* ============================================================================
    INLINE MARKDOWN RENDERER
    ----------------------------------------------------------------------------
    Article bodies in data.ts are authored in markdown. The renderer previously
@@ -32,8 +168,13 @@ interface KnowledgeHubProps {
    ========================================================================== */
 function renderInline(text: string, keyPrefix: string) {
   const nodes: ReactNode[] = [];
-  // Split on **bold** first, then *italic*, keeping the delimiters as groups.
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  /* Split on **bold** first, then *italic*, keeping the delimiters as groups.
+     The italic branch requires a non-space, non-asterisk character straight
+     after the opening "*". Without that guard, a leftover bullet marker at the
+     start of a line pairs with the opening "*" of the next **bold** run — the
+     regex matches "* *" as italic-containing-a-space, and every emphasis marker
+     after it shifts by one, littering the paragraph with stray asterisks. */
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^\s*][^*]*\*)/g);
 
   parts.forEach((part, i) => {
     if (!part) return;
@@ -188,82 +329,7 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
 
           {/* Body Content */}
           <div className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed space-y-5 prose prose-invert max-w-none">
-            {readingPost.content.split('\n\n').map((paragraph, pIdx) => {
-              const block = paragraph.trim();
-              if (!block) return null;
-
-              // Horizontal rule. Previously rendered as a literal "---" line.
-              if (/^-{3,}$/.test(block)) {
-                return <hr key={pIdx} className="border-slate-850 my-8" />;
-              }
-
-              if (block.startsWith('###')) {
-                return (
-                  <h3 key={pIdx} className="font-display text-sm sm:text-base font-bold text-white pt-4 pb-1 uppercase tracking-wider block">
-                    {renderInline(block.replace(/^#{1,6}\s*/, '').trim(), `h${pIdx}`)}
-                  </h3>
-                );
-              }
-
-              // Numbered list, e.g. "1. Contextual Data Orchestration: ..."
-              if (/^\d+\.\s/.test(block)) {
-                return (
-                  <ol key={pIdx} className="list-decimal pl-5 space-y-1.5 marker:text-teal-400 marker:font-semibold">
-                    {block.split('\n').map((li, liIdx) => (
-                      <li key={liIdx}>
-                        {renderInline(li.replace(/^\s*\d+\.\s*/, '').trim(), `o${pIdx}-${liIdx}`)}
-                      </li>
-                    ))}
-                  </ol>
-                );
-              }
-
-              // Bullet list. Must be checked AFTER bold, since a paragraph can
-              // legitimately begin with "**". Only treat "* " or "- " as bullets.
-              if (/^[*-]\s/.test(block)) {
-                return (
-                  <ul key={pIdx} className="list-disc pl-5 space-y-1.5 marker:text-teal-400">
-                    {block.split('\n').map((li, liIdx) => (
-                      <li key={liIdx}>
-                        {renderInline(li.replace(/^\s*[*-]\s*/, '').trim(), `u${pIdx}-${liIdx}`)}
-                      </li>
-                    ))}
-                  </ul>
-                );
-              }
-              if (paragraph.trim().startsWith('|')) {
-                // Table simple rendering
-                const rows = paragraph.trim().split('\n').filter(r => r.length > 0);
-                return (
-                  <div key={pIdx} className="overflow-x-auto my-6 border border-slate-850 rounded-xl">
-                    <table className="min-w-full divide-y divide-slate-850 text-left font-sans text-xs">
-                      <tbody className="divide-y divide-slate-900 bg-slate-950">
-                        {rows.map((row, rIdx) => {
-                          const cells = row.split('|').filter(c => c.trim() !== '');
-                          const isHeader = rIdx === 0;
-                          const isSeparator = row.includes(':---') || row.includes('---');
-                          if (isSeparator) return null;
-                          return (
-                            <tr key={rIdx} className={isHeader ? 'bg-slate-900 text-white font-semibold' : 'text-slate-300'}>
-                              {cells.map((cell, cIdx) => (
-                                <td key={cIdx} className="px-4 py-3 font-sans">
-                                  {renderInline(cell.trim(), `c${pIdx}-${rIdx}-${cIdx}`)}
-                                </td>
-                              ))}
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                );
-              }
-              return (
-                <p key={pIdx} className="whitespace-pre-line">
-                  {renderInline(block, `p${pIdx}`)}
-                </p>
-              );
-            })}
+            {renderMarkdown(readingPost.content)}
           </div>
 
           {/* Quick Newsletter Sign-Up Anchor */}
