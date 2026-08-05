@@ -64,7 +64,9 @@ export interface CaseStudy {
     annualSavings: string;
     paybackPeriod: string;
   };
-  quote: {
+  /* Optional. Only populate with a real, attributable customer quote that the
+     customer has approved. Never fill this with an illustrative example. */
+  quote?: {
     text: string;
     author: string;
     role: string;

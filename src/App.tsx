@@ -113,7 +113,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-teal-500 selection:text-slate-950 relative overflow-hidden">
-      
+
+      {/* Keyboard users can jump past the nav straight to page content. */}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       {/* Background Atmosphere */}
       <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-[#0055ff] rounded-full blur-[160px] opacity-20 pointer-events-none z-0"></div>
       <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#00d1ff] rounded-full blur-[140px] opacity-10 pointer-events-none z-0"></div>
@@ -133,7 +136,7 @@ export default function App() {
       />
 
       {/* Main Routed Page Content wrapped in elegant grid container */}
-      <main className="flex-grow pt-24 sm:pt-28 pb-10 relative z-10">
+      <main id="main-content" className="flex-grow pt-24 sm:pt-28 pb-10 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {renderPage()}
         </div>
@@ -149,8 +152,12 @@ export default function App() {
             
             {/* Search Input field */}
             <div className="p-4 border-b border-slate-850 flex items-center justify-between gap-3">
-              <Search className="w-5 h-5 text-slate-400 shrink-0" />
+              <Search className="w-5 h-5 text-slate-400 shrink-0" aria-hidden="true" />
+              <label htmlFor="global-search-input" className="sr-only">
+                Search resources, articles and guides
+              </label>
               <input
+                id="global-search-input"
                 type="text"
                 autoFocus
                 placeholder="Search resources, articles, guides, and compliance..."
@@ -159,13 +166,15 @@ export default function App() {
                 className="flex-1 bg-transparent text-white font-sans text-sm focus:outline-none placeholder-slate-500"
               />
               <button
+                type="button"
+                aria-label="Close search"
                 onClick={() => {
                   setSearchOpen(false);
                   setSearchQuery('');
                 }}
-                className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors border border-slate-800"
+                className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors border border-slate-800"
               >
-                <X className="w-4.5 h-4.5" />
+                <X className="w-4.5 h-4.5" aria-hidden="true" />
               </button>
             </div>
 
@@ -173,7 +182,7 @@ export default function App() {
             <div className="p-4 max-h-96 overflow-y-auto space-y-4">
               {searchQuery.trim() === '' ? (
                 <div className="space-y-3">
-                  <span className="font-mono text-[9px] text-slate-500 uppercase font-bold tracking-widest block">
+                  <span className="font-mono text-[12px] text-slate-500 uppercase font-bold tracking-widest block">
                     Suggested Quick Links
                   </span>
                   <div className="grid grid-cols-2 gap-2">
@@ -225,7 +234,7 @@ export default function App() {
                 </div>
               ) : (
                 <div className="space-y-2.5">
-                  <span className="font-mono text-[9px] text-teal-400 font-bold uppercase tracking-wider block">
+                  <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-wider block">
                     Matching Guides & Playbooks
                   </span>
                   <div className="space-y-2">
@@ -239,7 +248,7 @@ export default function App() {
                           <span className="font-display text-xs font-bold text-white block group-hover:text-teal-400 transition-colors">
                             {result.title}
                           </span>
-                          <p className="font-sans text-[10.5px] text-slate-400 line-clamp-1 mt-0.5 leading-relaxed">
+                          <p className="font-sans text-[13px] text-slate-400 line-clamp-1 mt-0.5 leading-relaxed">
                             {result.excerpt}
                           </p>
                         </div>

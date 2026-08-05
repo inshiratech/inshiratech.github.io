@@ -313,62 +313,47 @@ This evidence-backed approach allows engineering teams to secure executive buy-i
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'precision-automotive-components',
-    title: 'Precision Automotive Supplier Eliminates Unplanned Downtime',
-    client: 'Apex Automotive Components',
+    title: 'Micro-Stoppages Traced to Coolant Temperature Drift',
+    client: 'Illustrative scenario',
     industry: 'Automotive & Precision Machining',
-    size: '140 employees, Midlands UK',
-    challenge: 'Apex suffered from frequent micro-stoppages across three CNC lines. Standard BI reports indicated "general mechanical faults" but failed to identify the upstream temperature anomalies triggering the tool wear.',
-    solution: 'Inshira integrated Apex’s PLC logs and shift scheduling reports. The causal engine mapped tool-tip wear against raw material batches and coolant temperature cycles, identifying a subtle 2°C fluctuation in coolant delivery.',
+    size: 'Modelled on a ~140-employee CNC operation',
+    challenge: 'A common pattern in precision machining: frequent micro-stoppages across multiple CNC lines, where standard BI reporting attributes them to "general mechanical faults" and never surfaces the upstream thermal variance driving accelerated tool wear.',
+    solution: 'Inshira ingests PLC logs and shift scheduling data, then maps tool-tip wear against raw material batches and coolant temperature cycles. In this model, a sustained 2°C fluctuation in coolant delivery accounts for the majority of the stoppage events.',
     results: {
-      downtimeReduction: '28% reduction in unplanned downtime',
-      wasteReduction: '14% scrap rate reduction',
-      annualSavings: '£142,000 in direct operational savings',
-      paybackPeriod: '2.8 months'
-    },
-    quote: {
-      text: "We had spent six months reviewing spreadsheets. Inshira identified the exact coolant temperature anomaly in under 48 hours. The ROI was virtually immediate.",
-      author: "David Vance",
-      role: "Operations Director"
+      downtimeReduction: 'Unplanned downtime — primary modelled gain',
+      wasteReduction: 'Scrap rate — secondary modelled gain',
+      annualSavings: 'Sized from your own line data',
+      paybackPeriod: 'Modelled per engagement'
     }
   },
   {
     id: 'packaging-solutions-ltd',
-    title: 'Packaging SME Slashes Grade Changeover Waste by 34%',
-    client: 'Vanguard Packaging Ltd',
+    title: 'Changeover Variance Reduced Through Cool-Down Ramp Control',
+    client: 'Illustrative scenario',
     industry: 'Packaging & Paper Conversion',
-    size: '85 employees, Yorkshire UK',
-    challenge: 'High-variety production forced Vanguard to perform 4-5 grade changes daily. Changeover times fluctuated wildly between 20 and 75 minutes, resulting in major throughput bottlenecks and extensive material scrap.',
-    solution: 'Inshira mapped changeover timelines by integrating operator logs with extruder temperature profiles. It identified optimal temperature cool-down ramp patterns and delivered step-by-step guidance directly to line operators.',
+    size: 'Modelled on a ~85-employee converting operation',
+    challenge: 'High-variety production driving four to five grade changes daily, with changeover times fluctuating between 20 and 75 minutes. The variance itself — not the average — is what creates throughput bottlenecks and material scrap.',
+    solution: 'Inshira maps changeover timelines by combining operator logs with extruder temperature profiles, identifies the cool-down ramp patterns associated with the fastest changeovers, and turns them into step-by-step guidance for line operators.',
     results: {
-      downtimeReduction: '22% increase in line availability',
-      wasteReduction: '34% reduction in material scrap',
-      annualSavings: '£98,000 saved in raw materials & energy',
-      paybackPeriod: '3.1 months'
-    },
-    quote: {
-      text: "Inshira turned our changeover process from a black art into an exact, repeatable science. Our operators now have clear, data-driven targets for every shift.",
-      author: "Helen McGregor",
-      role: "Continuous Improvement Lead"
+      downtimeReduction: 'Line availability — primary modelled gain',
+      wasteReduction: 'Material scrap — secondary modelled gain',
+      annualSavings: 'Sized from your own line data',
+      paybackPeriod: 'Modelled per engagement'
     }
   },
   {
     id: 'premium-beverage-bottlers',
-    title: 'Food & Beverage Processor Uncovers Hidden Yield Losses',
-    client: 'Cotswold Springs Bottling',
+    title: 'Product Giveaway Isolated to Specific Line Speeds',
+    client: 'Illustrative scenario',
     industry: 'Food & Beverage Processing',
-    size: '110 employees, Gloucestershire UK',
-    challenge: 'Cotswold Springs experienced unexplained yield loss in their high-speed filling lines. Despite having modern machinery, their overall equipment effectiveness (OEE) remained stuck at 71%.',
-    solution: 'Inshira’s intelligence layer unified filling PLC counts with scale weight data and ERP order schedules. It uncovered systematic over-filling (product giveaway) occurring at specific line speeds and during specific shift handovers.',
+    size: 'Modelled on a ~110-employee filling operation',
+    challenge: 'Unexplained yield loss on high-speed filling lines with modern machinery and OEE stuck around 71%. Aggregate OEE reporting confirms the loss exists but cannot locate where it originates.',
+    solution: 'Inshira unifies filling PLC counts with scale weight data and ERP order schedules, isolating systematic over-filling to particular line speeds and shift handover windows rather than to the machinery itself.',
     results: {
-      downtimeReduction: '12% decrease in changeover delays',
-      wasteReduction: '19% reduction in product giveaway',
-      annualSavings: '£115,000 in product yield recovery',
-      paybackPeriod: '4.2 months'
-    },
-    quote: {
-      text: "Standard OEE charts just showed us that we were losing yield. Inshira pinpointed the exact speed settings and shift conditions that caused the giveaway.",
-      author: "Alistair Burke",
-      role: "Plant Manager"
+      downtimeReduction: 'Changeover delay — primary modelled gain',
+      wasteReduction: 'Product giveaway — secondary modelled gain',
+      annualSavings: 'Sized from your own line data',
+      paybackPeriod: 'Modelled per engagement'
     }
   }
 ];
@@ -388,7 +373,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     question: "Is our factory data secure? We have strict confidentiality rules.",
-    answer: "Data security is our highest priority. Inshira uses enterprise-grade read-only pipelines, end-to-end AES-256 encryption, and secure isolated environments for every customer. We never share operational insights across accounts. Our platform is fully GDPR compliant and designed to adhere to ISO 27001 industrial security guidelines."
+    answer: "Inshira connects read-only. We cannot write to your PLCs, controllers or line logic. Connections are encrypted in transit and at rest, each customer sits in an isolated environment, and we never share operational insights across accounts. We process data in line with UK GDPR and the Data Protection Act 2018. To be clear about what we are not: we do not hold ISO 27001 certification, and we will say so here if that changes."
   },
   {
     question: "Our operations are highly customized. Will Inshira work for our specific process?",
