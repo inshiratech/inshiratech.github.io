@@ -60,12 +60,15 @@ export default function PlatformPage({ onCtaClick }: PlatformProps) {
 
       {/* Embedded Live Dashboard Mockup */}
       <section id="platform-dashboard-preview" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-4 text-center mb-8">
-          <span className="font-mono text-[12px] text-slate-500 uppercase tracking-widest block font-bold">Interactive Platform Live Preview</span>
-          <h2 className="font-display text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">
+        {/* Aligned to the page convention: centred on mobile, left on desktop.
+            This block was centred while its neighbours were left-aligned, so
+            headings visibly jumped left/centre/left as you scrolled. */}
+        <div className="text-center sm:text-left space-y-2 mb-8">
+          <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold block">Interactive Platform Live Preview</span>
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
             Observe the Inshira Interface in Real Time
-          </h2>
-          <p className="font-sans text-xs text-slate-400 max-w-2xl mx-auto">
+          </h3>
+          <p className="font-sans text-xs text-slate-400 max-w-2xl">
             Interact with the line selectors or trigger a <strong className="font-semibold text-white">Root Cause Deconstruction</strong> below to see how our causal algorithm exposes hidden capacity losses.
           </p>
         </div>
@@ -97,10 +100,10 @@ export default function PlatformPage({ onCtaClick }: PlatformProps) {
 
       {/* Decision Twin modeling section */}
       <section id="platform-twin-modeling" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
+        <div className="text-center sm:text-left space-y-2">
           <span className="font-mono text-[12px] text-teal-400 uppercase tracking-wider font-bold block">Interactive Digital Twin</span>
           <h3 className="font-display text-xl sm:text-2xl font-bold text-white">Model Before You Deploy</h3>
-          <p className="font-sans text-xs text-slate-400">
+          <p className="font-sans text-xs text-slate-400 max-w-2xl">
             Estimate paybacks, efficiency gains, and carbon reduction before investing engineering time. Drag the controls below to calculate your yields.
           </p>
         </div>
