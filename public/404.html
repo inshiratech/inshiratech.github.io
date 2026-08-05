@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>Inshira</title>
+    <script>
+      /* GitHub Pages has no server-side rewrite, so a deep link such as
+         /case-studies returns this 404 document. We bounce it to /?/case-studies
+         and index.html restores the real path before React mounts, so the user
+         and the crawler both end up on the right view.
+         Root-hosted on a custom domain, so there is no repo path segment. */
+      (function () {
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/?/' + l.pathname.slice(1).replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1) : '') +
+          l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
