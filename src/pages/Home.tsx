@@ -151,6 +151,11 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
   // 4. STATE FOR EXECUTIVE BENCHMARKING
   const [selectedExecMetric, setSelectedExecMetric] = useState<string>('maturity');
 
+  /* View toggles for the two merged sections. Each pair previously occupied
+     two consecutive sections showing the same kind of interaction. */
+  const [interfaceView, setInterfaceView] = useState<'shopfloor' | 'executive'>('shopfloor');
+  const [modellingMode, setModellingMode] = useState<'scenario' | 'roi'>('scenario');
+
   const executiveMetrics = {
     maturity: {
       title: 'Overall Operational Maturity',
@@ -974,46 +979,58 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
         </div>
       </section>
 
-      {/* 7. INTERACTIVE PRODUCT EXPERIENCE PREVIEW */}
+      {/* ====================================================================
+          7. PRODUCT INTERFACE — merged section.
+          Previously two consecutive sections, both dashboards: the shop-floor
+          preview and the executive benchmarking screen. A visitor met the same
+          interaction twice in a row. They are now one section with a view
+          toggle, since they show the same product to two different audiences.
+          ==================================================================== */}
       <section id="interactive-preview" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
           <span className="font-mono text-xs font-bold text-teal-400 uppercase tracking-widest block font-bold">
-            How is Operational Intelligence different from Business Intelligence?
+            The Operational Interface
           </span>
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight">
-            See the Live Operational Interface
+            One System, Two Audiences
           </h2>
           <p className="font-sans text-sm text-slate-400">
-            How is Operational Intelligence different from Business Intelligence? While traditional BI tracks retrospective static charts, Inshira operates as a real-time decision-support layer. It maps machine signals directly to active shift boundaries, identifying chronic micro-stoppages.
+            Traditional BI tracks retrospective static charts. Inshira operates as a real-time decision-support layer, mapping machine signals to active shift boundaries. Shift leads get setpoints; directors get the financial consequence of the same event.
           </p>
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[12px] text-slate-400">
-            Product preview · sample data
-          </span>
-        </div>
-        <DashboardMockup />
-      </section>
-
-      {/* 8. NEW PREMIUM EXECUTIVE BENCHMARKING DASHBOARD */}
-      <section id="executive-dashboard" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="font-mono text-xs font-bold text-teal-400 uppercase tracking-widest block font-bold">
-            C-Suite Visualisation Layer
-          </span>
-          <h2 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight leading-none">
-            Executive Benchmarking & OEE Oversight
-          </h2>
-          <p className="font-sans text-sm text-slate-400">
-            This is the C-suite reporting screen, connecting raw operational performance to financial margins. Click through the primary metrics on the left to review strategic actions.
-          </p>
-          {/* Explicit sample-data label. The figures inside the demo are
-              representative of the output format, not achieved results. */}
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 font-mono text-[12px] text-slate-400">
             Interactive demo · sample data
           </span>
         </div>
 
+        {/* View toggle */}
+        <div className="flex justify-center">
+          <div className="inline-flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800" role="tablist" aria-label="Interface view">
+            {([
+              { id: 'shopfloor', label: 'Shop-floor view' },
+              { id: 'executive', label: 'Executive view' }
+            ] as const).map((view) => (
+              <button
+                key={view.id}
+                role="tab"
+                aria-selected={interfaceView === view.id}
+                onClick={() => setInterfaceView(view.id)}
+                className={`px-4 py-2 min-h-[40px] rounded-lg font-mono text-[12px] font-bold uppercase tracking-wider transition-colors ${
+                  interfaceView === view.id
+                    ? 'bg-teal-500 text-slate-950'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                {view.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {interfaceView === 'shopfloor' && <DashboardMockup />}
+
+        {interfaceView === 'executive' && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+
           {/* Controls column (4 cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between gap-3 bg-slate-950 p-4 rounded-2xl border border-white/5">
             <div className="space-y-2.5">
@@ -1124,6 +1141,7 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
           </div>
 
         </div>
+        )}
       </section>
 
       {/* 9. AI-GENERATED IMPROVEMENT ROADMAP */}
@@ -1224,20 +1242,50 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
         </div>
       </section>
 
-      {/* 10. WHAT-IF DIGITAL TWIN MODELING (Owns Category "What If?" Scenario Modelling) */}
-      <section id="digital-twin-showcase" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      {/* ====================================================================
+          10. MODELLING — merged section.
+          The what-if digital twin and the ROI calculator were separate sections
+          doing the same job: move sliders, get a modelled financial outcome.
+          They are now one section with a toggle — start from a named scenario,
+          or start from your own plant figures.
+          ==================================================================== */}
+      <section id="modelling-showcase" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-2">
           <span className="font-mono text-xs font-bold text-teal-400 uppercase tracking-widest block font-bold">
-            How can manufacturers model operational improvements before implementing them?
+            Model it before you commit to it
           </span>
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight">
-            Model Bottlenecks with "What-If" Projections
+            Test the Change, Then Make It
           </h2>
           <p className="font-sans text-sm text-slate-400">
-            How can manufacturers model operational improvements before implementing them? Select a critical production query on the left to immediately trace estimated cost savings, ROI rate, capacity increases, and project process risk levels using our lightweight digital twins.
+            Work forward from a named engineering scenario, or backward from your own plant figures. Both routes return the same thing: estimated annual savings, capacity recovered and payback period.
           </p>
         </div>
-        <InteractiveDigitalTwin />
+
+        <div className="flex justify-center">
+          <div className="inline-flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800" role="tablist" aria-label="Modelling mode">
+            {([
+              { id: 'scenario', label: 'From a scenario' },
+              { id: 'roi', label: 'From your figures' }
+            ] as const).map((mode) => (
+              <button
+                key={mode.id}
+                role="tab"
+                aria-selected={modellingMode === mode.id}
+                onClick={() => setModellingMode(mode.id)}
+                className={`px-4 py-2 min-h-[40px] rounded-lg font-mono text-[12px] font-bold uppercase tracking-wider transition-colors ${
+                  modellingMode === mode.id
+                    ? 'bg-teal-500 text-slate-950'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                {mode.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {modellingMode === 'scenario' ? <InteractiveDigitalTwin /> : <RoiCalculator />}
       </section>
 
       {/* 11. STRENGTHEN THE COMPETITIVE POSITION: Matrix Comparison (ERP, MES, BI, Consultants, Spreadsheets, Inshira) */}
@@ -1312,21 +1360,8 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
         <FuturePipeline />
       </section>
 
-      {/* 12. SECURE ROI AUDIT CALCULATOR */}
-      <section id="roi-calculator-showcase" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <span className="font-mono text-xs font-bold text-teal-400 uppercase tracking-widest block font-bold">
-            Data-Backed Recovery Potential
-          </span>
-          <h2 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight">
-            Calculate Your Recoverable Losses
-          </h2>
-          <p className="font-sans text-sm text-slate-400">
-            How can manufacturers reduce operational waste? Input your plant parameters below to isolate estimated annual cost savings and OEE recovery.
-          </p>
-        </div>
-        <RoiCalculator />
-      </section>
+      {/* 12. (removed) The ROI calculator moved into the merged modelling
+             section above, so it no longer appears as a separate section. */}
 
       {/* 13. CREDIBILITY — verifiable signals only.
           This section previously carried two invented testimonials attributed
