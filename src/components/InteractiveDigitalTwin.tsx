@@ -280,11 +280,11 @@ export default function InteractiveDigitalTwin() {
               {/* Slider 1 */}
               <div className="space-y-1">
                 <div className="flex justify-between text-[12px]">
-                  <span className="font-sans text-slate-300">Target Changeover Time Reduction</span>
+                  <label htmlFor="twin-changeover" className="font-sans text-slate-300">Target Changeover Time Reduction</label>
                   <span className="font-mono font-semibold text-teal-400">{changeover}%</span>
                 </div>
                 <input
-                  type="range"
+                  id="twin-changeover" type="range"
                   min="-20"
                   max="60"
                   value={changeover}
@@ -296,11 +296,11 @@ export default function InteractiveDigitalTwin() {
               {/* Slider 2 */}
               <div className="space-y-1">
                 <div className="flex justify-between text-[12px]">
-                  <span className="font-sans text-slate-300">Target Material Scrap Reduction</span>
+                  <label htmlFor="twin-scrap" className="font-sans text-slate-300">Target Material Scrap Reduction</label>
                   <span className="font-mono font-semibold text-teal-400">{scrap}%</span>
                 </div>
                 <input
-                  type="range"
+                  id="twin-scrap" type="range"
                   min="-10"
                   max="50"
                   value={scrap}
@@ -312,11 +312,11 @@ export default function InteractiveDigitalTwin() {
               {/* Slider 3 */}
               <div className="space-y-1">
                 <div className="flex justify-between text-[12px]">
-                  <span className="font-sans text-slate-300">Rated Machine Speed Recovered</span>
+                  <label htmlFor="twin-speed" className="font-sans text-slate-300">Rated Machine Speed Recovered</label>
                   <span className="font-mono font-semibold text-teal-400">{speed}%</span>
                 </div>
                 <input
-                  type="range"
+                  id="twin-speed" type="range"
                   min="-10"
                   max="40"
                   value={speed}

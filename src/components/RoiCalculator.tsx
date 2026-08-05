@@ -57,11 +57,11 @@ export default function RoiCalculator() {
             {/* Input 1: Headcount */}
             <div className="space-y-2">
               <div className="flex justify-between items-baseline">
-                <span className="font-sans text-xs font-semibold text-slate-200">Headcount (SME range)</span>
+                <label htmlFor="roi-headcount" className="font-sans text-xs font-semibold text-slate-200">Headcount (SME range)</label>
                 <span className="font-mono text-xs font-bold text-slate-300">{headcount} Employees</span>
               </div>
               <input
-                type="range"
+                id="roi-headcount" type="range"
                 min="20"
                 max="500"
                 value={headcount}
@@ -73,11 +73,11 @@ export default function RoiCalculator() {
             {/* Input 2: Hourly Downtime Cost */}
             <div className="space-y-2">
               <div className="flex justify-between items-baseline">
-                <span className="font-sans text-xs font-semibold text-slate-200">Avg. Hourly Downtime Loss</span>
+                <label htmlFor="roi-hourly-cost" className="font-sans text-xs font-semibold text-slate-200">Avg. Hourly Downtime Loss</label>
                 <span className="font-mono text-xs font-bold text-teal-400">£{hourlyCost.toLocaleString('en-GB')}/Hr</span>
               </div>
               <input
-                type="range"
+                id="roi-hourly-cost" type="range"
                 min="500"
                 max="15000"
                 step="500"
@@ -93,11 +93,11 @@ export default function RoiCalculator() {
             {/* Input 3: Unplanned hours */}
             <div className="space-y-2">
               <div className="flex justify-between items-baseline">
-                <span className="font-sans text-xs font-semibold text-slate-200">Unplanned Stops Per Month</span>
+                <label htmlFor="roi-downtime-hours" className="font-sans text-xs font-semibold text-slate-200">Unplanned Stops Per Month</label>
                 <span className="font-mono text-xs font-bold text-teal-400">{downtimeHours} Hours</span>
               </div>
               <input
-                type="range"
+                id="roi-downtime-hours" type="range"
                 min="1"
                 max="50"
                 value={downtimeHours}
@@ -112,11 +112,11 @@ export default function RoiCalculator() {
             {/* Input 4: Scrap Expense */}
             <div className="space-y-2">
               <div className="flex justify-between items-baseline">
-                <span className="font-sans text-xs font-semibold text-slate-200">Annual Material Scrap / Waste</span>
+                <label htmlFor="roi-annual-scrap" className="font-sans text-xs font-semibold text-slate-200">Annual Material Scrap / Waste</label>
                 <span className="font-mono text-xs font-bold text-teal-400">£{annualScrap.toLocaleString('en-GB')}/Yr</span>
               </div>
               <input
-                type="range"
+                id="roi-annual-scrap" type="range"
                 min="5000"
                 max="500000"
                 step="5000"
