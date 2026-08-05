@@ -174,10 +174,27 @@ function renderInline(text: string, keyPrefix: string) {
      start of a line pairs with the opening "*" of the next **bold** run — the
      regex matches "* *" as italic-containing-a-space, and every emphasis marker
      after it shifts by one, littering the paragraph with stray asterisks. */
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^\s*][^*]*\*)/g);
+  const parts = text.split(/(\[[^\]\n]+\]\(https?:\/\/[^)\s]+\)|\*\*[^*]+\*\*|\*[^\s*][^*]*\*)/g);
 
   parts.forEach((part, i) => {
     if (!part) return;
+    // [label](https://…) — needed so citations render as real links rather
+    // than printing their markdown syntax on the page.
+    const link = /^\[([^\]\n]+)\]\((https?:\/\/[^)\s]+)\)$/.exec(part);
+    if (link) {
+      nodes.push(
+        <a
+          key={`${keyPrefix}-a-${i}`}
+          href={link[2]}
+          target="_blank"
+          rel="noopener"
+          className="text-teal-400 underline underline-offset-2 hover:text-teal-300"
+        >
+          {link[1]}
+        </a>
+      );
+      return;
+    }
     if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
       nodes.push(
         <strong key={`${keyPrefix}-b-${i}`} className="font-semibold text-white">

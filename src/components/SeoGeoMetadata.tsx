@@ -137,14 +137,20 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', description);
 
-    // Keep share titles in sync for in-app navigation, without ever touching
-    // og:url, og:image or the canonical link.
     document
       .querySelector('meta[property="og:title"]')
       ?.setAttribute('content', title);
     document
       .querySelector('meta[name="twitter:title"]')
       ?.setAttribute('content', title);
+
+    /* Per-route canonical. Now that the app uses real paths rather than hash
+       fragments, each view is its own indexable URL and must declare its own
+       canonical, otherwise every page would consolidate onto the homepage. */
+    const path = pageId === 'home' ? '/' : `/${pageId}`;
+    const canonicalUrl = `https://www.inshira.co.uk${path}`;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
 
     // ---- Per-view JSON-LD -------------------------------------------------
     // Written under its own id so the static #inshira-base-jsonld block in
