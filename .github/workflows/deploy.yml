@@ -83,6 +83,11 @@ jobs:
             if [ -f "dist/$f" ]; then echo "ok: $f"; else echo "MISSING: $f"; fail=1; fi
           done
           if [ ! -d dist/assets ]; then echo "MISSING: dist/assets"; fail=1; fi
+          # Each route must exist as a real file so GitHub Pages returns 200
+          # rather than the 404.html bounce, which Google will not index.
+          for r in platform solutions industries case-studies resources about contact; do
+            if [ -f "dist/$r/index.html" ]; then echo "ok: /$r"; else echo "MISSING route: /$r"; fail=1; fi
+          done
           exit $fail
 
       - uses: actions/configure-pages@v5
