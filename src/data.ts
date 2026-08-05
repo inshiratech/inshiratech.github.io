@@ -313,47 +313,47 @@ This evidence-backed approach allows engineering teams to secure executive buy-i
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'precision-automotive-components',
-    title: 'Micro-Stoppages Traced to Coolant Temperature Drift',
-    client: 'Illustrative scenario',
+    title: 'Micro-Stoppages Hiding Behind "General Mechanical Fault"',
+    client: '',
     industry: 'Automotive & Precision Machining',
-    size: 'Modelled on a ~140-employee CNC operation',
-    challenge: 'A common pattern in precision machining: frequent micro-stoppages across multiple CNC lines, where standard BI reporting attributes them to "general mechanical faults" and never surfaces the upstream thermal variance driving accelerated tool wear.',
-    solution: 'Inshira ingests PLC logs and shift scheduling data, then maps tool-tip wear against raw material batches and coolant temperature cycles. In this model, a sustained 2°C fluctuation in coolant delivery accounts for the majority of the stoppage events.',
+    size: 'Typical profile: 100-200 employees, multi-spindle CNC',
+    challenge: 'Frequent micro-stoppages across CNC lines that standard BI reporting logs as "general mechanical faults". The stoppages are recorded, but the upstream thermal variance driving accelerated tool wear never appears in the report, so the same fault recurs indefinitely.',
+    solution: 'We ingest PLC logs alongside shift scheduling data and map tool-tip wear against raw material batches and coolant temperature cycles. Sustained deviations of as little as 2°C in coolant delivery become visible as a distinct causal signature rather than noise.',
     results: {
-      downtimeReduction: 'Unplanned downtime — primary modelled gain',
-      wasteReduction: 'Scrap rate — secondary modelled gain',
-      annualSavings: 'Sized from your own line data',
-      paybackPeriod: 'Modelled per engagement'
+      downtimeReduction: 'Unplanned downtime and micro-stoppages',
+      wasteReduction: 'Tool wear and scrap from out-of-tolerance parts',
+      annualSavings: 'PLC logs, shift schedules, material batch records',
+      paybackPeriod: 'Coolant temperature drift vs tool-tip wear'
     }
   },
   {
     id: 'packaging-solutions-ltd',
-    title: 'Changeover Variance Reduced Through Cool-Down Ramp Control',
-    client: 'Illustrative scenario',
+    title: 'Changeover Variance That Averages Out and Disappears',
+    client: '',
     industry: 'Packaging & Paper Conversion',
-    size: 'Modelled on a ~85-employee converting operation',
-    challenge: 'High-variety production driving four to five grade changes daily, with changeover times fluctuating between 20 and 75 minutes. The variance itself — not the average — is what creates throughput bottlenecks and material scrap.',
-    solution: 'Inshira maps changeover timelines by combining operator logs with extruder temperature profiles, identifies the cool-down ramp patterns associated with the fastest changeovers, and turns them into step-by-step guidance for line operators.',
+    size: 'Typical profile: 50-150 employees, high-variety converting',
+    challenge: 'Four to five grade changes daily with changeover times swinging between 20 and 75 minutes. Because reporting shows the average, the variance itself never becomes visible — yet the variance, not the mean, is what creates the throughput bottleneck and the material scrap.',
+    solution: 'We combine operator logs with extruder temperature profiles to identify which cool-down ramp patterns produce the fastest changeovers, then convert that pattern into repeatable step-by-step guidance for the line.',
     results: {
-      downtimeReduction: 'Line availability — primary modelled gain',
-      wasteReduction: 'Material scrap — secondary modelled gain',
-      annualSavings: 'Sized from your own line data',
-      paybackPeriod: 'Modelled per engagement'
+      downtimeReduction: 'Line availability lost to changeover',
+      wasteReduction: 'Startup scrap during grade transitions',
+      annualSavings: 'Operator logs, extruder temperature profiles',
+      paybackPeriod: 'Cool-down ramp pattern vs changeover duration'
     }
   },
   {
     id: 'premium-beverage-bottlers',
-    title: 'Product Giveaway Isolated to Specific Line Speeds',
-    client: 'Illustrative scenario',
+    title: 'Product Giveaway Invisible to Aggregate OEE',
+    client: '',
     industry: 'Food & Beverage Processing',
-    size: 'Modelled on a ~110-employee filling operation',
-    challenge: 'Unexplained yield loss on high-speed filling lines with modern machinery and OEE stuck around 71%. Aggregate OEE reporting confirms the loss exists but cannot locate where it originates.',
-    solution: 'Inshira unifies filling PLC counts with scale weight data and ERP order schedules, isolating systematic over-filling to particular line speeds and shift handover windows rather than to the machinery itself.',
+    size: 'Typical profile: 80-150 employees, high-speed filling',
+    challenge: 'Yield loss on modern filling lines with OEE stuck in the low seventies. Aggregate OEE confirms the loss is real but cannot say where it originates, so the assumption defaults to machinery when the cause is usually operational.',
+    solution: 'We unify filling PLC counts with scale weight data and ERP order schedules, isolating systematic over-filling to specific line speeds and shift handover windows rather than to the equipment itself.',
     results: {
-      downtimeReduction: 'Changeover delay — primary modelled gain',
-      wasteReduction: 'Product giveaway — secondary modelled gain',
-      annualSavings: 'Sized from your own line data',
-      paybackPeriod: 'Modelled per engagement'
+      downtimeReduction: 'Changeover delay and line stoppage',
+      wasteReduction: 'Product giveaway from systematic over-fill',
+      annualSavings: 'Filling PLC counts, scale weights, ERP schedules',
+      paybackPeriod: 'Line speed and shift handover vs fill weight'
     }
   }
 ];
