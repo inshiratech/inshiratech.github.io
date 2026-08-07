@@ -11,6 +11,13 @@
   <url><loc>https://www.inshira.co.uk/industries</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.inshira.co.uk/case-studies</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.inshira.co.uk/resources</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <!-- Knowledge Hub article permalinks. Each is prerendered to its own
+       index.html so it returns 200 with its own title, description and social
+       preview tags. -->
+  <url><loc>https://www.inshira.co.uk/resources/waste-to-energy-circular-manufacturing</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.inshira.co.uk/resources/what-is-operational-intelligence</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.inshira.co.uk/resources/why-bi-is-not-enough</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.inshira.co.uk/resources/how-to-reduce-manufacturing-downtime</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.inshira.co.uk/about</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.inshira.co.uk/contact</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.inshira.co.uk/privacy.html</loc><lastmod>2026-03-18</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
