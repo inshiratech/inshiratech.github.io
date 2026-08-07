@@ -1,4 +1,4 @@
-import { useState, useMemo, type ReactNode } from 'react';
+import { useState, useMemo, useEffect, type ReactNode } from 'react';
 import { BLOG_POSTS, FAQS } from '../data';
 import { BlogPost } from '../types';
 import {
@@ -12,11 +12,17 @@ import {
   Layers,
   Sparkles,
   HelpCircle,
-  FileText
+  FileText,
+  Linkedin,
+  Link as LinkIcon
 } from 'lucide-react';
 
 interface KnowledgeHubProps {
   onSelectArticle?: (slug: string | undefined) => void;
+  /* Slug resolved from the URL by the router. Lets /resources/<slug> open
+     straight into the article, and keeps the view in sync when the user
+     presses back or forward. */
+  openSlug?: string;
 }
 
 /* ============================================================================
@@ -215,13 +221,27 @@ function renderInline(text: string, keyPrefix: string) {
   return nodes;
 }
 
-export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
+export default function KnowledgeHub({ onSelectArticle, openSlug }: KnowledgeHubProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [readingPost, setReadingPost] = useState<BlogPost | null>(null);
   const [digestEmail, setDigestEmail] = useState('');
   const [digestState, setDigestState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
+  const [copied, setCopied] = useState(false);
+
+  /* Keep the open article in step with the URL. This covers three cases the
+     click handler alone does not: a deep link straight to
+     /resources/<slug>, the browser Back/Forward buttons, and a result opened
+     from the global search. */
+  useEffect(() => {
+    if (!openSlug) {
+      setReadingPost(null);
+      return;
+    }
+    const post = BLOG_POSTS.find((p) => p.slug === openSlug);
+    setReadingPost(post ?? null);
+  }, [openSlug]);
 
   // Categories extraction
   const categories = useMemo(() => {
@@ -246,11 +266,19 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
     if (onSelectArticle) {
       onSelectArticle(post.slug);
     }
+    // Give the article its own address so it can be copied out of the address
+    // bar and shared. pushState (not replaceState) so Back returns to the hub.
+    if (window.location.pathname !== `/resources/${post.slug}`) {
+      window.history.pushState(null, '', `/resources/${post.slug}`);
+    }
     window.scrollTo({ top: 300, behavior: 'smooth' });
   };
 
   const handleBackToGrid = () => {
     setReadingPost(null);
+    if (window.location.pathname !== '/resources') {
+      window.history.pushState(null, '', '/resources');
+    }
     // Clear the article slug too, otherwise the article's title, description
     // and BlogPosting schema would stay applied to the Knowledge Hub index.
     if (onSelectArticle) {
@@ -301,12 +329,49 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
       {readingPost ? (
         /* Expanded Article View with elegant markdown styling */
         <article id="expanded-article" className="bg-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
-          <button
-            onClick={handleBackToGrid}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-white font-mono text-[12px] font-bold border border-slate-800 transition-colors"
-          >
-            ← Back to Library
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={handleBackToGrid}
+              className="flex items-center gap-2 min-h-[32px] px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-white font-mono text-[12px] font-bold border border-slate-800 transition-colors"
+            >
+              ← Back to Library
+            </button>
+
+            {/* Share controls. The article now has a real permalink, so these
+                just point at window.location — no hand-built URLs to drift. */}
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                `https://www.inshira.co.uk/resources/${readingPost.slug}`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 min-h-[32px] px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-teal-400 font-mono text-[12px] font-bold border border-slate-800 transition-colors"
+            >
+              <Linkedin className="w-3.5 h-3.5 shrink-0" />
+              Share
+            </a>
+
+            <button
+              type="button"
+              onClick={async () => {
+                const url = `https://www.inshira.co.uk/resources/${readingPost.slug}`;
+                try {
+                  await navigator.clipboard.writeText(url);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                } catch {
+                  // Clipboard can be blocked (permissions, insecure context).
+                  // Say so rather than silently appearing to succeed.
+                  setCopied(false);
+                }
+              }}
+              className="flex items-center gap-2 min-h-[32px] px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-white font-mono text-[12px] font-bold border border-slate-800 transition-colors"
+              aria-live="polite"
+            >
+              <LinkIcon className="w-3.5 h-3.5 shrink-0" />
+              {copied ? 'Link copied' : 'Copy link'}
+            </button>
+          </div>
 
           <div className="space-y-4">
             <span className="px-3 py-1 rounded bg-teal-500/10 border border-teal-500/20 font-mono text-[12px] text-teal-400 uppercase font-bold">
