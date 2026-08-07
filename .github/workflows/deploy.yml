@@ -60,7 +60,11 @@ jobs:
           # Legal pages stay as real static files, not SPA routes.
           cp privacy.html terms.html dist/
           # Crawler and domain configuration.
-          cp robots.txt sitemap.xml CNAME dist/
+          # NOTE: sitemap.xml is deliberately NOT copied here. It is generated
+          # into dist/ by scripts/prerender.mjs from the route list and
+          # src/data.ts, so it can never fall out of step with what was built.
+          # Copying a hand-written file over it would silently undo that.
+          cp robots.txt CNAME dist/
 
       - name: Verify SEO survived the build
         run: |
@@ -87,6 +91,26 @@ jobs:
           # rather than the 404.html bounce, which Google will not index.
           for r in platform solutions industries case-studies resources about contact; do
             if [ -f "dist/$r/index.html" ]; then echo "ok: /$r"; else echo "MISSING route: /$r"; fail=1; fi
+          done
+
+          # Every article in src/data.ts must have been prerendered to its own
+          # page AND listed in the generated sitemap. This is the check that
+          # catches a new article silently failing to get a shareable URL —
+          # for example if its slug or metaTitle were reformatted in a way the
+          # prerender parser cannot read.
+          slugs=$(grep -oE "^    slug: '[^']+'" src/data.ts | sed "s/^    slug: '//; s/'$//")
+          if [ -z "$slugs" ]; then echo "MISSING: no article slugs parsed"; fail=1; fi
+          for s in $slugs; do
+            if [ -f "dist/resources/$s/index.html" ]; then
+              echo "ok: /resources/$s"
+            else
+              echo "MISSING article page: /resources/$s"; fail=1
+            fi
+            if grep -qF "/resources/$s<" dist/sitemap.xml; then
+              echo "ok: sitemap lists /resources/$s"
+            else
+              echo "MISSING from sitemap: /resources/$s"; fail=1
+            fi
           done
           exit $fail
 
