@@ -1,6 +1,17 @@
 import { useEffect } from 'react';
 import { PageId } from '../types';
 import { BLOG_POSTS } from '../data';
+import {
+  HARRIS_ID,
+  HARRIS_PAGE,
+  HARRIS_NAME,
+  HARRIS_ROLE,
+  HARRIS_CREDENTIALS,
+  HARRIS_IMAGE,
+  HARRIS_SAME_AS,
+  HARRIS_ORCID,
+  HARRIS_ORCID_ID,
+} from '../identity';
 
 /* ============================================================================
    SEO / GEO METADATA
@@ -183,14 +194,67 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
           'https://x.com/inshiraltd',
           'https://github.com/inshiratech',
         ],
+        /* Links the company entity to the person entity below. Without this,
+           Google sees a company and a person on the same domain but has no
+           stated relationship between them. */
+        founder: { '@id': HARRIS_ID },
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'Sales',
           email: 'info@inshira.co.uk',
-          url: 'https://www.inshira.co.uk/#/contact',
+          /* Was '/#/contact' — a leftover from the removed hash router that
+             pointed at a URL which no longer exists. */
+          url: 'https://www.inshira.co.uk/contact',
           areaServed: 'GB',
           availableLanguage: 'English',
         },
+      },
+      /* ---- Person entity ---------------------------------------------------
+         Declares Dr. Mohammad Harris as a single, stable node (@id) and asserts
+         via sameAs which external profiles are the same individual. This is
+         what lets Google connect inshira.co.uk to his LinkedIn, ORCID and the
+         University of Hertfordshire alumni feature, rather than treating them
+         as unrelated pages that happen to share a common name — which matters
+         because "Mohammad Harris" is not a distinctive name and there are many
+         other people using it on LinkedIn. */
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        '@id': HARRIS_ID,
+        name: HARRIS_NAME,
+        honorificPrefix: 'Dr',
+        honorificSuffix: HARRIS_CREDENTIALS,
+        jobTitle: HARRIS_ROLE,
+        url: HARRIS_PAGE,
+        image: HARRIS_IMAGE,
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Inshira Technologies',
+          url: 'https://www.inshira.co.uk',
+        },
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'University of Hertfordshire',
+          url: 'https://www.herts.ac.uk',
+        },
+        knowsAbout: [
+          'Sustainable manufacturing',
+          'Circular economy',
+          'Manufacturing analytics',
+          'Machine learning for production systems',
+          'Thermal management',
+          'Industry 4.0',
+        ],
+        /* ORCID stated as a formal identifier as well as in sameAs. sameAs says
+           "this page is also him"; identifier says "he IS this registry
+           record", which is the stronger and more machine-usable claim. */
+        identifier: {
+          '@type': 'PropertyValue',
+          propertyID: 'ORCID',
+          value: HARRIS_ORCID_ID,
+          url: HARRIS_ORCID,
+        },
+        sameAs: HARRIS_SAME_AS,
       },
     ];
 
@@ -211,18 +275,26 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
         dateModified: article.dateModifiedISO,
         wordCount: article.content.trim().split(/\s+/).length,
         image: article.image,
+        /* Was '/#/resources' — another hash-router leftover. The @id must be a
+           URL that actually resolves, otherwise the BlogPosting is anchored to
+           a page Google cannot fetch. */
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `https://www.inshira.co.uk/#/resources`,
+          '@id': 'https://www.inshira.co.uk/resources',
         },
         /* Every named author, so co-written pieces credit both people.
            schema.org accepts either a single Person or an array. */
         author: [article.author, ...(article.coAuthors ?? [])].map((person) => ({
           '@type': 'Person',
+          /* Reuse the site-wide @id where the author has one, so an article
+             byline resolves to the same entity as the Person node above rather
+             than minting a new person for every post. */
+          ...(person.id ? { '@id': person.id } : {}),
           name: person.name,
           jobTitle: person.role,
           honorificSuffix: person.credentials,
           url: person.url,
+          ...(person.sameAs?.length ? { sameAs: person.sameAs } : {}),
           worksFor: {
             '@type': 'Organization',
             name: 'Inshira Technologies',
