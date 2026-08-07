@@ -193,16 +193,23 @@ export default function InteractiveDigitalTwin() {
 
       {/* Header Banner */}
       <div className="bg-slate-950 px-6 py-5 border-b border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative z-10">
-        <div className="flex items-center gap-3">
+        {/* items-start on mobile: the badge wraps to two lines at 390px, and
+            with items-center the icon was vertically centred against the whole
+            115px text block — leaving it floating beside the middle of the
+            text instead of lining up with the label. min-w-0 lets the text
+            column shrink instead of forcing the row wider than the card. */}
+        <div className="flex items-start sm:items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-teal-400 shrink-0">
             <Gauge className="w-5 h-5 text-teal-500" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
+          <div className="min-w-0">
+            {/* flex-wrap keeps the status dot attached to the badge rather than
+                being pushed to the far right when the badge wraps. */}
+            <div className="flex flex-wrap items-center gap-2">
               <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded border border-white/10">
                 Decision Intelligence Module
               </span>
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shrink-0"></span>
             </div>
             <h4 className="font-display text-base font-bold text-white uppercase tracking-wider mt-0.5">
               Interactive Scenario Modeling & "What-If" Simulator
