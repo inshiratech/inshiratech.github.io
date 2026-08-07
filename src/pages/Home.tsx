@@ -426,7 +426,10 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
               <p className="font-sans text-xs text-slate-400 leading-relaxed">
                 Inshira complements your team instead of replacing them. It integrates directly with standard operator shifts and engineering routines, matching real-world behavior to identify unlogged bottleneck causes within days.
               </p>
-              <div className="border-t border-white/5 pt-4 flex items-center justify-between relative z-10">
+              {/* items-start below sm: one of these two columns wraps to an
+                  extra line on narrow phones, and centring left the shorter
+                  column floating against the middle of the taller one. */}
+              <div className="border-t border-white/5 pt-4 flex items-start sm:items-center justify-between gap-3 relative z-10">
                 <div>
                   <span className="font-mono text-[12px] text-slate-500 uppercase block">Implementation Style</span>
                   <span className="font-display text-xs font-bold text-white block mt-0.5">Software Overlay</span>
@@ -680,8 +683,11 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
               Click through the maturity phases on the right to discover estimated annual cash recovery potentials, primary process gaps, and how Inshira provides the roadmap to Level 5 Excellence.
             </p>
 
-            <div className="p-4 bg-slate-950 border border-white/5 rounded-2xl flex items-center gap-3">
-              <Award className="w-5 h-5 text-teal-400 shrink-0" />
+            {/* The label beside this icon wraps on phones; items-start keeps
+                the award icon on the first line instead of drifting to the
+                vertical middle of the block. */}
+            <div className="p-4 bg-slate-950 border border-white/5 rounded-2xl flex items-start sm:items-center gap-3">
+              <Award className="w-5 h-5 text-teal-400 shrink-0 mt-0.5 sm:mt-0" />
               <div>
                 <span className="font-mono text-[12px] text-slate-500 uppercase block font-bold">UK/EU High-Mix Average</span>
                 <span className="font-sans text-xs font-semibold text-white">Most advanced plants stall at Level 2.6 (Logged) due to spreadsheet fatigue.</span>
@@ -970,8 +976,11 @@ export default function HomePage({ setCurrentPage }: HomeProps) {
             </div>
 
             {/* Simulated Live Plant Feed */}
-            <div className="p-3 bg-black/60 rounded-xl border border-white/5 flex items-center gap-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+            {/* This feed line runs to three lines on a phone. mt-1.5 keeps the
+                status dot optically centred on the FIRST line rather than the
+                middle of the whole paragraph. */}
+            <div className="p-3 bg-black/60 rounded-xl border border-white/5 flex items-start sm:items-center gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0 mt-1.5 sm:mt-0"></div>
               <span className="font-mono text-[12px] text-slate-500">
                 ACTIVE PIPELINE: Extruder thermal cycle log unified with Shift B setter roster.
               </span>
