@@ -35,21 +35,85 @@ const swapTag = (html, pattern, replacement) => {
   return html.replace(pattern, replacement);
 };
 
-let count = 0;
-for (const route of ROUTES) {
-  const url = `${ORIGIN}/${route.path}`;
+/* ----------------------------------------------------------------------------
+   ARTICLE PERMALINKS
+
+   Knowledge Hub articles live at /resources/<slug>. They are the pages most
+   likely to be shared, and social crawlers do NOT execute JavaScript: LinkedIn,
+   Slack and X read the raw HTML only. Without a prerendered file per article,
+   every share would fall back to the generic site title, description and image
+   no matter which article was linked.
+
+   Article copy is the single source of truth in src/data.ts, so it is parsed
+   here rather than duplicated — a stale copy of a headline is worse than none.
+   -------------------------------------------------------------------------- */
+const dataSrc = readFileSync(join('src', 'data.ts'), 'utf8');
+
+const field = (block, name) => {
+  const m = block.match(new RegExp(`\\n\\s{4}${name}:\\s*'((?:[^'\\\\]|\\\\.)*)'`));
+  return m ? m[1].replace(/\\'/g, "'").replace(/\\\\/g, '\\') : null;
+};
+
+const postBlocks = dataSrc
+  .slice(dataSrc.indexOf('export const BLOG_POSTS'), dataSrc.indexOf('export const CASE_STUDIES'))
+  .split(/\n  \{\n/)
+  .slice(1);
+
+const ARTICLES = postBlocks
+  .map((block) => ({
+    slug: field(block, 'slug'),
+    title: field(block, 'metaTitle'),
+    description: field(block, 'metaDescription'),
+    image: field(block, 'image'),
+  }))
+  .filter((a) => a.slug && a.title && a.description);
+
+if (ARTICLES.length === 0) {
+  throw new Error('prerender: parsed 0 articles from src/data.ts — check the BLOG_POSTS shape');
+}
+
+const escapeAttr = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+
+const emit = ({ path, title, description, image, type }) => {
+  const url = `${ORIGIN}/${path}`;
   let html = shell;
 
-  html = swapTag(html, /<title>[\s\S]*?<\/title>/, `<title>${route.title}</title>`);
-  html = swapTag(html, /(<meta name="description" content=")[^"]*(")/, `$1${route.description}$2`);
+  html = swapTag(html, /<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
+  html = swapTag(html, /(<meta name="description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`);
   html = swapTag(html, /(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`);
   html = swapTag(html, /(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`);
-  html = swapTag(html, /(<meta property="og:title" content=")[^"]*(")/, `$1${route.title}$2`);
-  html = swapTag(html, /(<meta name="twitter:title" content=")[^"]*(")/, `$1${route.title}$2`);
+  html = swapTag(html, /(<meta property="og:title" content=")[^"]*(")/, `$1${escapeAttr(title)}$2`);
+  html = swapTag(html, /(<meta property="og:description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`);
+  html = swapTag(html, /(<meta name="twitter:title" content=")[^"]*(")/, `$1${escapeAttr(title)}$2`);
+  html = swapTag(html, /(<meta name="twitter:description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`);
+  if (type) {
+    html = swapTag(html, /(<meta property="og:type" content=")[^"]*(")/, `$1${type}$2`);
+  }
+  if (image) {
+    html = swapTag(html, /(<meta property="og:image" content=")[^"]*(")/, `$1${image}$2`);
+    html = swapTag(html, /(<meta name="twitter:image" content=")[^"]*(")/, `$1${image}$2`);
+  }
 
-  mkdirSync(join(DIST, route.path), { recursive: true });
-  writeFileSync(join(DIST, route.path, 'index.html'), html);
+  mkdirSync(join(DIST, path), { recursive: true });
+  writeFileSync(join(DIST, path, 'index.html'), html);
+};
+
+let count = 0;
+for (const route of ROUTES) {
+  emit({ path: route.path, title: route.title, description: route.description });
   count++;
 }
 
-console.log(`prerender: emitted ${count} static routes`);
+let articleCount = 0;
+for (const article of ARTICLES) {
+  emit({
+    path: `resources/${article.slug}`,
+    title: article.title,
+    description: article.description,
+    image: article.image,
+    type: 'article',
+  });
+  articleCount++;
+}
+
+console.log(`prerender: emitted ${count} static routes and ${articleCount} article permalinks`);
