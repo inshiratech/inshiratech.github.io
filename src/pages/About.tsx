@@ -30,8 +30,10 @@ import {
   Check,
   Expand,
   ArrowUpRight,
-  Workflow
+  Workflow,
+  Linkedin
 } from 'lucide-react';
+import { HARRIS_LINKEDIN } from '../identity';
 
 interface ValueCard {
   title: string;
@@ -55,6 +57,11 @@ interface TeamMember {
      on the previous site. */
   photo?: string;
   group: 'Core Leadership' | 'Operations & Growth' | 'Advisory Board';
+  /* Personal LinkedIn. Rendered as a real anchor rather than living only in
+     JSON-LD: structured data tells a crawler two profiles are the same person,
+     but an actual outbound link is the signal users and crawlers both follow.
+     Only added for people who have confirmed the URL is current. */
+  linkedin?: string;
 }
 
 export default function AboutPage() {
@@ -211,7 +218,8 @@ export default function AboutPage() {
       icon: Cpu,
       gradColor: 'from-teal-500/10 to-blue-500/5',
       photo: '/assets/FLARE 2026 051.JPG',
-      group: 'Core Leadership'
+      group: 'Core Leadership',
+      linkedin: HARRIS_LINKEDIN
     },
     {
       name: 'Fatema Tuj Jahura',
@@ -793,6 +801,23 @@ export default function AboutPage() {
                   <p className="font-sans text-xs text-slate-400 leading-relaxed">
                     {member.experience}
                   </p>
+
+                  {/* The surrounding card is itself a click target (it expands
+                      the bio), so this anchor must stop propagation or clicking
+                      the link would also toggle the card underneath it. */}
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="me noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      aria-label={`${member.name} on LinkedIn (opens in a new tab)`}
+                      className="inline-flex items-center gap-1.5 min-h-[24px] px-2 py-1 -ml-2 rounded-lg font-mono text-[12px] font-bold uppercase tracking-wider text-slate-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"
+                    >
+                      <Linkedin className="w-3.5 h-3.5 shrink-0" />
+                      LinkedIn
+                    </a>
+                  )}
 
                 </div>
 
