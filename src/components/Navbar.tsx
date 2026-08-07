@@ -51,6 +51,25 @@ export default function Navbar({ currentPage, setCurrentPage, onSearchOpen }: Na
       id="main-nav-header"
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none px-3 sm:px-6 pt-3"
     >
+      {/*
+        BACKDROP FOR THE FLOATING ISLAND.
+
+        The navbar is a centred pill with a 12px gap above it (pt-3) and 12px
+        margins either side (px-3). The <header> itself has no background, so
+        on small screens page content scrolled straight through those gaps and
+        was painted in the strip ABOVE the pill — making body text look like it
+        was sitting on top of the navigation.
+
+        This layer sits behind the pill (-z-10 keeps it under the nav but still
+        inside the header's z-50 stacking context, so it covers page content)
+        and fades from the page background to transparent, hiding anything in
+        the gap while preserving the floating look.
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 -z-10 h-[calc(100%+2rem)] bg-gradient-to-b from-slate-950 via-slate-950/95 to-transparent"
+      />
+
       {/* Scroll Progress Bar at the top edge */}
       <div className="fixed top-0 left-0 right-0 h-[2px] bg-white/5 z-50">
         <div
