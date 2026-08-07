@@ -268,7 +268,11 @@ export default function FuturePipeline() {
           {/* Left Column: Product Narrative & Capabilities */}
           <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
+              {/* flex-wrap: the category pill is whitespace-nowrap, so at
+                  390px the roadmap label next to it wrapped and the two ended
+                  up misaligned by ~22px. Wrapping puts them on separate lines
+                  cleanly instead. */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                 <span className="font-mono text-[12px] bg-teal-500/10 text-teal-400 px-3 py-1 rounded-full border border-teal-500/20 uppercase font-bold tracking-widest whitespace-nowrap">
                   {current.category}
                 </span>
