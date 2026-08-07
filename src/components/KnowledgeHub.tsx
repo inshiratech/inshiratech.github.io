@@ -339,6 +339,21 @@ export default function KnowledgeHub({ onSelectArticle }: KnowledgeHubProps) {
                       )}
                     </span>
                     <span className="font-sans text-[12px] text-slate-500 block">{person.role}</span>
+                    {/* Byline link to the author's own profile. rel="me" is the
+                        established way to say "this other page is also me",
+                        which is exactly the claim we want a crawler to read
+                        here. Rendered only when a verified URL exists. */}
+                    {person.profileUrl && (
+                      <a
+                        href={person.profileUrl}
+                        target="_blank"
+                        rel="me author noopener noreferrer"
+                        aria-label={`${person.name} on ${person.profileLabel ?? 'LinkedIn'} (opens in a new tab)`}
+                        className="inline-flex items-center min-h-[24px] py-0.5 font-mono text-[12px] font-bold uppercase tracking-wider text-slate-500 hover:text-teal-400 transition-colors"
+                      >
+                        {person.profileLabel ?? 'LinkedIn'}
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
