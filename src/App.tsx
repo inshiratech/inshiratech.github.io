@@ -56,8 +56,34 @@ export default function App() {
       }
 
       const slug = window.location.pathname.replace(/^\/+|\/+$/g, '');
-      if (!slug) return setCurrentPage('home');
-      if (VALID_PAGES.includes(slug as PageId)) return setCurrentPage(slug as PageId);
+      if (!slug) {
+        setSelectedArticleSlug(undefined);
+        return setCurrentPage('home');
+      }
+
+      /* Article permalinks: /resources/<article-slug>.
+         Each Knowledge Hub article needs its own URL so it can be shared and
+         so crawlers (LinkedIn, Google) have something to read — they do not
+         run JavaScript, so an article held in React state alone is invisible
+         to them and every share would show the generic site preview. */
+      const articleMatch = slug.match(/^resources\/(.+)$/);
+      if (articleMatch) {
+        const post = BLOG_POSTS.find((p) => p.slug === articleMatch[1]);
+        if (post) {
+          setSelectedArticleSlug(post.slug);
+          return setCurrentPage('resources');
+        }
+        // Unknown article slug: fall back to the hub rather than the homepage,
+        // which is the closest useful page.
+        setSelectedArticleSlug(undefined);
+        return setCurrentPage('resources');
+      }
+
+      if (VALID_PAGES.includes(slug as PageId)) {
+        setSelectedArticleSlug(undefined);
+        return setCurrentPage(slug as PageId);
+      }
+      setSelectedArticleSlug(undefined);
       setCurrentPage('home');
     };
 
@@ -90,7 +116,12 @@ export default function App() {
     setSelectedArticleSlug(slug);
     setSearchOpen(false);
     setSearchQuery('');
-    navigateToPage('resources');
+    setCurrentPage('resources');
+    // Push the article's own permalink, not /resources — otherwise opening a
+    // result from search would leave the address bar on the hub index and the
+    // link would be unshareable.
+    window.history.pushState(null, '', `/resources/${slug}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCtaClick = () => {
@@ -110,7 +141,12 @@ export default function App() {
       case 'case-studies':
         return <CaseStudiesPage onCtaClick={handleCtaClick} />;
       case 'resources':
-        return <KnowledgeHub onSelectArticle={(slug) => setSelectedArticleSlug(slug)} />;
+        return (
+          <KnowledgeHub
+            openSlug={selectedArticleSlug}
+            onSelectArticle={(slug) => setSelectedArticleSlug(slug)}
+          />
+        );
       case 'about':
         return <AboutPage />;
       case 'contact':
