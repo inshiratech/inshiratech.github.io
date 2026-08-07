@@ -198,7 +198,7 @@ export default function InteractiveDigitalTwin() {
             115px text block — leaving it floating beside the middle of the
             text instead of lining up with the label. min-w-0 lets the text
             column shrink instead of forcing the row wider than the card. */}
-        <div className="flex items-start sm:items-center gap-3">
+        <div className="flex items-start lg:items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-teal-400 shrink-0">
             <Gauge className="w-5 h-5 text-teal-500" />
           </div>
