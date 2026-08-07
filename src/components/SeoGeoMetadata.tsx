@@ -148,20 +148,42 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', description);
 
-    document
-      .querySelector('meta[property="og:title"]')
-      ?.setAttribute('content', title);
-    document
-      .querySelector('meta[name="twitter:title"]')
-      ?.setAttribute('content', title);
+    /* og:title and twitter:title are set below alongside the other social
+       tags, so they are all applied in one place. */
 
     /* Per-route canonical. Now that the app uses real paths rather than hash
        fragments, each view is its own indexable URL and must declare its own
        canonical, otherwise every page would consolidate onto the homepage. */
-    const path = pageId === 'home' ? '/' : `/${pageId}`;
+    /* An open article has its own permalink (/resources/<slug>), so it must
+       canonicalise to that and not to the hub index — otherwise all four
+       articles would consolidate onto /resources and none could rank or be
+       shared as a distinct page. */
+    const path = article
+      ? `/resources/${article.slug}`
+      : pageId === 'home'
+        ? '/'
+        : `/${pageId}`;
     const canonicalUrl = `https://www.inshira.co.uk${path}`;
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
+
+    /* Social preview tags. LinkedIn and X read these, not the DOM, so they
+       must reflect whichever article is open. og:type flips to "article" so
+       the card renders as a post rather than a company page. */
+    const og = (prop: string, value: string) =>
+      document.querySelector(`meta[property="${prop}"]`)?.setAttribute('content', value);
+    const tw = (name: string, value: string) =>
+      document.querySelector(`meta[name="${name}"]`)?.setAttribute('content', value);
+
+    og('og:title', title);
+    og('og:description', description);
+    og('og:type', article ? 'article' : 'website');
+    tw('twitter:title', title);
+    tw('twitter:description', description);
+    if (article?.image) {
+      og('og:image', article.image);
+      tw('twitter:image', article.image);
+    }
 
     // ---- Per-view JSON-LD -------------------------------------------------
     // Written under its own id so the static #inshira-base-jsonld block in
