@@ -334,8 +334,8 @@ export default function DashboardMockup() {
       <div id="mockup-header" className="bg-slate-900/80 px-4 sm:px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
         {/* The overlay label wraps on narrow phones; anchor the live dot to
             the first line instead of the middle of the wrapped block. */}
-        <div className="flex items-start sm:items-center gap-2.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse shrink-0 mt-1 sm:mt-0" />
+        <div className="flex items-start lg:items-center gap-2.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse shrink-0 mt-1 lg:mt-0" />
           <div>
             <span className="font-mono text-[12px] text-teal-400 font-bold uppercase tracking-widest block">Live Simulated Inshira Overlay</span>
             <h4 className="font-display text-sm sm:text-base font-bold text-white uppercase tracking-wider">Operational Decision Support Layer</h4>
@@ -611,7 +611,9 @@ export default function DashboardMockup() {
                     <p className="font-sans text-[12px] text-slate-400 leading-relaxed mt-1.5">
                       {rec.desc}
                     </p>
-                    <div className="flex items-center justify-between pt-2 mt-1.5 border-t border-white/5">
+                    {/* The confidence label wraps at 320px, which left it
+                        misaligned against the action button beside it. */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 pt-2 mt-1.5 border-t border-white/5">
                       <span className="font-mono text-[12px] text-slate-500 font-medium">
                         {rec.confidence}
                       </span>
