@@ -1,4 +1,5 @@
 import { BlogPost, CaseStudy, FAQItem, ScenarioImpact } from './types';
+import { HARRIS_ID, HARRIS_SAME_AS, HARRIS_LINKEDIN } from './identity';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
@@ -20,7 +21,11 @@ export const BLOG_POSTS: BlogPost[] = [
       name: 'Dr. Mohammad Harris',
       role: 'Founder & Managing Director, Inshira Technologies',
       credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
-      url: 'https://www.inshira.co.uk/#/about',
+      url: 'https://www.inshira.co.uk/about',
+      id: HARRIS_ID,
+      sameAs: HARRIS_SAME_AS,
+      profileUrl: HARRIS_LINKEDIN,
+      profileLabel: 'LinkedIn',
       avatar: '/assets/FLARE 2026 051.JPG'
     },
     coAuthors: [
@@ -28,7 +33,7 @@ export const BLOG_POSTS: BlogPost[] = [
         name: 'Van Nguyen',
         role: 'Market Development Lead (Vietnam), Inshira Technologies',
         credentials: 'MSc, BSc',
-        url: 'https://www.inshira.co.uk/#/about',
+        url: 'https://www.inshira.co.uk/about',
         avatar: '/assets/van.jpeg'
       }
     ],
@@ -144,7 +149,11 @@ The conclusion we keep returning to is unglamorous but consistent: **the cheapes
       name: 'Dr. Mohammad Harris',
       role: 'Founder & Managing Director, Inshira Technologies',
       credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
-      url: 'https://www.inshira.co.uk/#/about',
+      url: 'https://www.inshira.co.uk/about',
+      id: HARRIS_ID,
+      sameAs: HARRIS_SAME_AS,
+      profileUrl: HARRIS_LINKEDIN,
+      profileLabel: 'LinkedIn',
       avatar: '/assets/FLARE 2026 051.JPG'
     },
     content: `
@@ -212,7 +221,11 @@ By converting raw factory data into clear, quantified continuous improvement tar
       name: 'Dr. Mohammad Harris',
       role: 'Founder & Managing Director, Inshira Technologies',
       credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
-      url: 'https://www.inshira.co.uk/#/about',
+      url: 'https://www.inshira.co.uk/about',
+      id: HARRIS_ID,
+      sameAs: HARRIS_SAME_AS,
+      profileUrl: HARRIS_LINKEDIN,
+      profileLabel: 'LinkedIn',
       avatar: '/assets/FLARE 2026 051.JPG'
     },
     content: `
@@ -275,7 +288,11 @@ This transforms factory analytics from a reactive, administrative report into an
       name: 'Dr. Mohammad Harris',
       role: 'Founder & Managing Director, Inshira Technologies',
       credentials: 'PhD, MRes, BEng (Hons), FHEA, MIET',
-      url: 'https://www.inshira.co.uk/#/about',
+      url: 'https://www.inshira.co.uk/about',
+      id: HARRIS_ID,
+      sameAs: HARRIS_SAME_AS,
+      profileUrl: HARRIS_LINKEDIN,
+      profileLabel: 'LinkedIn',
       avatar: '/assets/FLARE 2026 051.JPG'
     },
     content: `
