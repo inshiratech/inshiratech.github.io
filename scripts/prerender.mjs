@@ -65,6 +65,7 @@ const ARTICLES = postBlocks
     title: field(block, 'metaTitle'),
     description: field(block, 'metaDescription'),
     image: field(block, 'image'),
+    lastmod: field(block, 'dateModifiedISO'),
   }))
   .filter((a) => a.slug && a.title && a.description);
 
@@ -116,4 +117,72 @@ for (const article of ARTICLES) {
   articleCount++;
 }
 
-console.log(`prerender: emitted ${count} static routes and ${articleCount} article permalinks`);
+/* ----------------------------------------------------------------------------
+   SITEMAP
+
+   Generated rather than hand-maintained. A sitemap that has to be edited by
+   hand is the step everyone forgets, and a missing entry means Google may
+   simply never discover a new article. Because this runs off the same ROUTES
+   list and the same src/data.ts as the pages above, the sitemap cannot drift
+   out of step with what was actually built.
+
+   lastmod for articles comes from dateModifiedISO, so editing an article
+   updates its date honestly. Static pages carry fixed dates below — deliberately
+   NOT the build date, because stamping "changed today" on every page at every
+   deploy is a false signal and crawlers learn to ignore it.
+   -------------------------------------------------------------------------- */
+const SITEMAP_META = {
+  '':             { lastmod: '2026-08-05', changefreq: 'weekly',  priority: '1.0' },
+  'platform':     { lastmod: '2026-08-05', changefreq: 'monthly', priority: '0.9' },
+  'solutions':    { lastmod: '2026-08-05', changefreq: 'monthly', priority: '0.9' },
+  'industries':   { lastmod: '2026-08-05', changefreq: 'monthly', priority: '0.8' },
+  'case-studies': { lastmod: '2026-08-05', changefreq: 'monthly', priority: '0.8' },
+  'resources':    { lastmod: '2026-08-05', changefreq: 'weekly',  priority: '0.9' },
+  'about':        { lastmod: '2026-08-05', changefreq: 'monthly', priority: '0.7' },
+  'contact':      { lastmod: '2026-08-05', changefreq: 'monthly', priority: '0.8' },
+  'privacy.html': { lastmod: '2026-03-18', changefreq: 'yearly',  priority: '0.3' },
+  'terms.html':   { lastmod: '2026-03-18', changefreq: 'yearly',  priority: '0.3' },
+};
+
+const urlEntry = (path, meta) =>
+  `  <url><loc>${ORIGIN}/${path}</loc><lastmod>${meta.lastmod}</lastmod>` +
+  `<changefreq>${meta.changefreq}</changefreq><priority>${meta.priority}</priority></url>`;
+
+const sitemapUrls = [
+  urlEntry('', SITEMAP_META['']),
+  ...ROUTES.map((r) => urlEntry(r.path, SITEMAP_META[r.path])),
+  ...ARTICLES.map((a) =>
+    urlEntry(`resources/${a.slug}`, {
+      lastmod: a.lastmod || SITEMAP_META['resources'].lastmod,
+      changefreq: 'monthly',
+      priority: '0.8',
+    })
+  ),
+  urlEntry('privacy.html', SITEMAP_META['privacy.html']),
+  urlEntry('terms.html', SITEMAP_META['terms.html']),
+];
+
+const missingMeta = ROUTES.filter((r) => !SITEMAP_META[r.path]).map((r) => r.path);
+if (missingMeta.length) {
+  throw new Error(`prerender: no SITEMAP_META for route(s): ${missingMeta.join(', ')}`);
+}
+
+writeFileSync(
+  join(DIST, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GENERATED FILE — do not edit by hand.
+  Produced by scripts/prerender.mjs from the ROUTES list and src/data.ts on
+  every build. To add an article, add it to BLOG_POSTS in src/data.ts; it will
+  appear here automatically.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.join('\n')}
+</urlset>
+`
+);
+
+console.log(
+  `prerender: emitted ${count} static routes, ${articleCount} article permalinks, ` +
+    `sitemap with ${sitemapUrls.length} URLs`
+);
