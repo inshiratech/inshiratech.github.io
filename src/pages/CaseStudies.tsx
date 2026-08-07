@@ -110,9 +110,13 @@ export default function CaseStudiesPage({ onCtaClick }: CaseStudiesProps) {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-900 flex justify-between items-center gap-3 text-[12px] font-mono">
+              {/* items-start: the signal value wraps to 2-3 lines at mobile
+                  widths, and items-center left the "Signal:" label floating
+                  beside the middle of it rather than aligned to its first
+                  line. */}
+              <div className="pt-4 border-t border-slate-900 flex justify-between items-start gap-3 text-[12px] font-mono">
                 <span className="text-slate-500 uppercase shrink-0">Signal:</span>
-                <span className="text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800 text-right">
+                <span className="min-w-0 text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800 text-right">
                   {study.results.paybackPeriod}
                 </span>
               </div>
