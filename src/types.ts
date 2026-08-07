@@ -18,6 +18,19 @@ export interface Author {
      E-E-A-T (experience, expertise, authoritativeness, trust). */
   credentials?: string;
   url?: string;
+  /* Stable schema.org @id. When set, the author in an article's JSON-LD is
+     the SAME node as the Person entity declared site-wide, instead of a fresh
+     anonymous person per article. Without it Google sees five unconnected
+     people who happen to share a name. */
+  id?: string;
+  /* External profiles that are verifiably the same person. See src/identity.ts
+     for the rule on what may go in here. */
+  sameAs?: string[];
+  /* The one profile surfaced as a visible byline link, named explicitly rather
+     than taken from sameAs[0] — sameAs is ordered by evidential strength (ORCID
+     first), which is not the same as which profile a reader wants to click. */
+  profileUrl?: string;
+  profileLabel?: string;
 }
 
 export interface BlogPost {
