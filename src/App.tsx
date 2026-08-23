@@ -52,7 +52,7 @@ export default function App() {
       // indexed) are rewritten to the equivalent real path.
       const legacy = window.location.hash.replace(/^#\//, '');
       if (legacy && VALID_PAGES.includes(legacy as PageId)) {
-        window.history.replaceState(null, '', legacy === 'home' ? '/' : `/${legacy}`);
+        window.history.replaceState(null, '', legacy === 'home' ? '/' : `/${legacy}/`);
       }
 
       const slug = window.location.pathname.replace(/^\/+|\/+$/g, '');
@@ -99,7 +99,9 @@ export default function App() {
     if (pageId !== 'resources') {
       setSelectedArticleSlug(undefined);
     }
-    window.history.pushState(null, '', pageId === 'home' ? '/' : `/${pageId}`);
+    // Trailing slash matches the canonical form; without it a refresh of the
+    // copied address bar URL would take a 301 hop.
+    window.history.pushState(null, '', pageId === 'home' ? '/' : `/${pageId}/`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -120,7 +122,7 @@ export default function App() {
     // Push the article's own permalink, not /resources — otherwise opening a
     // result from search would leave the address bar on the hub index and the
     // link would be unshareable.
-    window.history.pushState(null, '', `/resources/${slug}`);
+    window.history.pushState(null, '', `/resources/${slug}/`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
