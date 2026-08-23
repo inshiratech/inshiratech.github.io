@@ -106,7 +106,10 @@ jobs:
             else
               echo "MISSING article page: /resources/$s"; fail=1
             fi
-            if grep -qF "/resources/$s<" dist/sitemap.xml; then
+            # Tolerate either URL form. The sitemap now lists the canonical
+            # trailing-slash URLs; this check previously assumed no slash and
+            # blocked the deploy when that changed.
+            if grep -qE "/resources/$s/?<" dist/sitemap.xml; then
               echo "ok: sitemap lists /resources/$s"
             else
               echo "MISSING from sitemap: /resources/$s"; fail=1
