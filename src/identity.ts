@@ -19,11 +19,14 @@ export const SITE_ORIGIN = 'https://www.inshira.co.uk';
 
 /* Canonical page for the person on our own site. Note: no `/#/` — the hash
    router was removed, and several of these URLs were still carrying it. */
-export const HARRIS_PAGE = `${SITE_ORIGIN}/about`;
+export const HARRIS_PAGE = `${SITE_ORIGIN}/about/`;
 
 /* Stable schema.org @id so every schema block on the site refers to ONE node
    rather than re-declaring a new person each time. */
-export const HARRIS_ID = `${HARRIS_PAGE}#mohammad-harris`;
+/* Kept as an explicit literal rather than derived from HARRIS_PAGE. It is a
+   stable identifier already published in the static JSON-LD; adding a slash to
+   the page URL must not silently mint a new entity id. */
+export const HARRIS_ID = `${SITE_ORIGIN}/about#mohammad-harris`;
 
 /* Personal LinkedIn. Confirmed live vanity URL is /in/dr-mohammad-harris —
    this is also what the University of Hertfordshire alumni story links to, so
