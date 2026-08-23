@@ -42,7 +42,11 @@
     <meta name="revisit-after" content="14 days" />
     <meta name="author" content="Inshira Technologies Ltd" />
 
-    <link rel="icon" href="/assets/logo.png" />
+    <!-- The previous icon pointed at /assets/logo.png, which was never in the
+         repo and returned 404, so browsers fell back to a generic icon. This
+         SVG is the brand mark redrawn as vector: it is sharp at every size and
+         is a text file, unlike a .ico. -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 
     <!-- Baseline structured data, rendered statically so crawlers see it
          without executing JavaScript. SeoGeoMetadata.tsx layers per-view data
