@@ -158,11 +158,15 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
        canonicalise to that and not to the hub index — otherwise all four
        articles would consolidate onto /resources and none could rank or be
        shared as a distinct page. */
+    /* Trailing slash is deliberate and must match scripts/prerender.mjs.
+       GitHub Pages 301-redirects /platform to /platform/, so the non-slash
+       form is not the URL that returns 200 and must not be declared canonical.
+       See the CANONICAL URL FORM note in prerender.mjs. */
     const path = article
-      ? `/resources/${article.slug}`
+      ? `/resources/${article.slug}/`
       : pageId === 'home'
         ? '/'
-        : `/${pageId}`;
+        : `/${pageId}/`;
     const canonicalUrl = `https://www.inshira.co.uk${path}`;
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
@@ -226,7 +230,7 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
           email: 'info@inshira.co.uk',
           /* Was '/#/contact' — a leftover from the removed hash router that
              pointed at a URL which no longer exists. */
-          url: 'https://www.inshira.co.uk/contact',
+          url: 'https://www.inshira.co.uk/contact/',
           areaServed: 'GB',
           availableLanguage: 'English',
         },
@@ -302,7 +306,7 @@ export default function SeoGeoMetadata({ pageId, subTopic }: SeoProps) {
            a page Google cannot fetch. */
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': 'https://www.inshira.co.uk/resources',
+          '@id': 'https://www.inshira.co.uk/resources/',
         },
         /* Every named author, so co-written pieces credit both people.
            schema.org accepts either a single Person or an array. */
