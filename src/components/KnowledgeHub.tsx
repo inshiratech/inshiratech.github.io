@@ -268,16 +268,16 @@ export default function KnowledgeHub({ onSelectArticle, openSlug }: KnowledgeHub
     }
     // Give the article its own address so it can be copied out of the address
     // bar and shared. pushState (not replaceState) so Back returns to the hub.
-    if (window.location.pathname !== `/resources/${post.slug}`) {
-      window.history.pushState(null, '', `/resources/${post.slug}`);
+    if (window.location.pathname.replace(/\/+$/, '') !== `/resources/${post.slug}`) {
+      window.history.pushState(null, '', `/resources/${post.slug}/`);
     }
     window.scrollTo({ top: 300, behavior: 'smooth' });
   };
 
   const handleBackToGrid = () => {
     setReadingPost(null);
-    if (window.location.pathname !== '/resources') {
-      window.history.pushState(null, '', '/resources');
+    if (window.location.pathname.replace(/\/+$/, '') !== '/resources') {
+      window.history.pushState(null, '', '/resources/');
     }
     // Clear the article slug too, otherwise the article's title, description
     // and BlogPosting schema would stay applied to the Knowledge Hub index.
@@ -341,7 +341,7 @@ export default function KnowledgeHub({ onSelectArticle, openSlug }: KnowledgeHub
                 just point at window.location — no hand-built URLs to drift. */}
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                `https://www.inshira.co.uk/resources/${readingPost.slug}`
+                `https://www.inshira.co.uk/resources/${readingPost.slug}/`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -354,7 +354,7 @@ export default function KnowledgeHub({ onSelectArticle, openSlug }: KnowledgeHub
             <button
               type="button"
               onClick={async () => {
-                const url = `https://www.inshira.co.uk/resources/${readingPost.slug}`;
+                const url = `https://www.inshira.co.uk/resources/${readingPost.slug}/`;
                 try {
                   await navigator.clipboard.writeText(url);
                   setCopied(true);
