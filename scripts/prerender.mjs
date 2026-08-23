@@ -75,8 +75,27 @@ if (ARTICLES.length === 0) {
 
 const escapeAttr = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
+/* ----------------------------------------------------------------------------
+   CANONICAL URL FORM
+
+   GitHub Pages serves /platform from /platform/index.html, and to do that it
+   301-redirects /platform -> /platform/. A canonical pointing at the non-slash
+   form therefore tells Google "the definitive version of this page is a URL
+   that redirects somewhere else". Search Console flagged exactly that on
+   /resources/why-bi-is-not-enough: "Page is not indexed: Page with redirect".
+
+   So directory-backed routes canonicalise WITH the trailing slash — the URL
+   that actually returns 200. Real files (privacy.html) have no directory index
+   and must NOT gain one, and the root is already correct.
+   -------------------------------------------------------------------------- */
+const canonicalUrl = (path) => {
+  if (path === '') return `${ORIGIN}/`;
+  if (path.includes('.')) return `${ORIGIN}/${path}`;
+  return `${ORIGIN}/${path}/`;
+};
+
 const emit = ({ path, title, description, image, type }) => {
-  const url = `${ORIGIN}/${path}`;
+  const url = canonicalUrl(path);
   let html = shell;
 
   html = swapTag(html, /<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
@@ -144,8 +163,10 @@ const SITEMAP_META = {
   'terms.html':   { lastmod: '2026-03-18', changefreq: 'yearly',  priority: '0.3' },
 };
 
+/* Same URL form as the canonical tags above. A sitemap that lists the
+   redirecting variant asks Google to crawl a redirect on every entry. */
 const urlEntry = (path, meta) =>
-  `  <url><loc>${ORIGIN}/${path}</loc><lastmod>${meta.lastmod}</lastmod>` +
+  `  <url><loc>${canonicalUrl(path)}</loc><lastmod>${meta.lastmod}</lastmod>` +
   `<changefreq>${meta.changefreq}</changefreq><priority>${meta.priority}</priority></url>`;
 
 const sitemapUrls = [
