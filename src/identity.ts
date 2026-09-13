@@ -52,18 +52,27 @@ export const HARRIS_ORCID_ID = '0000-0003-3919-5952';
 export const HARRIS_SCHOLAR =
   'https://scholar.google.com/citations?user=TudprTUAAAAJ&hl=en';
 
+/* Personal site, on its own domain. Listed high because the link is
+   reciprocal: that site's Person schema declares Inshira as `worksFor` and
+   points back here, so the two domains corroborate each other rather than
+   each making an unsupported claim. Its own `sameAs` lists the same ORCID,
+   LinkedIn and Scholar URLs above, which is what lets Google resolve one
+   person across both sites instead of two similarly-named people. */
+export const HARRIS_PERSONAL_SITE = 'https://drmohammadharris.co.uk/';
+
 /* Every independent page that is verifiably the same person. Ordered by
    strength of evidence: neutral registry, then self-controlled profiles, then
    third-party coverage. */
 export const HARRIS_SAME_AS: string[] = [
   HARRIS_ORCID,
+  HARRIS_PERSONAL_SITE,
   HARRIS_LINKEDIN,
   HARRIS_SCHOLAR,
   HARRIS_HERTS_ALUMNI,
 ];
 
 export const HARRIS_NAME = 'Dr. Mohammad Harris';
-export const HARRIS_ROLE = 'Founder & Managing Director';
+export const HARRIS_ROLE = 'Managing Director & Founder';
 export const HARRIS_CREDENTIALS = 'PhD, MRes, BEng (Hons), FHEA, MIET';
 
 /* Percent-encoded because the source filename contains spaces, and a raw space
