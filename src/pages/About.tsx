@@ -210,7 +210,7 @@ export default function AboutPage() {
   const teamMembers: TeamMember[] = [
     {
       name: 'Dr. Mohammad Harris',
-      role: 'Founder & Managing Director',
+      role: 'Managing Director & Founder',
       tagline: 'Sustainable manufacturing, AI, and engineering leadership.',
       experience: 'PhD, MRes, BEng (Hons), FHEA, MIET. Published across circular manufacturing, agile manufacturing, and machine learning for thermal and production systems.',
       passion: 'Making stage-level loss diagnostics accessible to manufacturers without enterprise budgets.',
