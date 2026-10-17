@@ -141,6 +141,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
                   </button>
                 </li>
               ))}
+            <li><a href="/news-media/" className="font-sans text-[13px] text-slate-400 hover:text-white transition-colors">News &amp; Media</a></li>
             </ul>
           </div>
 
