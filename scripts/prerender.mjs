@@ -171,6 +171,7 @@ const urlEntry = (path, meta) =>
 
 const sitemapUrls = [
   urlEntry('', SITEMAP_META['']),
+  urlEntry('news-media', {lastmod: '2026-10-17', changefreq: 'monthly', priority: '0.7'}),
   ...ROUTES.map((r) => urlEntry(r.path, SITEMAP_META[r.path])),
   ...ARTICLES.map((a) =>
     urlEntry(`resources/${a.slug}`, {
