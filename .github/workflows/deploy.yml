@@ -95,6 +95,24 @@ jobs:
             if [ -f "dist/$r/index.html" ]; then echo "ok: /$r"; else echo "MISSING route: /$r"; fail=1; fi
           done
 
+          # News & Media is a standalone, crawler-readable HTML page. Ensure
+          # it survives Vite's public/ copy and is discoverable in the sitemap.
+          if [ -f dist/news-media/index.html ]; then
+            echo "ok: /news-media/ standalone HTML"
+          else
+            echo "MISSING: /news-media/index.html"; fail=1
+          fi
+          if grep -qF 'https://www.inshira.co.uk/news-media/' dist/sitemap.xml; then
+            echo "ok: sitemap lists /news-media/"
+          else
+            echo "MISSING: /news-media/ in sitemap"; fail=1
+          fi
+          if grep -qF 'News &amp; Media' dist/news-media/index.html 2>/dev/null; then
+            echo "ok: news page includes server-readable content"
+          else
+            echo "MISSING: readable News & Media HTML"; fail=1
+          fi
+
           # Every article in src/data.ts must have been prerendered to its own
           # page AND listed in the generated sitemap. This is the check that
           # catches a new article silently failing to get a shareable URL —
