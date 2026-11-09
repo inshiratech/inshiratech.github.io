@@ -271,7 +271,7 @@ export default function AboutPage() {
     },
     {
       name: 'Dr. Saed Hussain',
-      role: 'Sage AI, Ex-Thales & BAE',
+      role: 'Fractional CTO',
       tagline: 'Advises on AI and optimisation.',
       experience: 'PhD, BEng (Hons). Applied AI and optimisation across defence, aerospace, and enterprise software.',
       passion: 'Optimisation methods that hold up against messy real-world industrial data.',
@@ -279,7 +279,7 @@ export default function AboutPage() {
       icon: Cpu,
       gradColor: 'from-violet-500/10 to-blue-500/5',
       photo: '/assets/saed.jpeg',
-      group: 'Advisory Board'
+      group: 'Core Leadership'
     }
   ];
 
